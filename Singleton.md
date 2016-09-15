@@ -1,3 +1,5 @@
+本文github地址: https://github.com/YoungBear/MyBlog/blob/master/Singleton.md
+
 　　单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例的特殊类。通过单例模式可以保证系统中一个类只有一个实例。
 ## 1. 单例模式的用途 ##
 　　单例模式主要是为了避免因为创建了多个实例造成资源的浪费，且多个实例由于多次调用容易导致结果出现错误，而使用单例模式能够保证整个应用中有且只有一个实例。从其名字中我们就可以看出所谓单例，就是单个实例也就是说它可以解决的问题是：可以保证一个类在内存中的对象的唯一性，在一些常用的工具类、线程池、缓存，数据库，账户登录系统、配置文件等程序中可能只允许我们创建一个对象，一方面如果创建多个对象可能引起程序的错误，另一方面创建多个对象也造成资源的浪费。在这种基础之上单例设计模式就产生了因为使用单例能够保证整个应用中有且只有一个实例。
@@ -138,7 +140,6 @@ public enum SingletonEnum {
 　　懒汉式本身是非线程安全的，为了实现线程安全有几种写法，分别是上面的3.2.2、3.2.3。
 　　
 ## 5. 序列化、反射、clone破坏单例的sample和相应的解决方案 ##
-参考：http://blog.csdn.net/three_man/article/details/42006475
 
 　　该sample使用静态内部类形式的单例。
 ### 5.1 用序列化打破单例 ###
@@ -442,8 +443,12 @@ public class TestEnumLearn {
 
 参考：
 
+http://blog.csdn.net/three_man/article/details/42006475
+
 http://blog.csdn.net/dmk877/article/details/50311791
+
 http://blog.csdn.net/jason0539/article/details/23297037/
+
 http://www.iteye.com/topic/652440
 
 
