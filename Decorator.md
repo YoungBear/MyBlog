@@ -1,4 +1,9 @@
 # 装饰者模式 #
+
+　　本文github地址：
+
+　　https://github.com/YoungBear/MyBlog/blob/master/Decorator.md
+
 　　Decorator Pattern，也称为包装模式(Wrapper Pattern)。
 
 　　装饰者模式，动态地将责任附加到对象上。想要扩展功能，装饰者提供有别于继承的另一种选择。
