@@ -66,7 +66,7 @@ public class Test {
 
 ```
 
-　　demo地址：　　　  
+　　demo地址：
 　　https://github.com/YoungBear/DesignPattern/tree/master/src/com/example/observer
 
 　　Android的自大组件之一BroadcastReceiver，它作为应用内、进程间的一种重要通信手段，能够将某个消息通过广播的形式传递给它注册的对应广播接收器的对象，接收对象需要通过Context的registerReceiver函数注册到AMS(ActivityManagerService)中，当通过sendBroadcast发送广播时，所有注册了对应的IntentFilter的BroadcastReceiver对象就会收到这个消息，BroadcastReceiver的onReceive方法就会被调用，这就是一个典型的发布--订阅系统，也就是我们的观察者模式。
