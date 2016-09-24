@@ -1,4 +1,8 @@
-# Android Activity LaunchMode #
+# Android Activity 启动模式 #
+
+本文github地址：
+
+https://github.com/YoungBear/MyBlog/blob/master/ActivityLaunchMode.md
 
 说明，本文sample中使用的简写，launchMode分别为：
 
@@ -13,8 +17,6 @@ singleInstance    在sample中用Activity D 来表示
 查看当前任务栈情况命令：
 
 `adb shell dumpsys activity`
-
-
 
 
 ## standard ##
