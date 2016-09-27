@@ -36,3 +36,10 @@ tips：
 1. 添加新功能时重构
 2. 修补错误时重构
 3. 复审代码时重构
+
+##代码的坏味道##
+1. Duplicated Code 重复代码
+2. Long Method 过长函数
+3. Large Class 过大的类
+4. Long Parameter List 过长参数列
+5. Divergent Change 发散式变化
