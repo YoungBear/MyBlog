@@ -526,6 +526,7 @@ eg.
 　　好了，如果现在大家去面试，被问到AsyncTask的缺陷，可以分为两个部分说，<font color=red>**在3.0以前，最大支持128个线程的并发，10个任务的等待。在3.0以后，无论有多少任务，都会在其内部单线程执行**</font>。
 
 
+
 测试代码下载：
 
 https://github.com/YoungBear/AsyncTaskLearn
