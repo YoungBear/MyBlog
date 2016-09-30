@@ -1,5 +1,9 @@
 #AsyncTask#
 
+本文Github地址：
+
+https://github.com/YoungBear/MyBlog/blob/master/AsyncTask.md
+
 *Being yourself is an honor, because nobody else can be you.*
 
 *做自己是一种荣耀，因为没有任何人能成为你。*
@@ -12,6 +16,32 @@ http://blog.csdn.net/guolin_blog/article/details/11711405
 
 《Android开发艺术探索》
 
+　　AsyncTask是一种轻量级的异步任务类，它可以在线程池中执行后台任务，然后把执行的进度和最终结果传递给主线程并在主线程更新UI。从实现上来说，AsyncTask封装了Thread和Handler，通过AsyncTask可以更加方便地执行后台任务以及在主线程访问UI。但是AsyncTask并不适合进行特别耗时的后台任务，对于特别耗时的任务来说，建议使用线程池。
+
+　　AsyncTask是一个抽象的泛型类，它提供了Params、Progress和Result这三个泛型参数，其中Params表示参数的类型，Progress表示后台任务的执行进度的类型，而Result则表示后台任务的返回结果的类型，如果AsyncTask确实不需要传递具体的参数，那么这三个泛型参数可以用Void来代替。AsyncTask这个类的声明：
+
+`public abstract class AsyncTask<Params, Progress, Result>`
+
+　　AsyncTask提供了4个核心方法，它们的含义如下所示。
+
+1. onPreExecute()，在主线程中执行，在异步任务执行之前，此方法会被调用，一般可以做一些准备工作。
+2. doInBackground(Params...params)，在线程池中执行，此方法用于执行异步任务，params参数表示异步任务的<font color=red>输入参数</font>。在此方法中可以通过publishProgress方法来更新任务的进度，publishProgress方法会调用onProgressUpdate方法。此外此方法需要返回计算结果给onPostExecute方法。
+3. onProgressUpdate(Progress...values)，在主线程中执行，当后台任务的执行进度发生改变时此方法会被调用。
+4. onPoseExecute(Result result)，在主线程中执行，在异步任务执行之后，此方法会被调用，其中result参数是后台任务的返回值，即doInBackground的返回值。
+
+　　上面这几个方法，onPreExecute先执行，接着是doInBackground，最后才是onPostExecute。除了上述四个方法以外，AsyncTask还提供了onCancelled()方法，它同样在主线程中执行，当异步任务被取消时，onCancalled()方法会被调用，这个时候onPostExecute()则不会被调用。
+
+　　AsyncTask在具体使用的过程冲也是有一些条件限制的，主要有如下几点：
+
+1. AsyncTask 的类必须在主线程中加载
+2. AsyncTask 的对象必须在主线程中创建
+3. execute 方法必须在UI线程调用
+4. 不要在程序中直接调用onPreExecute()、onPostExecute()、doInBackground()和onProgressUpdate()方法
+5. 一个AsyncTask对象只能执行一次，即只能调用一次 execute 方法，否则会报运行时异常
+6. 在Android 1.6 之前，AsyncTask是串行执行任务的，Android 1.6 的时候 AsyncTask 开始采用线程池里处理并发任务，但是从Android 3.0 开始，为了避免AsyncTask 所带来的并发错误，AsyncTask 又采用一个线程来串行执行任务。尽管如此，在 Android 3.0 以及后续的版本中，我们仍然可以通过 AsyncTask 的 executeOnExecutor 方法来并发地执行任务。
+
+##AsyncTask的工作原理
+　　从它的execute方法开始分析。
 
 　　源代码基于 <font color=red>API-24</font>，不同版本可能会有不同，但是不影响整体分析。
 
@@ -496,7 +526,9 @@ eg.
 　　好了，如果现在大家去面试，被问到AsyncTask的缺陷，可以分为两个部分说，<font color=red>**在3.0以前，最大支持128个线程的并发，10个任务的等待。在3.0以后，无论有多少任务，都会在其内部单线程执行**</font>。
 
 
+测试代码下载：
 
+https://github.com/YoungBear/AsyncTaskLearn
 
 
 
