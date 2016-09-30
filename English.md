@@ -15,3 +15,7 @@ I don't mind if you heat me. It doesn't matter at all. I'm not living to please 
 Everybody has a forest of his own. Those lost have lost and those have met will meet each other again.
 
 每个人都有属于自己的一片森林，迷失的人迷失了，相逢的人会再相逢。
+
+Whatever makes you weird is probably your greatest asset.
+
+你的那些奇葩性格也许是你最大的财富。
