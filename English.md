@@ -19,3 +19,7 @@ Everybody has a forest of his own. Those lost have lost and those have met will 
 Whatever makes you weird is probably your greatest asset.
 
 你的那些奇葩性格也许是你最大的财富。
+
+Being yourself is an honor, because nobody else can be you.
+
+做自己是一种荣耀，因为没有任何人能够成为你。
