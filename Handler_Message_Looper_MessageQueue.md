@@ -1,5 +1,9 @@
 #Android异步消息处理机制
 
+本文GitHub地址：
+
+https://github.com/YoungBear/MyBlog/blob/master/Handler_Message_Looper_MessageQueue.md
+
 *Everything is going on, but don't give up trying.*
 
 *万事随缘，但不要放弃努力。*
