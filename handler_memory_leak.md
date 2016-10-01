@@ -1,8 +1,12 @@
 #Handler内存泄漏
 
-I figure life is a gift and I don't intend on wasting it.
+本文GitHub地址：
 
-我觉得生命是一份礼物，我不想浪费它。
+https://github.com/YoungBear/MyBlog/blob/master/handler_memory_leak.md
+
+*I figure life is a gift and I don't intend on wasting it.*
+
+*我觉得生命是一份礼物，我不想浪费它。*
 
 参考：
 
