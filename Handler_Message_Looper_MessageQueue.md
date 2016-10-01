@@ -308,6 +308,47 @@ http://blog.csdn.net/lmj623565791/article/details/38377229
 ```
 　　如果msg.callback不为null，则执行callback回调，也就是我们的Runnable对象(<font color=red>对应Handler中的post的参数Runnable</font>)，即在主线程中调用run方法。
 
+　　与post方法类似，Handler的postAtTime和postDelayed方法，最终也会调用到enqueueMessage方法，也可以在其Runnable参数的run函数中做UI更新操作。
+
+```
+    public final boolean postAtTime(Runnable r, long uptimeMillis)
+    {
+        return sendMessageAtTime(getPostMessage(r), uptimeMillis);
+    }
+    public final boolean postAtTime(Runnable r, Object token, long uptimeMillis)
+    {
+        return sendMessageAtTime(getPostMessage(r, token), uptimeMillis);
+    }
+    public final boolean postDelayed(Runnable r, long delayMillis)
+    {
+        return sendMessageDelayed(getPostMessage(r), delayMillis);
+    }
+```
+
+　　postDelay表示延迟特定时间再执行post，而postAtTime表示在指定的时间执行post，一般使用SystemClock.uptimeMillis()作为时间基点。
+
+eg.
+
+```
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mTextView.append("\nupdate text in postDelayed of mHandler... "
+                        + mSdf.format(new Date()));
+            }
+        }, 5 * 1000);
+
+        mHandler.postAtTime(new Runnable() {
+            @Override
+            public void run() {
+                mTextView.append("\nupdate text in postAtTime of mHandler... "
+                        + mSdf.format(new Date()));
+            }
+        }, SystemClock.uptimeMillis() + 10 * 1000);
+```
+
+　　如果在postDelay的Runnable参数run方法中调用postDelay本身，则会实现循环任务。
+
 ###4.在子线程中使用Handler
 
 　　其实Handler不仅可以更新UI，你完全可以在一个子线程中去创建一个Handler，然后使用这个handler实例在任何其他线程中发送消息，最终处理消息的代码都会在你创建Handler实例的线程中运行。
