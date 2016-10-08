@@ -27,3 +27,8 @@ Being yourself is an honor, because nobody else can be you.
 The hurt you're feeling now is not the worst pain. The worst thing is not feeling the hurt anymore.
 
 --Sniper 双狙人
+
+If only you knew how much I think of you.
+
+假如你知道我有多想念你那该多好。
+
