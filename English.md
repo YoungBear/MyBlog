@@ -23,3 +23,7 @@ Whatever makes you weird is probably your greatest asset.
 Being yourself is an honor, because nobody else can be you.
 
 做自己是一种荣耀，因为没有任何人能够成为你。
+
+The hurt you're feeling now is not the worst pain. The worst thing is not feeling the hurt anymore.
+
+--Sniper 双狙人
