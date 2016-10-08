@@ -32,3 +32,7 @@ If only you knew how much I think of you.
 
 假如你知道我有多想念你那该多好。
 
+No matter how hard it is, just keep going because you only fail when you give up.
+
+无论多么难，都要继续向前，因为只有你放弃的那一刻，你才输了。
+
