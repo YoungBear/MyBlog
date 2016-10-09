@@ -393,7 +393,8 @@ java.lang.NoSuchMethodException:com.example.singleton.TestEnum.<init>()#
 
 ####没有clone方法。####
 
-```TestEnum.java
+```
+//TestEnum.java
 public enum TestEnum implements Serializable, Cloneable{
     //定义一个枚举的元素，它就代表了Singleton的一个实例
     instance;
@@ -440,6 +441,30 @@ public class TestEnumLearn {
 　　有一次去Ｎ公司面试Android开发，让写一个单例模式。我使用内部类完成了，面试官问这种内部类是饿汉还是懒汉方式，以及内部类写法和double check写法的区别，我的回答是内部类写法算是饿汉式，但又和普通饿汉不一样，因为普通饿汉式是在内加载完成的时候，就创建了对象，而内部类是在第一次调用getInstance()的时候，才会创建对象。和double check的区别，没回答好，回答只是写法不一样，可能没有get到面试官的意思吧。我提了一句枚举类型，面试官又问了区别，回答了写法简单，能防止反射和序列化，面试官疑惑：<font color=red>跟反射和序列化有关系吗？</font>当时不太肯定，也没有争辩，如果看过提前看过这个文章的话，肯定会跟他好好聊聊的。
 
 　　那次表现太差了，很多Android基础的知识都没回答好，然后，就没有然后了。
+
+## 6. 常见开源代码中的单例模式 ##
+
+### 6.1 Univesal Image Loader ###
+
+```
+    //com.nostra13.universalimageloader.core.ImageLoader.java
+    private static volatile ImageLoader instance;
+    public static ImageLoader getInstance() {
+        if(instance == null) {
+            Class var0 = ImageLoader.class;
+            synchronized(ImageLoader.class) {
+                if(instance == null) {
+                    instance = new ImageLoader();
+                }
+            }
+        }
+
+        return instance;
+    }
+
+    protected ImageLoader() {
+    }
+```
 
 参考：
 
