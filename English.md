@@ -36,3 +36,8 @@ No matter how hard it is, just keep going because you only fail when you give up
 
 无论多么难，都要继续向前，因为只有你放弃的那一刻，你才输了。
 
+Distance sometimes lets you know who's worth keeping and who's worth letting go.
+
+有时候，距离会让你知道，谁值得留在身边，谁应该坦然放手。
+
+
