@@ -40,4 +40,7 @@ Distance sometimes lets you know who's worth keeping and who's worth letting go.
 
 有时候，距离会让你知道，谁值得留在身边，谁应该坦然放手。
 
+Thought is already is late, exactly is the earliest time.
+
+觉得为时已晚的时候，恰恰是最早的时候。
 
