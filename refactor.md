@@ -42,4 +42,21 @@ tips：
 2. Long Method 过长函数
 3. Large Class 过大的类
 4. Long Parameter List 过长参数列
-5. Divergent Change 发散式变化
+5. Divergent Change 发散式变化 -- 软件能够更容易被修改
+6. Shotgun Surgery 霰弹式修改 -- 在很多类中做出许多小的修改
+7. Feature Envy 依恋情结 -- 函数对某个类的兴趣高过对自己所处类的兴趣
+8. Data Clumps 数据泥团 -- 很多相同的参数(可以新建一个类来保存)
+9. Primitive Obsession 基本类型偏执
+10. Switch Statements switch 惊悚现身
+11. Parallel Inheritance Hierarchies 平行继承体系
+12. Lazy Class 冗赘类
+13. Speculative Generality 夸夸其谈未来性
+14. Temporary Field 令人迷惑的暂时字段
+15. Message Chains 过度耦合的消息链
+16. Middle Man 中间人
+17. Inappropriate Intimacy 狎昵关系
+18. Alternative Classes with Different Interfaces 异曲同工的类
+19. Incomplete Library Class 不完美的类库
+20. Data Class 纯稚的数据类
+21. Refused Bequest 被拒绝的遗赠
+22. Comments 过多的注释
