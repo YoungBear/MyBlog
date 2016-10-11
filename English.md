@@ -44,3 +44,9 @@ Thought is already is late, exactly is the earliest time.
 
 觉得为时已晚的时候，恰恰是最早的时候。
 
+A man is not old as long as he is seeking something. A man is not old until regrets take the place of dreams.
+
+只要一个人还有追求，他就没有老。直到后悔取代了梦想，一个人才算老。
+
+
+
