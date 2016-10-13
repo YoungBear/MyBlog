@@ -48,5 +48,9 @@ A man is not old as long as he is seeking something. A man is not old until regr
 
 只要一个人还有追求，他就没有老。直到后悔取代了梦想，一个人才算老。
 
+Love is like a staircase; it has it's ups and downs, sometimes it twists and turns, but in the end, it puts us where we want to be.
 
+爱就像楼梯，有上有下，曲曲折折，但最终它会把我们带到我们想到的地方。
+
+![](http://ww2.sinaimg.cn/mw690/714d3dd0gw1f8qly4853jj20dw0jdadq.jpg)
 
