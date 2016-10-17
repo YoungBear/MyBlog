@@ -92,7 +92,59 @@ protected void onStop() {
 ```
 
 **创建POST请求**
-上面说的都是GET请求，下面来说一下POST请求，与GET请求不同的是，只要在创建请求的时候将请求类型改为POST请求，并且override Request的getParams方法即可。
+
+上面说的都是GET请求，下面来说一下POST请求，与GET请求不同的是，只要在创建请求的时候将请求类型改为POST请求，并且override Request的<font color=red>getParams</font>方法即可。
+
+**添加请求头部信息**
+
+override Request的<font color=red>getHeaders</font>方法。
+
+```
+    private void simplePostRequest() {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                TEST_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "post, onResponse, response: " + response);
+                        txtDisplay.setText("Response is: " + response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "post, onErrorResponse, error: " + error.getMessage());
+                        txtDisplay.setText("That didn't work!");
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("name", "Androidhive");
+                params.put("email", "abc@androidhive.info");
+                params.put("password", "password123");
+
+                return params;
+            }
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("apiKey", "xxxxxxxxxxxxxxx");
+                return headers;
+            }
+        };
+        //关闭Cache
+        stringRequest.setShouldCache(false);
+        stringRequest.setTag(TAG);
+        mRequestQueue.add(stringRequest);
+    }
+```
+
+###创建Image请求
+Volley库中自带了NetworkImageView类，这个ImageView可以自动使用volley下载图片。
 
 
 
