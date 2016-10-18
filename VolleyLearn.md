@@ -368,6 +368,219 @@ NetworkImageView是一个自定义控件，它是继承自ImageView的，具备I
     }
 ```
 
+###自定义Requet
+
+在build.gradle文件中添加gson依赖：
+
+```
+dependencies {
+    ...
+    compile 'com.google.code.gson:gson:2.7'
+}
+```
+
+自定义GsonRequest：
+
+```
+//GsonRequest.java
+public class GsonRequest<T> extends Request<T> {
+
+    private final Gson gson = new Gson();
+    private final Class<T> clazz;
+    private final Map<String, String> headers;
+    private final Response.Listener<T> listener;
+
+    public GsonRequest(String url, Class<T> clazz, Map<String, String> headers,
+                       Listener<T> listener, ErrorListener errorListener) {
+        super(Method.GET, url, errorListener);
+        this.clazz = clazz;
+        this.headers = headers;
+        this.listener = listener;
+    }
+
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        return headers != null ? headers : super.getHeaders();
+    }
+
+    @Override
+    protected Response<T> parseNetworkResponse(NetworkResponse response) {
+        try {
+            String json = new String(
+                    response.data,
+                    HttpHeaderParser.parseCharset(response.headers));
+            return Response.success(
+                    gson.fromJson(json, clazz),
+                    HttpHeaderParser.parseCacheHeaders(response));
+        } catch (UnsupportedEncodingException e) {
+            return Response.error(new ParseError(e));
+        } catch (JsonSyntaxException e) {
+            return Response.error(new ParseError(e));
+        }
+    }
+
+    @Override
+    protected void deliverResponse(T response) {
+        listener.onResponse(response);
+    }
+
+}
+```
+
+在实际调用的时候，和普通的请求类似：
+
+```
+    private void personRequest() {
+        GsonRequest<Person> gsonRequest = new GsonRequest<Person>(
+                TEST_URL,
+                Person.class,
+                null,
+                new Response.Listener<Person>() {
+                    @Override
+                    public void onResponse(Person response) {
+                        txtDisplay.setText("size: " + response.getContacts().size());
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "onErrorResponse, error: " + error.getMessage());
+                    }
+                }
+        );
+        VolleyController.getInstance(this).addToRequestQueue(gsonRequest, TAG);
+    }
+```
+
+实体类Person类：(在AS下可以使用gson插件来生成)
+
+```
+package com.example.volleylearn.model;
+
+import java.util.List;
+
+/**
+ * Created by youngbear on 16/10/18.
+ */
+
+public class Person {
+
+    /**
+     * id : c200
+     * name : Ravi Tamada
+     * email : ravi@gmail.com
+     * address : xx-xx-xxxx,x - street, x - country
+     * gender : male
+     * phone : {"mobile":"+91 0000000000","home":"00 000000","office":"00 000000"}
+     */
+
+    private List<ContactsBean> contacts;
+
+    public List<ContactsBean> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<ContactsBean> contacts) {
+        this.contacts = contacts;
+    }
+
+    public static class ContactsBean {
+        private String id;
+        private String name;
+        private String email;
+        private String address;
+        private String gender;
+        /**
+         * mobile : +91 0000000000
+         * home : 00 000000
+         * office : 00 000000
+         */
+
+        private PhoneBean phone;
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public PhoneBean getPhone() {
+            return phone;
+        }
+
+        public void setPhone(PhoneBean phone) {
+            this.phone = phone;
+        }
+
+        public static class PhoneBean {
+            private String mobile;
+            private String home;
+            private String office;
+
+            public String getMobile() {
+                return mobile;
+            }
+
+            public void setMobile(String mobile) {
+                this.mobile = mobile;
+            }
+
+            public String getHome() {
+                return home;
+            }
+
+            public void setHome(String home) {
+                this.home = home;
+            }
+
+            public String getOffice() {
+                return office;
+            }
+
+            public void setOffice(String office) {
+                this.office = office;
+            }
+        }
+    }
+}
+```
+
+
 测试代码位置:https://github.com/YoungBear/VolleyLearn
 
 
@@ -380,3 +593,5 @@ http://bxbxbai.github.io/2014/09/14/android-working-with-volley/
 https://developer.android.com/training/volley/index.html
 
 http://blog.csdn.net/guolin_blog/article/details/17482165
+
+http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1018/1800.html
