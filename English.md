@@ -54,3 +54,7 @@ Love is like a staircase; it has it's ups and downs, sometimes it twists and tur
 
 ![](http://ww2.sinaimg.cn/mw690/714d3dd0gw1f8qly4853jj20dw0jdadq.jpg)
 
+There are secret opportunities hidden inside every failure.
+
+失败里总藏着秘密机遇。今天继续加油吧！
+
