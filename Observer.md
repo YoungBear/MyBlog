@@ -72,3 +72,5 @@ public class Test {
 　　Android的自大组件之一BroadcastReceiver，它作为应用内、进程间的一种重要通信手段，能够将某个消息通过广播的形式传递给它注册的对应广播接收器的对象，接收对象需要通过Context的registerReceiver函数注册到AMS(ActivityManagerService)中，当通过sendBroadcast发送广播时，所有注册了对应的IntentFilter的BroadcastReceiver对象就会收到这个消息，BroadcastReceiver的onReceive方法就会被调用，这就是一个典型的发布--订阅系统，也就是我们的观察者模式。
 
 　　Android中的ListView，我们在ListView添加数据后，都会调用Adapter的notifyDataSetChanged()方法，这也是一个典型的观察者模式。
+
+　　Android开发中的onClickListener，View是被观察者，onClickListener是观察者，二者通过`setOnClickListener()`方法达成订阅关系。订阅之后，用户点击按钮的瞬间，Android Framework就会将点击事件发送给已经注册的OnClickListener。这也是一个典型的观察者模式。
