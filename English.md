@@ -58,3 +58,11 @@ There are secret opportunities hidden inside every failure.
 
 失败里总藏着秘密机遇。今天继续加油吧！
 
+A vacation is like love - anticipated with pleasure, experienced with discomfort, and remembered with nostalgia.
+
+放假就像谈恋爱：憧憬它的到来令人兴奋不已，拥有它时觉得不过如此，等它结束了又会勾起无限怀念。
+
+
+![](http://ww1.sinaimg.cn/mw690/714d3dd0gw1f95ex48kvhj20cf0c9777.jpg)
+
+![](http://ww4.sinaimg.cn/mw690/84f909afjw1f95e9j71goj20dc0d7abb.jpg)
