@@ -30,3 +30,30 @@ RxJava的观察者模式大致如下图：
 
 
 ###基本实现
+1. 创建 Observer
+2. 创建 Observable
+3. Subscribe (订阅)
+
+###线程控制 —— Scheduler
+
+###变换
+
+所谓变换，就是将事件序列中的对象或整个序列进行加工处理，转换成不同的事件或事件序列。
+
+#### map(): 事件对象的直接变换。map() 的示意图：
+
+![](http://ww1.sinaimg.cn/mw1024/52eb2279jw1f2rx4fitvfj20hw0ea0tg.jpg)
+
+#### flatMap(): 返回一个Observable对象，并且这个 Observable 对象并不是被直接发送到了 Subscriber 的回调方法中。flatMap() 的原理是这样的：
+
+
+
+1. 使用传入的事件对象创建一个 Observable 对象；
+2. 并不发送这个 Observable, 而是将它激活，于是它开始发送事件；
+3. 每一个创建出来的 Observable 发送的事件，都被汇入同一个 Observable ，而这个 Observable 负责将这些事件统一交给 Subscriber 的回调方法。这三个步骤，把事件拆成了两级，通过一组新创建的 Observable 将初始的对象『铺平』之后通过统一路径分发了下去。而这个『铺平』就是 flatMap() 所谓的 flat。
+
+![](http://ww1.sinaimg.cn/mw1024/52eb2279jw1f2rx4i8da2j20hg0dydgx.jpg)
+
+###变换的原理: lift()
+
+变换的实质是，针对事件序列的处理和再发送。
