@@ -66,3 +66,16 @@ A vacation is like love - anticipated with pleasure, experienced with discomfort
 ![](http://ww1.sinaimg.cn/mw690/714d3dd0gw1f95ex48kvhj20cf0c9777.jpg)
 
 ![](http://ww4.sinaimg.cn/mw690/84f909afjw1f95e9j71goj20dc0d7abb.jpg)
+
+It's the rule of life that everything you have always wanted comes the very second you stop looking for it.
+
+生活就是这样，你越想得到的东西，往往要到你不再追逐的时候才姗姗来迟。
+
+No road is long with good company.
+
+有好的旅伴，再远的旅程都不会嫌长。
+
+Worry is a total waste of time. It doesn't change anything. All it does is steal your joy and keep you very busy doing nothing.
+
+焦虑就是浪费时间，它不会改变任何事，只能搅乱你的脑袋，偷走你的快乐。
+
