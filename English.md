@@ -79,3 +79,8 @@ Worry is a total waste of time. It doesn't change anything. All it does is steal
 
 焦虑就是浪费时间，它不会改变任何事，只能搅乱你的脑袋，偷走你的快乐。
 
+The soul is not where it lives, but it loves.
+
+爱之所在，亦心之所在。
+
+![loves](http://ww3.sinaimg.cn/mw690/714d3dd0gw1f9ddm5pkwpj20c8096myp.jpg "")
