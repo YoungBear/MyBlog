@@ -84,3 +84,8 @@ The soul is not where it lives, but it loves.
 爱之所在，亦心之所在。
 
 ![loves](http://ww3.sinaimg.cn/mw690/714d3dd0gw1f9ddm5pkwpj20c8096myp.jpg "")
+
+It's funny how day by day nothing changes, but when you look back everything is different.
+
+好笑的是，时间一天天过去，好像什么也没发生，但当你回头看，一切都变了。
+
