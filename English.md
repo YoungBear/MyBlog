@@ -89,3 +89,19 @@ It's funny how day by day nothing changes, but when you look back everything is 
 
 好笑的是，时间一天天过去，好像什么也没发生，但当你回头看，一切都变了。
 
+What comes easy, won't last. What lasts, won't come easy.
+
+容易得到的不会长远，长远的不会容易得到。
+
+![](http://ww1.sinaimg.cn/mw690/714d3dd0gw1f9nubqndtfj20e609gwfi.jpg)
+
+Happiness is about having each tiny wish come true, or having something to eat when you are hungry or having someone's love when you need love.
+
+幸福是每一个微小的生活愿望达成。当你想吃的时候有的吃，想被爱的时候有人来爱你。
+
+No matter what you have to face today: you have made it this far, and have it within you. Continue on and give yourself credit: you are stronger than you ever imagined.
+
+无论面对什么，既然走到了这一步就坚持下去；给自己一些肯定，你比想象中坚强。
+
+
+![](http://ww4.sinaimg.cn/mw690/714d3dd0gw1f9m8h7rwr0j20c80853zf.jpg)
