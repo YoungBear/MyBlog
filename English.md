@@ -105,3 +105,7 @@ No matter what you have to face today: you have made it this far, and have it wi
 
 
 ![](http://ww4.sinaimg.cn/mw690/714d3dd0gw1f9m8h7rwr0j20c80853zf.jpg)
+
+Love doesn't cost money, but it does require payment of your heart.
+
+爱情不需要金钱，但是却要你用自己的心去买单。
