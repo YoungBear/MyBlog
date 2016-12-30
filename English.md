@@ -109,3 +109,14 @@ No matter what you have to face today: you have made it this far, and have it wi
 Love doesn't cost money, but it does require payment of your heart.
 
 爱情不需要金钱，但是却要你用自己的心去买单。
+
+You can't just sit here and wait for life to come to you. You have to go get it.
+
+你不能无所事事的坐等人生给你带来一切，你必须得自己努力争取。
+
+The most important thing is to enjoy your life - to be happy - it's all that matters.
+
+无论发生什么，最重要的事情，是开心地享受生活。
+
+![girl](http://ww3.sinaimg.cn/mw690/714d3dd0gw1fb7mqh7ibdj20c80bqad8.jpg "")
+
