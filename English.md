@@ -120,3 +120,7 @@ The most important thing is to enjoy your life - to be happy - it's all that mat
 
 ![girl](http://ww3.sinaimg.cn/mw690/714d3dd0gw1fb7mqh7ibdj20c80bqad8.jpg "")
 
+No matter how many mistakes you make or how slowly you progress, you are already ahead of those who never tried.
+
+无论你犯了多少错，或者你进步得有多慢，你都走在了那些不曾尝试的人的前面。
+
