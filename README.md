@@ -6,6 +6,8 @@
 
 [为什么技术团队应该写博客？](https://github.com/YoungBear/MyBlog/blob/master/WhyWriteBlog.md)
 
+[StrictMode检测内存泄漏](https://github.com/YoungBear/MyBlog/blob/master/StrictMode.md "")
+
 [adb 常用命令：](https://github.com/YoungBear/MyBlog/blob/master/adb.md)
 
 [《重构 改善既有代码的设计》读书笔记](https://github.com/YoungBear/MyBlog/blob/master/refactor.md)
