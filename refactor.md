@@ -257,3 +257,231 @@ eg. 使用PI来代替3.14
 类之中有一个数值类型码，但它并不影响类的行为。
 
 思路:**以一个新的类替换该数值类型码**。
+
+###8.14 Replace Type Code with Subclasses (以子类取代类型码)
+
+你有一个<font color=red>不可变</font>的类型码，它会影响类的行为。
+
+思路：**以子类取代这个类型码**。
+
+###8.15 Replace Type Code with State/Strategy (以 State/Strategy 取代类型码)
+
+你有一个类型码，它会影响类的行为，但你无法通过集成手法消除它。
+
+思路：**以状态对象取代类型码**。
+
+###8.16 Replace Subclass with Fields (以字段取代子类)
+
+你的各个子类的唯一差别只在“返回常量数据”的函数身上。
+
+思路：**修改这些函数，使它们返回超类中的某个(新增)字段，然后销毁子类。**
+
+动机：
+
+建立子类的目的，是为了增加新特性或变化其行为。有一种变化行为被称为“常量函数(constant method)”，它们会返回一个硬编码的值。这东西有其用途：你可以让不同的子类中的同一个访问函数返回不同的值。你可以在超类中将反问函数声明为抽象函数，并在不同的子类中让它返回不同的值。
+
+尽管常量函数有其用途，但若子类只有常量函数，实在没有足够的存在价值。你可以在超类中设计一个与常量函数返回值相应的字段，从而完全去除这样的子类。如此一来就可以避免因继承而带来的额外复杂性。
+
+
+##第9章 简化条件表达式
+
+###9.1 Decompose Conditional (分解条件表达式)
+
+你有一个复杂的条件 (if-then-else) 语句。
+
+思路：**从 if,then,else 三个段落中分别提炼出独立函数。**
+
+**动机**
+
+程序之中，复杂的条件逻辑是最常导致复杂度上升的地点之一。你必须编写代码来检查不同的条件分支、根据不同的分支做不同的事，然后，你很快就会得到一个相当长二代函数。大型函数自身就会使代码的可读性下降，而条件逻辑则会使代码更难阅读。在带有复杂条件逻辑的函数中，代码(包括检查条件分支的代码和真正实现功能的代码)会告诉你发生的事，但常常让你弄不清楚为什么会发生这样的事，这就说明代码的可读性的确大大降低了。
+
+和任何大块头代码一样，你可以将它分解为多个独立函数，根据每个小块代码的用途，为分解而得的新函数命名，并将原函数中对应的代码改为调用新建函数，从而更清楚地表达自己的意图。对于条件逻辑，将每个分支条件分解成新函数还可以给你带来更多好处：可以突出条件逻辑，更清楚地表达每个分支的作用，并且突出每个分支的原因。
+
+**做法**
+
+- 将 if 段落提炼出来，构成一个独立函数。
+- 将 then 段落和 else 段落都提炼出来，各自构成一个独立函数。
+
+###9.2 Consolidate Conditional Expression (合并条件表达式)
+
+你有一系列条件测试，都得到相同结果。
+
+思路：**将这些测试合并为一个条件表达式，并将这个条件表达式提炼成为一个独立函数。**
+
+**动机**
+
+有时你会发现这样一串条件检查：检查条件各不相同，最终行为却一致。如果发现这种情况，就应该使用“逻辑或”和“逻辑与”将它们合并为一个条件表达式。
+
+之所以要合并条件代码，有两个重要原因。首先，合并后的条件代码会告诉你“实际上只有一次条件检查，只不过有多个并列条件需要检查而已”，从而使这一次检查的用意更清晰。当然， 合并前和合并后的代码有着相同的效果，但原先代码传达出的信息却是“这里有一些各自独立的条件测试，它们只是恰好同时发生”。其次，这项重构往往可以为你使用 Extract Method 做好准备。将检查条件提炼成一个独立函数对于理清代码意义非常有用，因为它把描述“做什么”的语句换成了“为什么这样做”。
+
+条件语句的合并理由也同时指出了不要合并的理由：**如果你认为这些检查的确<font color=red>彼此独立</font>，的确不应该被视为同一次检查，那么就不要使用本项重构**。因为在这种情况下，你的代码已经很清楚表达出自己的意义。
+
+###9.3 Consolidate Duplicate Conditional Fragments (合并重复的条件片段)
+
+在条件表达式的**每个分支**上有着相同的一段代码。
+
+思路：**将这段重复代码搬移到条件表达式之外**。
+
+动机：
+
+有时你会发现，一组条件表达式的所有分支都执行了相同的某段代码。如果是这样，你就应该将这段代码搬移到条件表达式外面。这样，代码才能更清楚地表明哪些东西随条件的变化而变化、哪些东西保持不变。
+
+###9.4 Remove Control Flag (移除控制标记)
+
+在一系列布尔表达式中，某个变量带有“控制标记”(control flag) 的作用。
+
+思路：**以 break 语句或 return 语句取代控制标记。**
+
+###9.5 Replace Nested Conditional with Guard Clauses (以卫语句取代嵌套条件表达式)
+
+函数中的条件逻辑使人难以看清正常的执行路径。
+
+思路：**使用卫语句表现所有特殊情况。**
+
+eg.
+
+```
+double getPayAmount() {
+    double result;
+    if (_isDead) result = deadAmount();
+    else {
+        if (_isSeparated) result = separatedAmount();
+        else {
+            if (_isReetired) result = retiredAmount();
+            else result = normalPayAmount();
+        }
+    }
+    return result;
+}
+```
+
+重构之后：
+
+```
+double getPayAmount() {
+    if (_isDead) return deadAmount();
+    if (_isSeparated) return separatedAmount();
+    if (_isRetired) return retiredAmount();
+    return normalPayAmount();
+}
+```
+
+动机：
+
+根据我的经验，条件表达式通常有两种表现形式。第一种形式是：所有分支都属于正常行为。第二种形式是：条件表达式提供的答案中只有一种是正常行为，其他都不是不常见的情况。
+
+这两类条件表达式有不同的用途，这一点应该通过代码表现出来。如果两条分支都是正常行为，就应该使用形如 if...else... 的条件表达式；如果**某个条件极其罕见**，就应该**单独检查该条件**，并在该条件为真时立刻从函数中返回。这样的单独检查常常被称为“卫语句” (guard clauses)。
+
+Replace Nested Conditional with Guard Clauses 的精髓就是：给某一条分支以特别的重视。如果使用 if-then-else 结构，你对 if 分支
+和 else 分支的重视是同等的。这样的代码结构传递给阅读者的消息就是：各个分支有同样的重要性。卫语句就不同了，它告诉阅读者：“这种情况很罕见，如果它真的发生了，请做一些必要的整理工作，然后退出。”
+
+“每个函数只能有一个入口和一个出口”的观念，根深蒂固于某些程序员的脑海里。我发现，当我处理他们编写的代码时，经常需要使用这项重构。现今的编程语言都会强制保证每个函数只有一个入口，至于“单一出口”规则，其实不是那么有用。在我看来，**保持代码清晰才是最关键的**：如果单一出口能使这个函数更清楚易读，那么就使用单一出口；否则就不必这么做。
+
+嵌套条件代码往往由那些深信“每个函数只能有一个出口”的程序员写出。我发现那条规则实在有点太简单粗暴了。如果对函数剩余部分不再有兴趣，当然应该立刻退出。引导阅读者去看一个没有用的else区段，只会妨碍他们的理解。
+
+**范例：将条件反转**
+
+我们常常可以将条件表达式反转，从而实现该项重构。
+
+初始代码：
+
+```
+public double getAdjustedCapital() {
+    double result = 0.0;
+    if (_capital > 0.0) {
+        if (_intRate > 0.0 && _duration > 0.0) {
+            result = (_income / _duration) * ADJ_FACTOR;
+        }
+    }
+    return result;
+}
+```
+
+我们将逐一进行替换。不过这次在插入卫语句时，我们需要将相应的**条件反转**过来：
+
+```
+public double getAdjustedCapital() {
+    double result = 0.0;
+    if (_capital <= 0.0) return result;//将这个条件反转，并使用卫语句(Guard Glauses)
+    if (_intRate > 0.0 && _duration > 0.0) {
+            result = (_income / _duration) * ADJ_FACTOR;
+    }
+    return result;
+}
+```
+
+下一个条件稍微复杂一点，所以我们分两步进行逆反。首先加入一个**逻辑非**操作：
+
+```
+public double getAdjustedCapital() {
+    double result = 0.0;
+    if (_capital <= 0.0) return result;
+    if (!(_intRate > 0.0 && _duration > 0.0)) return result;//加入逻辑非操作，并使用卫语句
+    result = (_income / _duration) * ADJ_FACTOR;
+    return result;
+}
+```
+
+将逻辑非简化：
+
+```
+public double getAdjustedCapital() {
+    double result = 0.0;
+    if (_capital <= 0.0) return result;
+    if (_intRate <= 0.0 || _duration <= 0.0)) return result;//简化逻辑非操作
+    result = (_income / _duration) * ADJ_FACTOR;
+    return result;
+}
+```
+
+这时候，我比较喜欢在卫语句内返回一个明确值，因为这样我们可以一目了然地看到卫语句返回的失败结果。此外，这种时候我们也会考虑使用 Replace Magic Number with System Constant。
+
+```
+public double getAdjustedCapital() {
+    double result = 0.0;
+    if (_capital <= 0.0) return 0.0;//在卫语句中返回明确值
+    if (_intRate <= 0.0 || _duration <= 0.0)) return 0.0;//在卫语句中返回明确值
+    result = (_income / _duration) * ADJ_FACTOR;
+    return result;
+}
+```
+
+完成替换之后，我们同样可以将临时变量移除：
+
+```
+public double getAdjustedCapital() {
+    if (_capital <= 0.0) return 0.0;
+    if (_intRate <= 0.0 || _duration <= 0.0)) return 0.0;
+    return (_income / _duration) * ADJ_FACTOR;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
