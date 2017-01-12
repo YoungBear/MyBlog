@@ -124,3 +124,9 @@ No matter how many mistakes you make or how slowly you progress, you are already
 
 无论你犯了多少错，或者你进步得有多慢，你都走在了那些不曾尝试的人的前面。
 
+
+Don't let something that doesn't matter cause you to lose something that does.
+
+别让那些不重要的事来影响你，从而让你失去那些真正重要的东西。
+
+
