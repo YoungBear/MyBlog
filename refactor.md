@@ -659,14 +659,253 @@ withinPlan = plan.withinRange(low, high);
 
 还有一种常见情况：调用者将自己的若干数据作为参数，传递给被调用函数。这种情况下，如果该对象有合适的取值函数，你可以使用**this**取代这些参数值，并且无需担心对象依赖问题。
 
+###10.8 Replace Parameter with Methods (以函数取代参数)
 
+对象调用某个函数，并将所得结果作为参数，传递给另一个函数。而接受该参数的函数本身也能够调用前一个函数。
 
+思路：**让参数接受者取出该项参数，并直接调用前一个函数。**
 
+eg.
 
+```
+int basePrice = _quantity * _itemPrice;
+discountLevel = getDiscountLevel();
+double finalPrice = discountedPrice (basePrice, discountLevel);
+```
 
+通过本项重构后：
 
+```
+int basePrice = _quantity * _itemPrice;
+double finalPrice = discountedPrice (basePrice);//在discountedPrice内部调用getDiscountLevel()
+```
 
+**动机**
 
+如果函数可以通过其他途径获得参数值，那么它就不应该通过**参数**取得该值。过长的参数列会增加程序阅读者的理解难度，因此我们应该尽可能缩短参数列的长度。
+
+###10.9 Introduce Parameter Object(引入参数对象)
+
+某些参数总是很自然地同时出现。
+
+思路：**以一个对象取代这些参数。**
+
+动机
+
+你经常会看到特定的一组参数总是一起被传递。可能有好几个函数都使用这一组参数，这些函数可能隶属同一个类，也可能隶属于不同的类。这样一组参数就是所谓的 Data Clumps (数据抱团)，我们可以**运用一个对象包装所有这些数据**，再以该对象取代它们。哪怕只是为了把这些数据组织在一起，这样做也是值得的。本项重构的价值在于缩短参数列，而你知道，过长的参数列总是难以理解的。此外，新对象所定义的访问函数还可以使代码更具一致性，这又进一步降低了理解和修改代码的难度。
+
+本项重构还可以带给你更多好处。当你把这些参数组织到一起之后，往往很快可以发现一些可被移至新建类的行为。通常，原本使用那些参数的函数对这一组参数会有一些共通的处理，如果将这些共通行为移到新对象中，你可以减少很多重复代码。
+
+###10.10 Remove Setting Method (移除设值函数)
+
+类中的某个字段应该在对象创建时被设值，然后就不再改变。
+
+思路：**去掉该字段的所有设值函数。**
+
+动机
+
+如果你为某个字段提供了设值函数，这就按时这个字段值可以被改变。如果你不希望在对象创建之后此字段还有机会被改变，那就不要为它提供设值函数 (同时将该字段设为final)。这样你的意图会更加清晰，并且可以排除其值被修改的可能性————这种可能性往往是非常大的。
+
+如果你保留了间接访问变量的方法，就可能疆场有程序员盲目使用它们。这些人甚至会在构造函数中使用设值函数！我猜想他们或许是为了代码的一致性，但却忽略了设值函数往后可能带来的混淆。
+
+###10.11 Hide Method (隐藏函数)
+
+有一个函数，从来没有被其他任何类用到。
+
+思路：**将这个函数修改为private。**
+
+动机
+
+重构往往促使你修改函数的可见度。提高函数可见度的情况很容易想象：另一个类需要用到某个函数，因此你必须提高该函数的可见度。但是要指出一个函数的可见度是否过高，就稍微困难一些。理想状况下，你可以使用工具检查所有函数，指出可被隐藏起来的函数。即使没有这样的工具，你也应该时常进行这样的检查。
+
+一种特别常见的情况是：当你面对一个过于丰富、提供了过多行为的接口时，就值得将**非必要**的取值函数和设值函数隐藏起来。尤其当你面对的是一个只有简单封装的数据容器时，情况更是如此。随着越来越多行为被放入这个类，你会发现许多取值/设值函数不再需要公开，因此可以把它们隐藏起来。如果你把取值/设值函数设为private，然后在所有地方都直接访问变量，那就可一个放心移除取值/设值函数了。
+
+###10.12 Replace Constructor with Factory Method (以工厂函数取代构造函数)
+
+你希望在创建对象时不仅仅是做简单的建构动作。
+
+思路：**将构造函数替换为工厂函数。**
+
+动机
+
+使用 Replace Constructor with Factory Method 的最显而易见的动机，就是在派生子类的过程中以工厂函数取代类型码。你可能常常需要根据类型码创建相应的对象，现在，创建名单中还得加上子类，那些子类也是根据类型码来创建。然而由于构造函数只能返回单一类型的对象，因此你需要将构造函数替换为工厂函数。 
+
+此外，如果构造函数的功能不能满足你的需要，也可以使用工厂函数来代替它。工厂函数也是 Change Value to Reference 的基础。你也可以令你的工厂函数根据参数的个数和类型，选择不同的创建行为。
+
+###10.13 Encapsulate Downcast (封装向下转型)
+
+某个函数返回的对象，需要由函数调用者执行向下转型(downcast)。
+
+思路：**将向下转型动作移到函数中。**
+
+eg.
+
+```
+Object lastReading() {
+    return readings.lastElement();
+}
+```
+
+通过这项重构后：
+
+```
+Reading lastReading() {
+    return (Reading) readings.lastElement();
+}
+```
+
+###10.14 Replace Error Code with Exception (以异常取代错误码)
+
+某个函数返回一个特定的代码，用以表示某种错误情况。
+
+思路：**改用异常。**
+
+eg.
+
+```
+int withdraw(int amount) {
+    if (amount > _balance) {
+        return -1;
+    } else {
+        _balance -= amount;
+        return 0;
+    }
+}
+```
+
+通过这项重构后：
+
+```
+void withdraw(int amount) throws BalanceExceprion {
+    if (amount > _balance) {
+        throw new BalanceException();
+    }
+    _balance -= amount;
+}
+```
+
+###10.15 Replace Exception with Test (以测试取代异常)
+
+面对一个调用者可以预先检查的条件，你抛出了一个异常。
+
+思路：**修改调用者，使它在调用函数之前先做检查。**
+
+eg.
+
+```
+double getValueForPeriod(int periodNumber) {
+    try {
+        return _values[periodNumber];
+    } catch (ArrayIndexOutOfBoundsException e) {
+        return 0;
+    }
+}
+```
+
+通过这项重构后：
+
+```
+double getValueForPeriod(int periodNumber) {
+    if (periodNumber >= _values.length) {
+        return 0;
+    }
+    return _values[periodNumber];
+}
+```
+
+##第11章 处理概括关系
+
+###11.1 Pull Up Field (字段上移)
+
+两个子类拥有相同的字段。
+
+思路：**将该字段移至超类。**
+
+###11.2 Pull Up Method (函数上移)
+
+有些函数，在各个子类中产生完全相同的结果。
+
+思路：**将该函数移至超类。**
+
+###11.3 Pull Up Constructor Body (构造函数本体上移)
+
+你在各个子类中拥有一些构造函数，它们的本体几乎完全一致。
+
+思路：**在超类中新建一个构造函数，并在子类构造函数中调用它。**
+
+eg.
+
+```
+class Manager extends Employee...
+    public Manager(String name, String id, int grade) {
+        _name = name;
+        _id = id;
+        _grade = grade;
+    }
+```
+
+通过这项重构后：
+
+```
+public Manager(String name, String id, int grade) {
+    super(name, id);
+    _grade = grade;
+}
+```
+
+###11.4 Push Down Method (函数下移)
+
+超类中的某个函数只与部分(而非全部)子类有关。
+
+思路：**将这个函数移到相关的那些子类去。**
+
+###11.5 Push Down Field (字段下移)
+
+超类中的某个字段只被部分(而非全部)子类用到。
+
+思路：**将这个字段移到需要它的那些子类去。**
+
+###11.6 Extract Subclass (提炼子类)
+
+类中的某些特性只被某些 (而非全部)实例用到。
+
+思路：**新建一个子类，将上面所说的那一部分特性移到子类中。**
+
+###11.7 Extract Superclass (提炼超类)
+
+两个类有相似特性。
+
+思路：**为这两个类建立一个超类，将相同特性移至超类。**
+
+###11.8 Extract Interface (提炼接口)
+
+若干客户使用类接口中的同一子集，或者两个类的接口有部分相同。
+
+思路：**将相同的子集提炼到一个独立接口中。**
+
+###11.9 Collapse Hierarchy (折叠继承体系)
+
+超类和子类之间无太大区别。
+
+思路：**将它们合为一体。**
+
+###11.10 Form Template Method (塑造模板函数)
+
+你有一些子类，其中相应的某些函数以相同顺序执行类似的操作，但各个操作的细节上有所不同。
+
+思路：**将这些操作分别放进独立函数中，并保持它们都有相同的签名，于是原函数也就变得相同了。然后将原函数上移至超类。**
+
+###11.11 Replace Inheritance with Delegation (以委托取代继承)
+
+某个子类只使用超类接口中的一部分，或是根本不需要继承而来的数据。
+
+思路：**在子类中新建一个字段用以保存超类；调整子类函数，令它改而委托超类；然后去掉两者之间的继承关系。**
+
+###11.12 Replace Delegation with Inheritance (以继承取代委托)
+
+你在两个类之间使用委托关系，并经常为整个接口编写许多极简单的委托函数。
+
+思路：**让委托类继承受托类。**
 
 
 
