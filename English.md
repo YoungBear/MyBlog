@@ -1,5 +1,33 @@
 #每天一句英语#
 
+Some wounds, a long time will slowly grow, some grievance, it also relieved.
+
+有些伤口，时间久了就会慢慢长好，有些委屈，想通了也就释然了。
+
+A Good Boyfriend: Knows you, trusts you, loves you, respects you, honors you, supports you, wants you, and appreciates you.
+
+一个优秀的男朋友应该了解你，相信你，爱你，尊重你，以你为荣，支持你，需要你，欣赏你。
+
+Keep your head up, keep your heart strong.
+
+抬起你的头，强大你的心。
+
+If someone truly loves you, distance is not a problem. It's just the power of making love grow each day.
+
+如果一个人真的爱你，距离不是一个问题，它只会成为一种滋长爱情的力量。
+
+Train yourself to let go of everything you fear to lose.
+
+试着放下所有你害怕失去的东西。
+
+Love yourself first, so you know what you deserve.
+
+先爱你自己，你才会知道自己值得让谁来爱。
+
+My interest is in the future because I am going to spend the rest of my life there.
+
+我只关心未来，因为我的余生都会在那里度过。
+
 Stop saying "I wish" and start saying "I will".
 
 不要再说“我希望...”，开始说“我会...”。
