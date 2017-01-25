@@ -4,6 +4,8 @@
 
 ##文章目录：
 
+[使用LeakCanary源代码检测内存泄漏](https://github.com/YoungBear/MyBlog/blob/master/LeakCanaryLearn.md)
+
 [为什么技术团队应该写博客？](https://github.com/YoungBear/MyBlog/blob/master/WhyWriteBlog.md)
 
 [StrictMode检测内存泄漏](https://github.com/YoungBear/MyBlog/blob/master/StrictMode.md "")
