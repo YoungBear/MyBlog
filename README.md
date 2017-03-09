@@ -2,19 +2,21 @@
 
 ##文章目录：
 
-[正则表达式常用语法](https://github.com/YoungBear/MyBlog/blob/master/Pattern.md "")
+[颜色透明度十六进制表示](https://github.com/YoungBear/MyBlog/blob/master/AlphaColor.md)
+
+[正则表达式常用语法](https://github.com/YoungBear/MyBlog/blob/master/Pattern.md)
 
 [使用LeakCanary源代码检测内存泄漏](https://github.com/YoungBear/MyBlog/blob/master/LeakCanaryLearn.md)
 
 [为什么技术团队应该写博客？](https://github.com/YoungBear/MyBlog/blob/master/WhyWriteBlog.md)
 
-[StrictMode检测内存泄漏](https://github.com/YoungBear/MyBlog/blob/master/StrictMode.md "")
+[StrictMode检测内存泄漏](https://github.com/YoungBear/MyBlog/blob/master/StrictMode.md)
 
 [adb 常用命令：](https://github.com/YoungBear/MyBlog/blob/master/adb.md)
 
 [《重构 改善既有代码的设计》读书笔记](https://github.com/YoungBear/MyBlog/blob/master/refactor.md)
 
-[面向对象的六大原则](https://github.com/YoungBear/MyBlog/blob/master/OO_Princile.md "")
+[面向对象的六大原则](https://github.com/YoungBear/MyBlog/blob/master/OO_Princile.md)
 
 [Android Activity 启动模式](https://github.com/YoungBear/MyBlog/blob/master/ActivityLaunchMode.md)
 
