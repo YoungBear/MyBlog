@@ -2,6 +2,8 @@
 
 ##文章目录：
 
+[App研发录 读书笔记](https://github.com/YoungBear/MyBlog/blob/master/AppDevelopNote.md)
+
 [颜色透明度十六进制表示](https://github.com/YoungBear/MyBlog/blob/master/AlphaColor.md)
 
 [正则表达式常用语法](https://github.com/YoungBear/MyBlog/blob/master/Pattern.md)
