@@ -61,3 +61,57 @@ eg.
 String[] arg1 = new String[args.length - 1];
 ```
 当args数组中没有元素时，就会出现int[-1]的场景。
+
+###6.1.7 遍历集合同时删除其中元素
+
+ConcurrentModificationException
+
+```
+        HashMap<Integer, String> map = new HashMap<>();
+        for (int i = 0; i < 10; i++) {
+            map.put(i, "value " + i);
+        }
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            Integer key = entry.getKey();
+            if (key % 2 == 0) {
+                map.remove(key);
+            }
+        }
+```
+
+遍历一个集合时不能删除该集合中的元素。
+
+解决方案，需要再定义一个列表集合delList，用来保存需要删除的对象。
+
+还有另一种产生这种崩溃的情况，那就是在多个线程中删除同一个集合中的元素。
+
+如下列代码所示，vector是一个集合，我们建立了两个线程，线程1对其进行遍历，线程2对其进行插入操作。由于这两个线程同时在执行，所以就会产生ConcurrentModificationException的异常了:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
