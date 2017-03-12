@@ -414,11 +414,242 @@ The application's PagerAdapter changed the adapter's contents without calling Pa
 
 PagerAdapter对于nofifyDataSetChanged()和getCount()的执行顺序是非常严格的，系统跟踪count的值，如果这个值和getCount返回的值不一致，就会抛出这个异常。所以为了保证getCount总是返回一个正确的值，那么在初始化ViewPager时，应先给adapter初始化内容后再将该adapter传给ViewPager，如果不这样处理，在更新adapter的内容后，应该调用一下Adapter的notifyDataSetChanged方法。
 
+##6.5 窗体相关的异常
 
+###6.5.1 窗口句柄泄漏
 
+android.view.WindowLeaked:Activity xxx has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{xxxx} that was originally added here.
 
+Activity已经销毁，但是在它基础上创建的Dialog对话框还在，窗口句柄泄漏，未能及时销毁。
 
+解决方案：重写Activity的onDestroy方法，在方法中调用dismiss来解除对Dialog等的引用。
 
+###6.5.2 View not atached to window manager
+
+java.lang.IllegalArgumentException:View not attached to window manager at.
+
+场景：在一个耗时的线程任务，在任务开始的时候显示一个对话框，然后当任务完成了再销毁对话框，在此期间如果Activity因为某种原因被杀掉且又重新启动了，那么当Dialog调用dismiss方法的时候WindowManager检查发现Dialog所属的Activity已经不存在了，所以会报View not attached to window manager。
+
+###6.5.3 窗体在不恰当的时候获取了焦点
+
+java.lang.NullPointerException:android.widget.PopupWindow$PopupViewContainer dispatchKeyEvent.
+
+这个问题是因为在PopupWindow显示之前，就把焦点赋予了它，结果当然会Crash了。
+
+###6.5.4 token null is not for an application
+
+android.view.WindowManager$BadTokenException: Unable to add window -- token null is not for an application
+
+原因：创建Dialog的时候，使用的Context不对，不能接受ApplicationContext，只有一个Activity才能添加一个窗体。
+
+###6.5.5 permission denied for this window type
+
+Android.view.WindowManager$BadTokenException:Unable to add window android.view.ViewRootImpl$W@411da608 -- permission denied for this window type
+
+在使用WindowManager.LayoutParams.TYPE_SYSTEM_ALERT 涉及window type 权限问题。
+
+需要添加权限：
+
+```
+<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+<uses-permission android:name="android.permission.SYSTEM_OVERLAT_WINDOW" />
+```
+
+前者允许应用使用TYPE_SYSTEM_ALERT来打开窗口，并将窗口显示于其他应用的顶端；后者允许使用窗体覆盖在window上。
+
+###6.5.6 is your activity running
+
+###6.5.7 添加窗体失败
+
+Adding window failed at...
+
+###6.5.8 AlertDialog.resolveDialogTheme
+
+###6.5.9 The specified child already has a parent
+
+The specified child already has parent. You must call removeView() on the child's parent first.
+
+###6.5.10 子线程不能修改UI
+
+android.view.ViewRootImpl$CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views...
+
+###6.5.11 不能在子线程操作AlertDialog 和 Toast
+
+Can't create handler inside thread that has not called Looper.prepare()
+
+##6.6 资源相关的异常
+
+###6.6.1 Resources$NotFoundException
+
+###6.6.2 StackOverflowError
+
+发生这种事情，主要是因为Layout布局结构嵌套层次太深。
+
+###6.6.3 UnsatisfiedLinkError
+
+java.lang.UnsatisfiedLinkError:dalvik.system.PathClassLoader[DexPathList[...]]
+
+遇到这个Crash，肯定是so格式的文件没有加载到。
+
+###6.6.4 InflateException 之 FileNotFoundException
+
+资源没有回收，建议手动回收。
+
+###6.6.5 InflateException 之缺少构造器
+
+自定义View的时候，没有重写两个参数的构造函数。
+
+###6.6.6 InflateException 之 style 与 android:textStyle 的区别
+
+### 6.6.7 TransactionTooLargeException
+
+不要将大量数据传入Binder。
+
+##6.7 系统碎片化相关的异常
+
+这类Crash由两部分组成：
+
+1. Android系统版本不同
+2. ROM不同
+
+###6.7.1 NoSuchMethodError
+
+java.lang.NoSuchMethodError
+
+一般查看下不同版本的方法有什么不同。
+
+###6.7.2 RemoteViews
+
+android.widget.RemoteViews$RefiectionAction.writeToParcel(RemoteViews.java :763)
+
+###6.7.3 pointerIndex out of range
+
+###6.7.4 SecurityException之一：Intent中图片太大
+
+在跳转Activity的过程中携带的extras中有Bitmap，应尽量减少要传输的图片的体积，或者通过保存图片到SD卡中或者通过URI方式传递图片参数；否则，图片太大，就会报上述的异常信息。
+
+###6.7.5 SecurityException 之二：动态加载其他apk的Activity
+
+###6.7.6 SecurityException 之三：No permission to modify thread
+
+动态获取权限
+
+###6.7.7 view的getDrawingCache()返回null
+
+当背景图太大，超过了屏幕的大小，就会导致getDrawingCache()返回的结果为null，从未抛出NullPointException的异常。
+
+###6.7.8 DeadObjectException
+
+###6.7.9 Android 2.1 不支持SSL
+
+Android 2.1版本不支持SSL，所以发起https的请求会导致崩溃。解决方案是，在调用https请求的时候，要实现判断Android系统的版本，版本过低要提示用户不能进行操作。
+
+###6.7.10 ViewFlipper 引发的血案
+
+在Activity中使用ViewFlipper控件，进行横竖屏切换操作时，就会发生这种异常。这是由于onDetachedFromWindow()在onAttachedToWindow()之前被调用所致。
+
+解决方案：重写ViewFlipper的onDetachedFromWindow()方法。
+
+###6.7.11 ActivityNotFoundException
+
+Android 4.0以上把原来的打开网络设置方式舍弃了。
+
+###6.7.12 Android 2.2 不支持xlargeScreens
+
+###6.7.13 Package manager has died
+
+解决方案：每次获取PakcageManager的时候用try...catch...捕获。
+
+###6.7.14 SpannableString与富文本字符串
+
+try -- catch
+
+###6.7.15 Can not perform this action after onSaveInstanceState
+
+###6.7.16 Service Intent must be explicit
+
+Android在升级到5.0系统后会产生这样的崩溃。直接通过action启动Service，就会导致这个问题，所以我们必须指定component或package才能避免这类问题。(建议使用显式的方法启动Service)。
+
+##6.8 SQLite相关的异常
+
+###6.8.1 No transaction is active
+
+在事务中，逐条循环插入大量数据时会导致这类崩溃。Android中在SQLite插入数据的时候默认一条语句就是一个事务，有多少条数据就有多少次磁盘操作，而且不能保证所有数据都能同时插入。
+
+解决方案：使用SQLite提供的批量插入语法，一次性地把这些数据都插入到数据库中。
+
+###6.8.2 Cursor没有关闭
+
+android.database.CursorWindowAllocationException:Cursor window allocation of 2048kb failed.
+
+###6.8.3 数据库被锁定
+
+android.database.sqlite.SQLiteDatabaseLockedException:database is locked
+
+在多个线程中创建多个连接时，就会抛出这个异常。
+
+###6.8.4 试图再打开已经关闭的对象
+
+java.lang.IllegalStateException:attempt to re-open an already closed object
+
+###6.8.5 文件加密了或者无数据库
+
+SQLiteDatabaseCorruptException:file is encrypted or is not a database
+
+###6.8.6 WebView 中SQLite缓存导致的崩溃
+
+###6.8.7 磁盘读写错误
+
+android.database.sqlite.SQLiteDiskIOException:disk I/O error
+
+dbHelper 只有在创建数据库、进行事务处理时才会锁住数据库。默认情况下dbHelper会缓存DB实例，执行类似于getWritableDatabase的操作是立即返回的，并不会上锁。
+
+disk I/O error 这类异常的抛出，是因为多线程修改DB，比如一个线程在写数据，另一个线程却在删除数据。
+
+###6.8.8 android_metadata 表不存在
+
+###6.8.9 android_metadata表中的locale字段
+
+###6.8.10 数据库或磁盘满了
+
+##6.9 不明觉厉的异常
+
+###6.9.1 内存溢出
+
+OutOfMemoryException
+
+方案：
+
+1. largeHeap
+2. 解决内存泄漏问题
+
+###6.9.2 Verify Failed
+
+##6.10 其他情况的异常
+
+###6.10.1 TimeoutException
+
+###6.10.2 JSON解析异常
+
+###6.10.3 JSONArray 在初始化时为空
+
+###6.10.4 第三方SDK抛出的Crash
+
+###6.10.5 两个不同类型的View有相同的id
+
+在Activity中，确定要保存/恢复一个View的状态的时候，一定要保证它们有唯一的id，因为Android内部使用id作为保存、恢复状态时使用的key，否则就会发生一个覆盖另一个的悲剧。
+
+###6.10.6 LayoutInflater.from().inflate()使用不当导致的崩溃
+
+###6.10.7 ViewGroup中的玄机
+
+###6.10.8 Monkey点击过快导致的崩溃
+
+###6.10.9 图片缩放很多倍
+
+###6.10.10 图片宽高为0
+
+###6.10.11 不能重复添加组件
 
 
 
