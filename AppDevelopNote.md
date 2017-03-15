@@ -841,6 +841,30 @@ OutOfMemoryException
 -keep class com.xxx.xxx.** { *; }
 ```
 
+##12.7 Android应用开发人员所需要精通的20个技能点：
+
+1. Activity相关。App应用开发，以Activity使用最多，涉及LaunchMode，onSaveInstanceState，生命周期等技术。
+2. Fragment相关技术。
+3. 序列化技术。有Parcelable和Serializable两种。前者是基于Service的，后者是基于Bundle的，二者的实现原理不同，但是达到的效果差不多。
+4. ImageLoader的原理和使用。了解多个开源库如UIL,Glide,Picasso,Fresco
+5. fastJSON或GSON的使用。
+6. 多线程相关。包括Handler,Looper,ExecutorService等。
+7. Adapter和ListView。
+8. 用户Cookie设计。需要把登录机制彻底搞清楚，包括在HttpRequest头中夹带Cookie来进行用户身份验证的技术。
+9. 网络请求封装。volley,okhttp的二次封装。
+10. Android和HTML5的交互。
+11. 代码混淆。ProGuard。
+12. Android打包机制。Ant,Gradle或者Maven。
+13. 线上Crash分析并修复。要具备通过分析Crash信息修复线上Crash的能力。
+14. 内存泄漏。包括内存优化、内存泄漏的场景，MAT工具的使用。使用开源工具LeakCanary。
+15. 调试工具。包括DDMS、Eclipse或AndroidStudio的调试功能。
+16. Monkey机制。
+17. 单元测试。
+18. Git的高级功能。
+19. 插件化编程。
+20. 设计模式。对常见的设计模式如工厂，生成器，适配器，代理，策略模式耳熟能详。
+
+
 
 
 
