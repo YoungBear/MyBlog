@@ -651,7 +651,218 @@ OutOfMemoryException
 
 ###6.10.11 不能重复添加组件
 
+#ProGuard
 
+##7.3 如何写一个ProGuard文件
+
+###7.3.1 基本混淆
+
+**ProGuard常用语法:**
+
+- `-keep` 不混淆某些类
+- `-keepclassmember` 不混淆类的成员
+- `-keepclasseswithmembers` 不混淆类及其成员
+- `-keepnames` 不混淆类及其成员名
+- `-keepclassmembernames` 不混淆类的成员名
+- `-keepclasseswithmembernames` 不混淆类及其成员名
+- `-dontwarn` 不提示warning
+
+**Android的混淆原则：**
+
+- 反射用到的类不混淆
+- JNI方法不混淆
+- AndroidManifest中的类不混淆，四大组件和Application层下所有的类默认不会进行混淆
+- Parcelable的子类和Creator静态成员变量不混淆，否则会产生android.os.BadParcelableException异常
+- 使用Gson，fastjson等框架时，所写的JSON对象类不混淆，否则无法将JSON解析成对应的对象
+- 使用第三方开源库或者引用其他第三方的SDK包时，需要在混淆文件中加入对应的混淆规则
+- 有用到WebView的JS调用也需要保证写的接口方法不混淆
+
+1. 基本指令
+
+先看看google默认混淆文件: \sdk\tools\proguard\proguard-android.txt
+
+```
+# \sdk\tools\proguard\proguard-android.txt
+# \sdk\tools\proguard\proguard-android-optimize.txt
+# This is a configuration file for ProGuard.
+# http://proguard.sourceforge.net/index.html#manual/usage.html
+
+# 指定混淆时使用的算法，后面的参数是一个过滤器
+# 这个过滤器是谷歌推荐的算法，一般不改变
+-optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
+# 代码混淆压缩比，在0-7之间，默认为5，一般不需要改
+-optimizationpasses 5
+# 优化时允许访问并修改有修饰符的类和类的成员
+# 这项配置是设置是否允许改变作用域的。使用这项配置之后可以提高优化的效果。
+# 但是，如果你的代码是一个库的话，最好不要配置这个选项，因为它可能会导致一些private变量被改成public
+-allowaccessmodification
+
+# 混淆时不使用大小写混合，混淆后的类名为小写
+-dontusemixedcaseclassnames
+# 指定不去忽略非公共的库的类
+-dontskipnonpubliclibraryclasses
+# 输入混淆日志
+-verbose
+
+# Optimization is turned off by default. Dex does not like code run
+# through the ProGuard optimize and preverify steps (and performs some
+# of these optimizations on its own).
+# 不进行优化
+-dontoptimize
+# 不进行预检验
+-dontpreverify
+# Note that if you want to enable optimization, you cannot just
+# include optimization flags in your own project configuration file;
+# instead you will need to point to the
+# "proguard-android-optimize.txt" file instead of this one from your
+# project.properties file.
+
+# 不混淆注解（注解不能被混淆）
+-keepattributes *Annotation*
+# 不混淆指定类
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+
+# For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
+# 保留所有的本地native方法不被混淆
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# keep setters in Views so that animations can still work.
+# see http://proguard.sourceforge.net/manual/examples.html#beans
+# 不混淆继承View的所有类的set和get方法
+-keepclassmembers public class * extends android.view.View {
+   void set*(***);
+   *** get*();
+}
+
+# We want to keep methods in Activity that could be used in the XML attribute onClick
+# 不混淆继承Activity的所有类的中的参数类型为View的方法，从而在layout里面编写onClick就不会被影响
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+# For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations
+# 不混淆枚举类型的values和valueOf方法
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# 不混淆继承Parcelable的所有类的CREATOR，保留Parcelable序列化的类不被混淆
+-keepclassmembers class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator CREATOR;
+}
+
+# 不混淆R类中所有static字段
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+# The support library contains references to newer platform versions.
+# Don't warn about those in case this app is linking against an older
+# platform version.  We know about them, and they are safe.
+# 忽略兼容库的所有警告
+-dontwarn android.support.**
+
+# Understand the @Keep support annotation.
+# 不混淆指定的类及其类成员
+-keep class android.support.annotation.Keep
+
+# 不混淆使用注解的类及其类成员
+-keep @android.support.annotation.Keep class * {*;}
+
+# 不混淆所有类及其类成员中的使用注解的方法
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <methods>;
+}
+
+# 不混淆所有类及其类成员中的使用注解的字段
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <fields>;
+}
+
+# 不混淆所有类及其类成员中的使用注解的初始化方法
+-keepclasseswithmembers class * {
+    @android.support.annotation.Keep <init>(...);
+}
+```
+
+针对Android的混淆原则，分别给出下面的混淆规则：
+```
+# 代码中使用了反射，需要保证类名，方法不变， 不然混淆后， 就反射不了
+-keepattributes Signature
+-keepattributes EnclosingMethod
+
+# 使用GSON、fastjson等JSON解析框架所生成的对象类
+# 生成的bean实体对象,内部大多是通过反射来生成, 不能混淆
+# 不混淆所有的com.clock.bean包下的类和这些类的所有成员变量
+-keep class com.clock.bean.**{*;}
+
+# AndroidManifest中的类不混淆，四大组件和Application层下所有的类默认不会进行混淆
+-keep public class * extends android.app.Activity
+-keep public class * extends android.view.View
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+
+# 不混淆Serializable接口的子类中指定的某些成员变量和方法
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+
+# 引用了第三方开源框架或继承第三方SDK情况比较复杂，
+# 开发过程中使用了知名成熟的开发框架都会有给出它的混淆规则，
+# 第三方的SDK也一样。这里以okhttp框架和百度地图sdk为例
+#okhttp框架的混淆
+-dontwarn com.squareup.okhttp.internal.http.*
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-keepnames class com.levelup.http.okhttp.** { *; }
+-keepnames interface com.levelup.http.okhttp.** { *; }
+-keepnames class com.squareup.okhttp.** { *; }
+-keepnames interface com.squareup.okhttp.** { *; }
+
+#百度sdk的混淆
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}
+-dontwarn com.baidu.**
+
+# 有用到WEBView的JS调用接口，需加入如下规则
+-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+   public *;
+}
+# //保持WEB接口不被混淆 此处xxx.xxx是自己接口的包名
+-keep class com.xxx.xxx.** { *; }
+```
+
+##12.7 Android应用开发人员所需要精通的20个技能点：
+
+1. Activity相关。App应用开发，以Activity使用最多，涉及LaunchMode，onSaveInstanceState，生命周期等技术。
+2. Fragment相关技术。
+3. 序列化技术。有Parcelable和Serializable两种。前者是基于Service的，后者是基于Bundle的，二者的实现原理不同，但是达到的效果差不多。
+4. ImageLoader的原理和使用。了解多个开源库如UIL,Glide,Picasso,Fresco
+5. fastJSON或GSON的使用。
+6. 多线程相关。包括Handler,Looper,ExecutorService等。
+7. Adapter和ListView。
+8. 用户Cookie设计。需要把登录机制彻底搞清楚，包括在HttpRequest头中夹带Cookie来进行用户身份验证的技术。
+9. 网络请求封装。volley,okhttp的二次封装。
+10. Android和HTML5的交互。
+11. 代码混淆。ProGuard。
+12. Android打包机制。Ant,Gradle或者Maven。
+13. 线上Crash分析并修复。要具备通过分析Crash信息修复线上Crash的能力。
+14. 内存泄漏。包括内存优化、内存泄漏的场景，MAT工具的使用。使用开源工具LeakCanary。
+15. 调试工具。包括DDMS、Eclipse或AndroidStudio的调试功能。
+16. Monkey机制。
+17. 单元测试。
+18. Git的高级功能。
+19. 插件化编程。
+20. 设计模式。对常见的设计模式如工厂，生成器，适配器，代理，策略模式耳熟能详。
 
 
 
