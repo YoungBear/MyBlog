@@ -2,6 +2,8 @@
 
 ##文章目录：
 
+[聊聊架构 读书笔记](https://github.com/YoungBear/MyBlog/blob/master/)
+
 [App研发录 读书笔记](https://github.com/YoungBear/MyBlog/blob/master/AppDevelopNote.md)
 
 [颜色透明度十六进制表示](https://github.com/YoungBear/MyBlog/blob/master/AlphaColor.md)
