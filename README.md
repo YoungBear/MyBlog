@@ -2,7 +2,7 @@
 
 ##文章目录：
 
-[聊聊架构 读书笔记](https://github.com/YoungBear/MyBlog/blob/master/)
+[聊聊架构 读书笔记](https://github.com/YoungBear/MyBlog/blob/master/Architecture.md)
 
 [App研发录 读书笔记](https://github.com/YoungBear/MyBlog/blob/master/AppDevelopNote.md)
 
