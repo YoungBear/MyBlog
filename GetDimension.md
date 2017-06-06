@@ -14,4 +14,6 @@
 
 其次，这三个函数，如果资源文件中的单位为dp或者sp，则返回结果会自动乘以屏幕密度**density**；但如果单位是px，则返回结果不会乘以density。
 
-测试源码位置：https://github.com/YoungBear/Hello，点击GetDimensionActivity
+测试源码位置：https://github.com/YoungBear/Hello
+
+在首页点击选择GetDimensionActivity
