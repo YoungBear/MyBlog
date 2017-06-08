@@ -2,6 +2,8 @@
 
 ##文章目录：
 
+[Android 运行时权限](https://github.com/YoungBear/MyBlog/blob/master/AndroidRuntimePermission.md)
+
 [getDimension,getDimensionPixelSize,getDimensionPixelOffset](https://github.com/YoungBear/MyBlog/blob/master/GetDimension.md)
 
 [TabLayout](https://github.com/YoungBear/MyBlog/blob/master/TabLayout.md)
