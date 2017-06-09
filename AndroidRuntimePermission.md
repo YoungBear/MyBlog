@@ -28,6 +28,10 @@ public static final int PERMISSION_DENIED = -1;//拒绝
 
 如果应用具有此权限，方法将返回 `PackageManager.PERMISSION_GRANTED`，并且应用可以**继续**操作。如果应用不具有此权限，方法将返回 `PackageManager.PERMISSION_DENIED`，且应用必须**明确**向用户要求权限。
 
+**注：**
+
+在Android 6.0 (API 23)以下，checkSelfPermission的方法返回为0(PERMISSION_GRANTED)，即默认授予权限。不过国内各大手机厂商可能会自定义一些权限管理，所以具体问题还需要去适配。
+
 ## 请求权限
 如果您的应用需要应用清单中列出的**危险权限**，那么，它必须**要求用户授予**该权限。Android 为您提供了多种权限请求方式。调用这些方法将显示一个标准的 Android 对话框，不过，您**不能**对它们进行自定义。
 
@@ -179,6 +183,6 @@ public void onRequestPermissionsResult(int requestCode,
     `$ adb shell pm [grant|revoke] <permission-name> ...`
 - 针对使用权限的服务对应用进行分析。
 
-谷歌官方demo：
+demo 地址：
 
-https://github.com/googlesamples/android-RuntimePermissions
+https://github.com/YoungBear/Hello/blob/master/app/src/main/java/com/example/hello/activity/RuntimePermissionActivity.java
