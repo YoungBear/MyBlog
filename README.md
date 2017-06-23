@@ -1,6 +1,8 @@
 ## 该git库主要用来存放博客的md文件 ##
 
-##文章目录：
+## 文章目录：
+
+[Android adb 常用命令](https://github.com/YoungBear/MyBlog/blob/master/adb.md)
 
 [Android 运行时权限](https://github.com/YoungBear/MyBlog/blob/master/AndroidRuntimePermission.md)
 
