@@ -2,7 +2,7 @@
 
 ## 文章目录：
 
-[Android adb 常用命令](https://github.com/YoungBear/MyBlog/blob/master/adb.md)
+[Android adb 常用命令](https://github.com/YoungBear/MyBlog/blob/master/AdbLearn.md)
 
 [Android 运行时权限](https://github.com/YoungBear/MyBlog/blob/master/AndroidRuntimePermission.md)
 

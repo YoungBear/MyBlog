@@ -16,6 +16,15 @@ adb start-server 启动adb服务
 adb reboot 重启手机
 ```
 
+### 多个Android设备
+
+```
+adb devices 查看连接设备
+adb -s <device_name> shell 进入指定的设备shell
+```
+
+![adb_more_devices](http://img.blog.csdn.net/20170808140035506?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTmV4dF9TZWNvbmQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
 ```
 串口下输入命令，保证可以adb connect成功
 stop adbd
