@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[静态方法启动Activity](https://github.com/YoungBear/MyBlog/blob/master/PhotoViewLearn.md)
+
 [通信领域名词](https://github.com/YoungBear/MyBlog/blob/master/Communication.md)
 
 [Android adb 常用命令](https://github.com/YoungBear/MyBlog/blob/master/AdbLearn.md)
