@@ -56,6 +56,11 @@ Cell Identity
 
 基站编号，基站小区号。CID是个16位的数据（范围是0到65535）
 
+### PCI
+Physical Cell Identifier
+
+物理小区标识。LTE中终端以此区分不同小区的无线信号。
+
 ## 信号相关
 
 ### RSRP
