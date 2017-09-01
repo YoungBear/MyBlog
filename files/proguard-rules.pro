@@ -1,7 +1,6 @@
 # Android混淆配置
 # 1. 基本指令
 
-```
 # 代码混淆压缩比，在0~7之间，默认为5，一般不需要改
 -optimizationpasses 5
 
@@ -40,11 +39,9 @@
 # 抛出异常时保留代码行号
 -keepattributes SourceFile,LineNumberTable
 
-```
 
 # 2. 需要保留的东西
 
-```
 # 保留所有的本地native方法不被混淆
 -keepclasseswithmembernames class * {
     native <methods>;
@@ -65,14 +62,14 @@
 # support-v4
 -dontwarn android.support.v4.**
 -keep class android.support.v4.** { *; }
--keep interface android.support.v4.** { *; } 
+-keep interface android.support.v4.** { *; }
 -keep public class * extends android.support.v4.**
 
-# 保持自定义控件类不被混淆，指定格式的构造方法不去混淆  
+# 保持自定义控件类不被混淆，指定格式的构造方法不去混淆
 -keepclasseswithmembers class * {
     public <init>(android.content.Context);
     public <init>(android.content.Context, android.util.AttributeSet);
-    public <init>(android.content.Context, android.util.AttributeSet, int); 
+    public <init>(android.content.Context, android.util.AttributeSet, int);
 }
 
 # 保持自定义控件类不被混淆
@@ -122,42 +119,30 @@
 -keepclassmembers class * {
     void *(**On*Event);
 }
-```
 
 # 3. App定制
 
-```
+
 # 保留实体类和成员不被混淆(根据具体情况修改entity的路径)
 -keep class com.your_path.entity.**{*;}
-```
+
 
 # 4. 第三方框架(具体参考最新官方文档)
 
-## 常用框架的混淆配置
-### 4.1 ButterKnife 8.8.1 [官方文档](https://github.com/JakeWharton/butterknife/blob/master/butterknife/proguard-rules.txt "")
-```
 # ButterKnife 8.8.1
 -keep public class * implements butterknife.Unbinder { public <init>(**, android.view.View); }
 
 -keep class butterknife.*
 -keepclasseswithmembernames class * { @butterknife.* <methods>; }
 -keepclasseswithmembernames class * { @butterknife.* <fields>; }
-```
 
-### 4.2 greenDAO 3.2.2 [官方文档](http://greenrobot.org/greendao/documentation/updating-to-greendao-3-and-annotations/#Step_1_Update_dependencies_to_V3 "")
-
-```
 # 4.2 greenDAO 3.2.2
 -dontwarn org.greenrobot.greendao.database.**
 -keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
     public static java.lang.String TABLENAME;
 }
 -keep class **$Properties
-```
 
-### 4.3 Glide 4.0.0 [官方文档](https://github.com/bumptech/glide "")
-
-```
 # Glide 4.0.0
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.AppGlideModule
@@ -165,8 +150,3 @@
   **[] $VALUES;
   public *;
 }
-```
-
-
-未完待续中...
-
