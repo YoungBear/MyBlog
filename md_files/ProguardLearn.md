@@ -1,3 +1,4 @@
+[直接查看proguard-rules.pro文件](https://github.com/YoungBear/MyBlog/blob/master/files/proguard-rules.pro)
 # Android混淆配置
 # 1. 基本指令
 
