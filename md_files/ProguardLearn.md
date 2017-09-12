@@ -198,6 +198,14 @@
 ##---------------End: proguard configuration for Gson  ----------
 ```
 
+### 4.5 百度地图
+
+```
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}
+-dontwarn com.baidu.**
+```
+
 
 持续更新中...
 
