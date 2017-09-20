@@ -63,6 +63,15 @@ git config --local user.email "username@xx.com"
 
 对应的配置文件为**`.git/config`**
 
+## 生成ssh公钥文件
+
+```
+# 生成
+ssh-keygen -t rsa -C "your_email"
+# 查看
+cat ~/.ssh/id_rsa.pub
+```
+
 参考：
 
 http://www.cnblogs.com/lovezbs/p/4455784.html
