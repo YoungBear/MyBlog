@@ -64,6 +64,7 @@ adb shell wm density    查看屏幕密度
 ```
 adb logcat -v time    带时间戳的log
 adb logcat -c    清除log
+adb logcat -b <buffer>    查看不同类型的log，如main,system,radio,events,crash,all.默认为main log
 adb logcat | grep -i "str"    忽略大小写筛选指定字符串log
 adb logcat | grep -iE "str1|str2|str3"    筛选多个字符串
 adb logcat > log.txt    打印log输入到文件
