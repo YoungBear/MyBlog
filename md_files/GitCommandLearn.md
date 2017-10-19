@@ -1,3 +1,4 @@
+[本文github地址](https://github.com/YoungBear/MyBlog/blob/master/md_files/GitCommandLearn.md "")
 ## 查看log
 
 ```
@@ -63,6 +64,13 @@ git config --local user.email "username@xx.com"
 
 对应的配置文件为**`.git/config`**
 
+### 设置gui的编码
+默认情况下，使用gitk查看代码时，代码中的中文会乱码，设置gui编码为utf-8后问题解决。
+
+```
+git config --global gui.encoding utf-8
+```
+
 ## 生成ssh公钥文件
 
 ```
@@ -75,3 +83,5 @@ cat ~/.ssh/id_rsa.pub
 参考：
 
 http://www.cnblogs.com/lovezbs/p/4455784.html
+
+http://blog.csdn.net/u014132720/article/details/51471630

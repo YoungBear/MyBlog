@@ -8,7 +8,7 @@
 
 [Android混淆配置](https://github.com/YoungBear/MyBlog/blob/master/md_files/ProguardLearn.md)
 
-[Git常用命令学习](https://github.com/YoungBear/MyBlog/blob/master/GitCommandLearn.md)
+[Git常用命令学习](https://github.com/YoungBear/MyBlog/blob/master/md_files/GitCommandLearn.md)
 
 [静态方法启动Activity](https://github.com/YoungBear/MyBlog/blob/master/PhotoViewLearn.md)
 
