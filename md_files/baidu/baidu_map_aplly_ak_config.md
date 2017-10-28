@@ -196,7 +196,7 @@ SDKInitializer.setCoordType(CoordType.BD09LL);
             android:process=":remote" />
 ```
 
-## 4. 添加混淆
+## 4. 添加混淆配置
 
 百度地图相关混淆配置：
 
