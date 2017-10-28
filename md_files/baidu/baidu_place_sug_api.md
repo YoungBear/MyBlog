@@ -4,6 +4,14 @@
 
 原有申请的Android SDK，可以继续使用**Place API v2**。
 
+Android已经没有 **Place Api v2**
+
+![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_android_1.png)
+
+Server应用有 **Place Api v2**
+
+![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_server.png)
+
 
 
 [官方文档](http://lbsyun.baidu.com/index.php?title=webapi/place-suggestion-api)
@@ -38,7 +46,9 @@ http://api.map.baidu.com/place/v2/suggestion?query=天安门&region=北京&city_
 
 ## sn校验
 
-// todo 查看申请的ak所对应的sn值截图
+申请获取到的server应用的ak值及sk值：
+
+![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_server_result.png)
 
 [官方sn说明文档](http://lbsyun.baidu.com/index.php?title=lbscloud/api/appendix)
 
