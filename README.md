@@ -16,7 +16,7 @@
 
 [静态方法启动Activity](https://github.com/YoungBear/MyBlog/blob/master/PhotoViewLearn.md)
 
-[通信领域名词](https://github.com/YoungBear/MyBlog/blob/master/Communication.md)
+[通信领域名词](https://github.com/YoungBear/MyBlog/blob/master/md_files/Communication.md)
 
 [Android adb 常用命令](https://github.com/YoungBear/MyBlog/blob/master/AdbLearn.md)
 

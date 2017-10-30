@@ -61,6 +61,29 @@ Physical Cell Identifier
 
 物理小区标识。LTE中终端以此区分不同小区的无线信号。
 
+### CGI
+Cell Global Identifier
+
+全球小区识别码。用来识别一个小区（基站/一个扇形小区）所覆盖的区域。
+
+其结构是：MCC+MNC+LAC+CID
+
+在LTE网络中为MCC+MNC+ENODEB_ID+CID
+
+MCC：移动国家码
+
+MNC：移动网络码
+
+LAC：位置区号码
+
+CID：小区标识码
+
+ENODEB_ID：eNodeB标识码
+
+### eNodeB
+
+Evolved Node B，即演进型Node B简称eNB，LTE中基站的名称，相比现有3G中的Node B，集成了部分RNC的功能，减少了通信时协议的层次。
+
 ## 信号相关
 
 ### RSRP
