@@ -1,0 +1,43 @@
+11-02 23:38:55.480 456-456/com.ysx.greendaolearn I/art: Rejecting re-init on previously-failed class java.lang.Class<org.greenrobot.greendao.database.DatabaseOpenHelper$EncryptedHelper>
+11-02 23:38:55.497 456-456/com.ysx.greendaolearn D/SQLiteDatabase: beginTransaction()
+11-02 23:38:55.500 456-456/com.ysx.greendaolearn D/GreenDaoManager: onUpgrade: old: 1, new: 2
+11-02 23:38:55.501 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Generate temp table】start
+11-02 23:38:55.532 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Table】PLAYER
+                                                                     ---Columns-->_id,NAME,AGE,CHAMPION
+11-02 23:38:55.533 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Generate temp table】PLAYER_TEMP
+11-02 23:38:55.533 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Generate temp table】complete
+11-02 23:38:55.534 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Drop all table by listener】
+11-02 23:38:55.535 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Create all table by listener】
+11-02 23:38:55.535 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Restore data】start
+11-02 23:38:55.538 456-456/com.ysx.greendaolearn E/SQLiteLog: (1299) abort at 19 in [INSERT INTO PLAYER (_id,NAME,AGE) SELECT _id,NAME,AGE FROM PLAYER_TEMP;]: NOT NULL constraint failed: PLAYER.CHAMPION
+11-02 23:38:55.543 456-456/com.ysx.greendaolearn E/MigrationHelper: 【Failed to restore data from temp table 】PLAYER_TEMP
+                                                                    android.database.sqlite.SQLiteConstraintException: NOT NULL constraint failed: PLAYER.CHAMPION (code 1299)
+                                                                        at android.database.sqlite.SQLiteConnection.nativeExecuteForChangedRowCount(Native Method)
+                                                                        at android.database.sqlite.SQLiteConnection.executeForChangedRowCount(SQLiteConnection.java:751)
+                                                                        at android.database.sqlite.SQLiteSession.executeForChangedRowCount(SQLiteSession.java:754)
+                                                                        at android.database.sqlite.SQLiteStatement.executeUpdateDelete(SQLiteStatement.java:64)
+                                                                        at android.database.sqlite.SQLiteDatabase.executeSql(SQLiteDatabase.java:1706)
+                                                                        at android.database.sqlite.SQLiteDatabase.execSQL(SQLiteDatabase.java:1635)
+                                                                        at org.greenrobot.greendao.database.StandardDatabase.execSQL(StandardDatabase.java:37)
+                                                                        at com.github.yuweiguocn.library.greendao.MigrationHelper.restoreData(MigrationHelper.java:205)
+                                                                        at com.github.yuweiguocn.library.greendao.MigrationHelper.migrate(MigrationHelper.java:73)
+                                                                        at com.github.yuweiguocn.library.greendao.MigrationHelper.migrate(MigrationHelper.java:54)
+                                                                        at com.ysx.greendaolearn.manager.GreenDaoManager$MyOpenHelper.onUpgrade(GreenDaoManager.java:81)
+                                                                        at org.greenrobot.greendao.database.DatabaseOpenHelper.onUpgrade(DatabaseOpenHelper.java:94)
+                                                                        at android.database.sqlite.SQLiteOpenHelper.getDatabaseLocked(SQLiteOpenHelper.java:256)
+                                                                        at android.database.sqlite.SQLiteOpenHelper.getWritableDatabase(SQLiteOpenHelper.java:163)
+                                                                        at com.ysx.greendaolearn.manager.GreenDaoManager.init(GreenDaoManager.java:58)
+                                                                        at com.ysx.greendaolearn.MyApplication.init(MyApplication.java:24)
+                                                                        at com.ysx.greendaolearn.MyApplication.onCreate(MyApplication.java:17)
+                                                                        at android.app.Instrumentation.callApplicationOnCreate(Instrumentation.java:1024)
+                                                                        at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5092)
+                                                                        at android.app.ActivityThread.access$1600(ActivityThread.java:187)
+                                                                        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1646)
+                                                                        at android.os.Handler.dispatchMessage(Handler.java:111)
+                                                                        at android.os.Looper.loop(Looper.java:194)
+                                                                        at android.app.ActivityThread.main(ActivityThread.java:5879)
+                                                                        at java.lang.reflect.Method.invoke(Native Method)
+                                                                        at java.lang.reflect.Method.invoke(Method.java:372)
+                                                                        at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1119)
+                                                                        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:885)
+11-02 23:38:55.544 456-456/com.ysx.greendaolearn D/MigrationHelper: 【Restore data】complete

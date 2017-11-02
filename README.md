@@ -6,6 +6,8 @@
 
 [GreenDAO 学习笔记-小白教程（二）使用单例类来管理DaoSession](https://github.com/YoungBear/MyBlog/blob/master/md_files/greendao/GreenDAO_GreenDaoManager_singleton.md)
 
+[GreenDAO 学习笔记-小白教程（三）数据库升级及注意事项](https://github.com/YoungBear/MyBlog/blob/master/md_files/greendao/GreenDAO_Upgrade.md)
+
 [百度 Place Suggestion API](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/baidu_place_sug_api.md)
 
 [ 关于Android端AK值申请及签名配置](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/baidu_map_aplly_ak_config.md)
