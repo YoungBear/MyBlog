@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[Android FileProvider 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/FileProvider.md)
+
 [Android 单元测试](https://github.com/YoungBear/MyBlog/blob/master/md_files/AndroidTest.md)
 
 [GreenDAO 学习笔记-小白教程（一）GreenDAO的简介和基本使用](https://github.com/YoungBear/MyBlog/blob/master/md_files/greendao/GreenDAO_Intro_Start.md)
