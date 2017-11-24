@@ -177,8 +177,6 @@ Four 4
 7. **dict.setdefault(key , default = None)** 如果字典不存在key，则由dict[key] = default为其赋值。
 8. **dicta.update(dictb)** 将字典dictb中键值对添加到dicta中。
 
-# python 集合set
-
 ## 参考
 
 [廖雪峰 Python教程](https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000)
