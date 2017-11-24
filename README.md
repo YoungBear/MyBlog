@@ -2,7 +2,7 @@
 
 ## 文章目录：
 
-[geopy 在python中的使用](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/geopy.md)
+[Python 笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/README.md)
 
 [Android FileProvider 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/FileProvider.md)
 
