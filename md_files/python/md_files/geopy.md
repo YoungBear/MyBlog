@@ -1,4 +1,16 @@
-# geopy 在python中的使用
+# Python 系列笔记
+
+[Python 元组](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_tuple.md)
+
+[Python 列表](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_list.md)
+
+[Python 字典](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_dict.md)
+
+[Python 集合](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_set.md)
+
+[<font color=red>**geopy 在python中的使用**</font>](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/geopy.md)
+
+## geopy 在python中的使用
 
 [geopy](https://github.com/geopy/geopy)是一个关于地理编码的python库。主要有以下几个功能：(需要联网)
 

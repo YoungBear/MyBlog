@@ -1,4 +1,16 @@
-# python 字典
+# Python 系列笔记
+
+[Python 元组](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_tuple.md)
+
+[Python 列表](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_list.md)
+
+[<font color=red>**Python 字典**</font>](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_dict.md)
+
+[Python 集合](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_set.md)
+
+[geopy 在python中的使用](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/geopy.md)
+
+## 字典简介
 
 python中的字典，即dict，全称是dictionary，在其它语言中称为map。使用键-值（key-value）存储，具有极快的查找速度。
 

@@ -1,4 +1,16 @@
-# Python 列表
+# Python 系列笔记
+
+[Python 元组](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_tuple.md)
+
+[<font color=red>**Python 列表**</font>](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_list.md)
+
+[Python 字典](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_dict.md)
+
+[Python 集合](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_set.md)
+
+[geopy 在python中的使用](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/geopy.md)
+
+## 列表简介
 
 list是一种<font color=red>**有序**</font>的集合，可以随时添加和删除其中的元素。
 
