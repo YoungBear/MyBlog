@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[Android Assets工具类](https://github.com/YoungBear/MyBlog/blob/master/md_files/android/AssetsUtils.md)
+
 [Android MVP 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/android/android_mvp.md)
 
 [Python 笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/README.md)
