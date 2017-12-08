@@ -26,15 +26,15 @@ InputStream open(String fileName);
 InputStream open(String fileName, int accessMode);
 
 //关闭AssetManager实例
-// 注意： getAssets()得到的AssetManager 不要close，应为这个AssetManager还会被系统使用。
+// 注意： getAssets()得到的AssetManager 不要close，因为这个AssetManager还会被系统使用。
 void close()
 ```
 
-<font color=red>**注意：**</font> getAssets()得到的AssetManager 不要close，应为这个AssetManager还会被系统使用。
+<font color=red>**注意：**</font> getAssets()得到的AssetManager 不要close，因为这个AssetManager还会被系统使用。
 
 ## 2. Assets工具类结合Gson获取实体类对象
 
-Android开发中，有时候在后台服务没有做好的情况下，我们需要在前端调UI，所以就需要创建假数据，即**实体类对象**，用来模拟在网络获取的实体类对象。所以，我们可以在本地assets文件夹下放一个文本文件，用来存放一个假的数，然后结合Assets相关API，读取改文件并解析为实体类。
+Android开发中，有时候在后台服务没有做好的情况下，我们需要在前端调UI，所以就需要创建假数据，即**实体类对象**，用来模拟在网络获取的实体类对象。所以，我们可以在本地assets文件夹下放一个文本文件，用来存放一个假的数据，然后结合Assets相关API，读取改文件并解析为实体类。
 
 本案例中使用json来传递数据，并使用Google的开源库**Gson**来解析Json。
 
