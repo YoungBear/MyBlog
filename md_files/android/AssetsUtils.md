@@ -1,13 +1,13 @@
-## Assets工具类
+# Assets工具类
 
-### 1. Assets简介
+## 1. Assets简介
 
 Android 中资源分为两种：
 
-1. 一种是**res**下可编译的资源文件, 这种资源文件系统会在R.java里面自动生成该资源文件的ID，访问也很简单,只需要调用R.XXX.id即可
-2. 第二种就是放在**assets**文件夹下面的原生资源文件,放在这个文件夹下面的文件**不会被R文件编译**,所以不能像第一种那样直接使用.Android提供了一个工具类,方便我们操作获取assets文件下的文件:AssetManager。
+1. 一种是<font color=red>**res**</font>下**可编译**的资源文件, 这种资源文件系统会在R.java里面自动生成该资源文件的ID，访问也很简单,只需要调用R.XXX.id即可
+2. 第二种就是放在<font color=red>**assets**</font>文件夹下面的原生资源文件,放在这个文件夹下面的文件**不会被R文件编译**,所以不能像第一种那样直接使用.Android提供了一个工具类,方便我们操作获取assets文件下的文件:AssetManager。
 
-### AssetManager
+**AssetManager**
 
 AssetManager提供了如下方法用于处理assets：
 
@@ -32,9 +32,9 @@ void close()
 
 <font color=red>**注意：**</font> getAssets()得到的AssetManager 不要close，应为这个AssetManager还会被系统使用。
 
-### 2. Assets工具类结合Gson获取实体类对象
+## 2. Assets工具类结合Gson获取实体类对象
 
-Android开发中，有时候在后台服务没有做好的情况下，我们需要在前端调UI，所以就需要创建假数据，即实体类对象，用来模拟在网络获取的实体类对象。所以，我们可以在本地assets文件夹下放一个文本文件，用来存放一个假的数，然后结合Assets相关API，读取改文件并解析为实体类。
+Android开发中，有时候在后台服务没有做好的情况下，我们需要在前端调UI，所以就需要创建假数据，即**实体类对象**，用来模拟在网络获取的实体类对象。所以，我们可以在本地assets文件夹下放一个文本文件，用来存放一个假的数，然后结合Assets相关API，读取改文件并解析为实体类。
 
 本案例中使用json来传递数据，并使用Google的开源库**Gson**来解析Json。
 
@@ -125,7 +125,7 @@ public class AssetsActivity extends BaseActivity {
 }
 ```
 
-该Demo使用Github的[搜索仓库API](https://api.github.com/search/repositories?q=java+user:youngbear+language:java)的返回结果作为实体类。更过Github API的内容请参考[GitHub API 学习笔记 Search API](http://blog.csdn.net/next_second/article/details/78238328)和[Github 开发官方地址](https://developer.github.com/v3/)。
+该Demo使用Github的[搜索仓库API](https://api.github.com/search/repositories?q=java+user:youngbear+language:java)的返回结果作为实体类。更多Github API的内容请参考[GitHub API 学习笔记 Search API](http://blog.csdn.net/next_second/article/details/78238328)和[Github 开发官方地址](https://developer.github.com/v3/)。
 
 
 
