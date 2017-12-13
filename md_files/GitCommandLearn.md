@@ -1,4 +1,32 @@
 [本文github地址](https://github.com/YoungBear/MyBlog/blob/master/md_files/GitCommandLearn.md "")
+
+## git push
+
+```
+# 将本地分支的更新，推送到远程主机
+git push <远程主机名> <本地分支名>:<远程分支名>
+
+# 将本地的master分支推送到origin主机的master分支。如果master不存在，则会被新建。
+git push origin master
+
+# 如果省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支
+git push origin :master
+# 等同于
+git push origin --delete master
+
+# 将所有本地分支都推送到origin主机
+git push --all origin
+
+# git push不会推送标签(tag)，除非使用–tags选项
+git push origin --tags
+
+# 推送tag
+git push origin tag_name
+
+# 删除远程标签
+git push origin :tag_name
+```
+
 ## 查看log
 
 ```
@@ -85,3 +113,5 @@ cat ~/.ssh/id_rsa.pub
 http://www.cnblogs.com/lovezbs/p/4455784.html
 
 http://blog.csdn.net/u014132720/article/details/51471630
+
+http://www.yiibai.com/git/git_push.html
