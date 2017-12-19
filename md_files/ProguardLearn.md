@@ -126,6 +126,18 @@
 -keepclassmembers class * {
     void *(**On*Event);
 }
+# WebView
+-keepclassmembers class fqcn.of.javascript.interface.for.Webview {
+   public *;
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+    public boolean *(android.webkit.WebView, java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, jav.lang.String);
+}
+
 ```
 
 # 3. App定制
@@ -133,6 +145,13 @@
 ```
 # 保留实体类和成员不被混淆(根据具体情况修改entity的路径)
 -keep class com.your_path.entity.**{*;}
+
+# 与js交互。其中MyJavaScriptInterface表示有@JavascriptInterface注解的内部类，具体可根据实际路径改变
+-keep public class com.mypackage.MyClass$MyJavaScriptInterface
+-keep public class * implements com.mypackage.MyClass$MyJavaScriptInterface
+-keepclassmembers class com.mypackage.MyClass$MyJavaScriptInterface { 
+    <methods>; 
+}
 ```
 
 # 4. 第三方框架(具体参考最新官方文档)
@@ -206,6 +225,17 @@
 -dontwarn com.baidu.**
 ```
 
+### 4.6 okhttp
+
+```
+# okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+# okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+```
 
 持续更新中...
 

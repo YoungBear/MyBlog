@@ -129,6 +129,13 @@
 # 保留实体类和成员不被混淆(根据具体情况修改entity的路径)
 -keep class com.your_path.entity.**{*;}
 
+# 与js交互。其中MyJavaScriptInterface表示有@JavascriptInterface注解的内部类，具体可根据实际路径改变
+-keep public class com.mypackage.MyClass$MyJavaScriptInterface
+-keep public class * implements com.mypackage.MyClass$MyJavaScriptInterface
+-keepclassmembers class com.mypackage.MyClass$MyJavaScriptInterface { 
+    <methods>; 
+}
+
 
 # 4. 第三方框架(具体参考最新官方文档)
 
@@ -182,3 +189,12 @@
 -keep class com.baidu.** {*;}
 -keep class vi.com.** {*;}
 -dontwarn com.baidu.**
+
+# okhttp
+-dontwarn okhttp3.**
+-keep class okhttp3.**{*;}
+
+# okio
+-dontwarn okio.**
+-keep class okio.**{*;}
+
