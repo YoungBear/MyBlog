@@ -239,3 +239,7 @@
 
 持续更新中...
 
+参考：
+
+https://stackoverflow.com/questions/6271485/android-proguard-javascript-interface-fail
+
