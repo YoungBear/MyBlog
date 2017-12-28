@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[使用百度测距](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/baidu_distance.md)
+
 [Android Assets工具类](https://github.com/YoungBear/MyBlog/blob/master/md_files/android/AssetsUtils.md)
 
 [Android MVP 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/android/android_mvp.md)
