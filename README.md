@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[百度经纬度坐标转换官方方法](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/BaiduCoordinateConverter.md)
+
 [Java 线程池(ThreadPoolExecutor)原理分析与使用](https://github.com/YoungBear/MyBlog/blob/master/md_files/java/ThreadPoolExecutor.md)
 
 [使用百度测距](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/baidu_distance.md)
