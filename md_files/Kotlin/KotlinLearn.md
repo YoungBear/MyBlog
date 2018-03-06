@@ -86,4 +86,5 @@ val arrA = intArrayOf(12, 28, 46, 32, 50)
 val words:Array<String> = arrayOf("a", "bb", "acd", "ace")
 ```
 
+# [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
 
