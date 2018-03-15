@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[百度文字识别官方Demo ](https://github.com/YoungBear/OCRDemo)
+
 [Kotlin 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/Kotlin/KotlinLearn.md)
 
 [Android日期选择器DatePickerDialog的使用](https://github.com/YoungBear/MyBlog/blob/master/md_files/android/DatePickerDialog.md)
@@ -31,6 +33,10 @@
 [百度 Place Suggestion API](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/baidu_place_sug_api.md)
 
 [ 关于Android端AK值申请及签名配置](https://github.com/YoungBear/MyBlog/blob/master/md_files/baidu/baidu_map_aplly_ak_config.md)
+
+[百度定位官方Demo](https://github.com/YoungBear/BaiduLocDemo/blob/master/README.md)
+
+[百度地图官方Demo](https://github.com/YoungBear/BaiduMapsApiASDemo)
 
 [GitHub API 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/GitHub_API.md)
 
