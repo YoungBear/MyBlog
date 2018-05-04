@@ -1,4 +1,6 @@
-# python 笔记
+# Python3 笔记
+
+[Python 内置函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_build_in_function.md)
 
 [Python 元组](https://github.com/YoungBear/MyBlog/blob/master/md_files/python/md_files/python_tuple.md)
 
