@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[Eclipse 常用配置](https://github.com/YoungBear/MyBlog/blob/master/md_files/config/Eclipse_setting.md)
+
 [百度文字识别官方Demo ](https://github.com/YoungBear/OCRDemo)
 
 [Kotlin 学习笔记](https://github.com/YoungBear/MyBlog/blob/master/md_files/Kotlin/KotlinLearn.md)
