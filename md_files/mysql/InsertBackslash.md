@@ -58,3 +58,5 @@ mysql> select * from people;
 由于函数`replaceAll(String regex, String replacement)`的第一个参数`regex`是正则表达式，所以这里有两次转义，第一次java程序将`\\`转义成为`\`；第二次正则再进行转义，所以，在java的正则表达式中，一个反斜杠`\`需要用四个反斜杠来转义`\\\\`。
 
 在这里，我们将`insert`语句中的一个反斜杠`\`替换为两个反斜杠`\\`，就对其进行了转义，就会保证插入的数据字符串中保持原有的反斜杠不变。
+
+### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
