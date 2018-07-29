@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[insert 语句的on duplicate key update](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/InsertOnDuplicateKeyUpdate.md)
+
 [insert 语句中的反斜杠](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/InsertBackslash.md)
 
 [Eclipse 常用配置](https://github.com/YoungBear/MyBlog/blob/master/md_files/config/Eclipse_setting.md)
