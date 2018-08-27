@@ -142,7 +142,7 @@ set: 31 ms, size: 10000
                     return i;
         }
         return -1;
-    }    
+    }
 ```
 
 ### `HashSet`
@@ -162,3 +162,5 @@ set: 31 ms, size: 10000
 [HashSet vs. List performance](https://stackoverflow.com/questions/150750/hashset-vs-list-performance)
 
 [HashSet vs ArrayList contains performance](https://stackoverflow.com/questions/32552307/hashset-vs-arraylist-contains-performance)
+
+### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)

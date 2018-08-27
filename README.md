@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[Linux - grep 查找指定类型的文件](https://github.com/YoungBear/MyBlog/blob/master/md_files/linux/grep.md)
+
 [Java - List 的 contains 方法的性能](https://github.com/YoungBear/MyBlog/blob/master/md_files/java/ListContainsPerformance.md)
 
 [insert 语句的on duplicate key update](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/InsertOnDuplicateKeyUpdate.md)
