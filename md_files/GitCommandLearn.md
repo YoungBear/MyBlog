@@ -108,6 +108,20 @@ ssh-keygen -t rsa -C "your_email"
 cat ~/.ssh/id_rsa.pub
 ```
 
+## 常用git配置
+
+```
+[user]
+        email = xxx
+        name = xxx
+
+[alias]
+        st = status
+        br = branch
+[color]
+        ui = auto
+```
+
 参考：
 
 http://www.cnblogs.com/lovezbs/p/4455784.html
