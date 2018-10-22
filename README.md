@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[MySQL 常用 SQL 命令](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQLCommands.md)
+
 [MyBatis 中的转义符](https://github.com/YoungBear/MyBlog/blob/master/md_files/SpringBoot/MyBatisEscape.md)
 
 [Linux - grep 查找指定类型的文件](https://github.com/YoungBear/MyBlog/blob/master/md_files/linux/grep.md)
