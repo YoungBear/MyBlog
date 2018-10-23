@@ -2,7 +2,9 @@
 
 ## 文章目录：
 
-[MySQL 常用 SQL 命令](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQLCommands.md)
+[MySQL 常用 SQL 命令（2. DML语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DML.md)
+
+[MySQL 常用 SQL 命令（1. DDL语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DDL.md)
 
 [MyBatis 中的转义符](https://github.com/YoungBear/MyBlog/blob/master/md_files/SpringBoot/MyBatisEscape.md)
 
