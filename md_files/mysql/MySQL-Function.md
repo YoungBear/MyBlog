@@ -99,23 +99,21 @@ mysql> select truncate(1.2345, 3), truncate(1.2345, 6);
 
 
 
-|               函数                |             功能             |
-| :-------------------------------: | :--------------------------: |
-|             curdate()             |         返回当前日期         |
-|             curtime()             |         返回当前时间         |
-|               now()               |      返回当前日期和时间      |
-|       unix_timestamp(date)        |   返回日期date的unix时间戳   |
-|       from_unixtime(stamp)        |   返回时间戳stamp的日期值    |
-|            week(date)             | 返回日期date为一年中的第几周 |
-|            year(date)             |        返回date的年份        |
-|            hour(time)             |       返回time的小时值       |
-|           minute(time)            |       返回time的分钟值       |
-|          monthname(date)          |       显示date的月份名       |
-|       date_format(date,fmt)       |          格式化日期          |
-| date_add(date,INTERVAL expr type) |                              |
-|       datediff(expr,expr2)        |                              |
-|                                   |                              |
-|                                   |                              |
+|               函数                |                     功能                      |
+| :-------------------------------: | :-------------------------------------------: |
+|             curdate()             |                 返回当前日期                  |
+|             curtime()             |                 返回当前时间                  |
+|               now()               |              返回当前日期和时间               |
+|       unix_timestamp(date)        |           返回日期date的unix时间戳            |
+|       from_unixtime(stamp)        |            返回时间戳stamp的日期值            |
+|            week(date)             |         返回日期date为一年中的第几周          |
+|            year(date)             |                返回date的年份                 |
+|            hour(time)             |               返回time的小时值                |
+|           minute(time)            |               返回time的分钟值                |
+|          monthname(date)          |               显示date的月份名                |
+|       date_format(date,fmt)       |                格式化日期时间                 |
+| date_add(date,INTERVAL expr type) |  返回与所给日期date相差INTERVAL 时间段的日期  |
+|       datediff(date1,date2)       | 计算两个日期之间相差的天数。date1-date2的天数 |
 
 eg.
 
@@ -349,6 +347,158 @@ mysql> select date_format('2018-01-01', '%Y, %y');
 +-------------------------------------+
 | 2018, 18                            |
 +-------------------------------------+
+1 row in set (0.00 sec)
+```
+
+**date_add(date, interval expr type) 函数：** 返回与所给日期 date 相差 INTERVAL 的时间段的日期。
+
+其中 INTERVAL 是间隔类型的关键字，expr 是一个表达式，正数表示向后加这个间隔，负数则表示向前减去这个间隔。这个表达式对应后面的类型，type 是间隔类型，MySQL 提供了 13 种间隔类型，如下表：
+
+
+
+|  表达式类型   |    描述    |
+| :-----------: | :--------: |
+|     hour      |    小时    |
+|    minute     |    分钟    |
+|    second     |     秒     |
+|     year      |     年     |
+|     month     |     月     |
+|      day      |     日     |
+|  year_month   |   年和月   |
+|   day_hour    |  日和小时  |
+|  day_minute   |  日和分钟  |
+|  day_second   |   日和秒   |
+|  hour_minute  | 小时和分钟 |
+|  hour_second  |  小时和秒  |
+| minute_second |  分钟和秒  |
+
+eg.
+
+```mysql
+mysql> select now() current, date_add(now(), interval 1 hour) after1hour;
++---------------------+---------------------+
+| current             | after1hour          |
++---------------------+---------------------+
+| 2018-10-28 11:22:24 | 2018-10-28 12:22:24 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval 1 minute) after1minute;
++---------------------+---------------------+
+| current             | after1minute        |
++---------------------+---------------------+
+| 2018-10-28 11:22:43 | 2018-10-28 11:23:43 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval 1 second) after1second;
++---------------------+---------------------+
+| current             | after1second        |
++---------------------+---------------------+
+| 2018-10-28 11:23:13 | 2018-10-28 11:23:14 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval 1 year) after1year;
++---------------------+---------------------+
+| current             | after1year          |
++---------------------+---------------------+
+| 2018-10-28 11:23:43 | 2019-10-28 11:23:43 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval 1 year) after1month;
++---------------------+---------------------+
+| current             | after1month         |
++---------------------+---------------------+
+| 2018-10-28 11:23:50 | 2019-10-28 11:23:50 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval 1 year) after1year;
++---------------------+---------------------+
+| current             | after1year          |
++---------------------+---------------------+
+| 2018-10-28 11:23:58 | 2019-10-28 11:23:58 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' year_month) after1year1month;
++---------------------+---------------------+
+| current             | after1year1month    |
++---------------------+---------------------+
+| 2018-10-28 11:26:11 | 2019-11-28 11:26:11 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '-1_-1' year_month) before1year1month;
++---------------------+---------------------+
+| current             | before1year1month   |
++---------------------+---------------------+
+| 2018-10-28 11:30:42 | 2017-09-28 11:30:42 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' day_hour) after1day1hour;
++---------------------+---------------------+
+| current             | after1day1hour      |
++---------------------+---------------------+
+| 2018-10-28 11:31:15 | 2018-10-29 12:31:15 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' day_minute) after1day1minute;
++---------------------+---------------------+
+| current             | after1day1minute    |
++---------------------+---------------------+
+| 2018-10-28 11:31:29 | 2018-10-28 12:32:29 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' day_second) after1day1second;
++---------------------+---------------------+
+| current             | after1day1second    |
++---------------------+---------------------+
+| 2018-10-28 11:31:42 | 2018-10-28 11:32:43 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' hour_minute) after1hour1minute;
++---------------------+---------------------+
+| current             | after1hour1minute   |
++---------------------+---------------------+
+| 2018-10-28 11:32:04 | 2018-10-28 12:33:04 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' hour_second) after1hour1second;
++---------------------+---------------------+
+| current             | after1hour1second   |
++---------------------+---------------------+
+| 2018-10-28 11:32:29 | 2018-10-28 11:33:30 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() current, date_add(now(), interval '1_1' minute_second) after1minute1second;
++---------------------+---------------------+
+| current             | after1minute1second |
++---------------------+---------------------+
+| 2018-10-28 11:32:44 | 2018-10-28 11:33:45 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+```
+
+**datediff(date1, date2):** 计算两个日期之间相差的天数。date1-date2
+
+eg. 表示当前距离2010-09-14已经过去了2966天。
+
+```mysql
+mysql> select now() current, datediff(now(), '2010-09-14');
++---------------------+-------------------------------+
+| current             | datediff(now(), '2010-09-14') |
++---------------------+-------------------------------+
+| 2018-10-28 11:35:02 |                          2966 |
++---------------------+-------------------------------+
 1 row in set (0.00 sec)
 ```
 
