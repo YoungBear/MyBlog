@@ -656,8 +656,19 @@ mysql> select inet_ntoa(3232235778);
 +-----------------------+
 1 row in set (0.01 sec)
 
+# 8.0.11 版本
 mysql> select password('123456');
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('123456')' at line 1
+
+# 5.7.22 版本
+mysql> select password('123456');
++-------------------------------------------+
+| password('123456')                        |
++-------------------------------------------+
+| *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 |
++-------------------------------------------+
+1 row in set, 1 warning (0.00 sec)
+
 mysql> select md5('123456');
 +----------------------------------+
 | md5('123456')                    |
