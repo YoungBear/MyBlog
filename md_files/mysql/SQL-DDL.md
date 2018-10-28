@@ -371,7 +371,7 @@ mysql> desc emp;
 | deptno   | int(2)        | YES  |     | NULL    |       |
 +----------+---------------+------+-----+---------+-------+
 6 rows in set (0.00 sec)
-``` 
+```
 
 #### 1.5.6 更改表名
 
@@ -402,6 +402,10 @@ DML 和DCL。
 ## MySQL 系列：
 ### [1. MySQL 常用 SQL 命令（1. DDL语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DDL.md)
 ### [2. MySQL 常用 SQL 命令（2. DML语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DML.md)
+
+### [3. MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md
+
+
 
 ### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
 

@@ -504,6 +504,179 @@ mysql> select now() current, datediff(now(), '2010-09-14');
 
 
 
+## 4. 流程函数
+
+流程函数也是很常用的一类函数，用户可以使用这类函数在一个SQL语句中实现条件选择，这样做能够提高语句的效率。
+
+
+
+MySQL 中的流程函数
+
+|                            函数                            |                          功能                           |
+| :--------------------------------------------------------: | :-----------------------------------------------------: |
+|                      if(value, t, f)                       |            如果 value 是真，返回t；否则返回f            |
+|                   ifnull(value1, value2)                   |     如果 value1 不为空，返回value1，否则返回 value2     |
+|    case when [value1] then [result]...else[default] end    | 多条件判断，见eg.相当于if...else if... else if ... else |
+| case [expr] when [value] then [result]...else[default] end |     多值判断，见eg. case A..;case B...;... default      |
+
+eg.
+
+创建职员薪水表：
+
+```mysql
+mysql> create table salary(userid int, salary decimal(9,2));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into salary values(1,1000),(2,2000),(3,3000),(4,4000),(5,5000),(1,null);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from salary;
++--------+---------+
+| userid | salary  |
++--------+---------+
+|      1 | 1000.00 |
+|      2 | 2000.00 |
+|      3 | 3000.00 |
+|      4 | 4000.00 |
+|      5 | 5000.00 |
+|      1 |    NULL |
++--------+---------+
+6 rows in set (0.00 sec)
+```
+
+**各个函数：**
+
+```mysql
+mysql> select if(salary > 2000, 'high','low') from salary;
++---------------------------------+
+| if(salary > 2000, 'high','low') |
++---------------------------------+
+| low                             |
+| low                             |
+| high                            |
+| high                            |
+| high                            |
+| low                             |
++---------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select ifnull(salary,0) from salary;
++------------------+
+| ifnull(salary,0) |
++------------------+
+|          1000.00 |
+|          2000.00 |
+|          3000.00 |
+|          4000.00 |
+|          5000.00 |
+|             0.00 |
++------------------+
+6 rows in set (0.00 sec)
+
+mysql> select case when salary<=2000 then 'low'  when salary<=3000 then 'middle' else 'high' end from salary;
++------------------------------------------------------------------------------------+
+| case when salary<=2000 then 'low'  when salary<=3000 then 'middle' else 'high' end |
++------------------------------------------------------------------------------------+
+| low                                                                                |
+| low                                                                                |
+| middle                                                                             |
+| high                                                                               |
+| high                                                                               |
+| high                                                                               |
++------------------------------------------------------------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select case salary when 1000 then 'low'  when 2000 then 'middle' else 'high' end from salary;
++---------------------------------------------------------------------------+
+| case salary when 1000 then 'low'  when 2000 then 'middle' else 'high' end |
++---------------------------------------------------------------------------+
+| low                                                                       |
+| middle                                                                    |
+| high                                                                      |
+| high                                                                      |
+| high                                                                      |
+| high                                                                      |
++---------------------------------------------------------------------------+
+6 rows in set (0.00 sec)
+```
+
+## 5. 其他常用函数
+
+|                   函数                    |          功能           |
+| :---------------------------------------: | :---------------------: |
+|                datebase()                 |    返回当前数据库名     |
+|                 version()                 |   返回当前数据库版本    |
+|                  user()                   |   返回当前登录用户名    |
+|               inet_aton(ip)               |  返回ip地址的数字表示   |
+|              inet_ntoa(num)               |  返回数字代表的ip地址   |
+| password(str)（8.0.11版本已经移除该函数） | 返回字符串str的加密版本 |
+|                 md5(str)                  |  返回字符串str的md5值   |
+
+eg.
+
+```mysql
+mysql> select database();
++------------+
+| database() |
++------------+
+| db201810   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select version();
++-----------+
+| version() |
++-----------+
+| 8.0.11    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select user();
++--------------------+
+| user()             |
++--------------------+
+| bearyang@localhost |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select inet_aton('192.168.1.2');
++--------------------------+
+| inet_aton('192.168.1.2') |
++--------------------------+
+|               3232235778 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select inet_ntoa(3232235778);
++-----------------------+
+| inet_ntoa(3232235778) |
++-----------------------+
+| 192.168.1.2           |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> select password('123456');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('123456')' at line 1
+mysql> select md5('123456');
++----------------------------------+
+| md5('123456')                    |
++----------------------------------+
+| e10adc3949ba59abbe56e057f20f883e |
++----------------------------------+
+1 row in set (0.00 sec)
+```
+
+
+
+## MySQL 系列：
+
+### [1. MySQL 常用 SQL 命令（1. DDL语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DDL.md)
+
+### [2. MySQL 常用 SQL 命令（2. DML语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DML.md)
+
+### [3. MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md)
+
 
 
 ### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
