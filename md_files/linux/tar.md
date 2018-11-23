@@ -63,5 +63,82 @@ HelloDir
 
 
 
+## 2. zip 与 unzip
+
+```shell
+# 1. 压缩为 .zip 包, -r 表示可递归执行，用于压缩文件夹
+zip -r <dest.zip> <source_file>
+# 2. 解压缩，默认解压到当前目录，-d 可指定解压的目标目录
+unzip <file.zip> [-d <dest_dir>]
+# 3. 压缩 -P 表示加密码压缩
+zip -r -P <password> <dest.zip> <source_file>
+# 4. 使用密码解压缩 -P，如果不加 -P 去解压加密的文件时，会使用交互模式提醒用户输入密码
+unzip -P <password> <file.zip> [-d <dest_dir>]
+```
+
+eg.
+
+```shell
+# 1. 压缩为 .zip 包
+192:tar youngbear$ ls
+HelloDir testdir
+192:tar youngbear$ zip -r HelloDir.zip HelloDir
+  adding: HelloDir/ (stored 0%)
+  adding: HelloDir/Hello.txt (stored 0%)
+192:tar youngbear$ ls
+HelloDir     HelloDir.zip testdir
+# 2. 解压
+# 解压到当前目录(default)
+192:tar youngbear$ ls
+HelloDir.zip testdir
+192:tar youngbear$ unzip HelloDir.zip
+Archive:  HelloDir.zip
+   creating: HelloDir/
+ extracting: HelloDir/Hello.txt
+192:tar youngbear$ ls
+HelloDir     HelloDir.zip testdir
+# 解压到指定目录 -d
+192:tar youngbear$ ls testdir/
+192:tar youngbear$ unzip HelloDir.zip -d testdir/
+Archive:  HelloDir.zip
+   creating: testdir/HelloDir/
+ extracting: testdir/HelloDir/Hello.txt
+192:tar youngbear$ ls testdir/
+HelloDir
+# 3. 加密压缩 -P <passsword>
+192:tar youngbear$ ls
+HelloDir testdir
+192:tar youngbear$ zip -r -P 13579 HelloDir.zip HelloDir
+  adding: HelloDir/ (stored 0%)
+  adding: HelloDir/Hello.txt (stored 0%)
+192:tar youngbear$ ls
+HelloDir     HelloDir.zip testdir
+# 4. unzip交互输入密码解压加密压缩文件
+192:tar youngbear$ ls
+HelloDir.zip testdir
+192:tar youngbear$ unzip HelloDir.zip
+Archive:  HelloDir.zip
+   creating: HelloDir/
+[HelloDir.zip] HelloDir/Hello.txt password:
+ extracting: HelloDir/Hello.txt
+192:tar youngbear$ ls
+HelloDir     HelloDir.zip testdir
+# unzip 使用 -P 解压加密压缩文件
+192:tar youngbear$ ls
+HelloDir.zip testdir
+192:tar youngbear$ unzip -P 13579 HelloDir.zip
+Archive:  HelloDir.zip
+   creating: HelloDir/
+ extracting: HelloDir/Hello.txt
+192:tar youngbear$ ls
+HelloDir     HelloDir.zip testdir
+```
+
+
+
+
+
+
+
 ### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
 
