@@ -1,4 +1,4 @@
-# MySQL float 和 double 的精度
+# MySQL 浮点数 的精度
 
 在 MySQL 中，float 表示单精度浮点数， double 表示双精度浮点数，decimal 表示定点数。定义 这些类型的数据时，同时需要指定其长度和精度 ，即用**名称（M，D**）来表示，M表示该值的总共长度，D表示小数点后面的长度，M和D又称为精度和标度。
 
@@ -59,6 +59,8 @@ mysql> select * from test2;
 ### [2. MySQL 常用 SQL 命令（2. DML语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DML.md)
 
 ### [3. MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md)
+
+### [4. MySQL 浮点数精度](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQLFloatPrecision.md)
 
 
 

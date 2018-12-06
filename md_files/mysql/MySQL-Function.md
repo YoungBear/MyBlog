@@ -703,6 +703,8 @@ mysql> select md5('123456');
 
 ### [3. MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md)
 
+### [4. MySQL 浮点数精度](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQLFloatPrecision.md)
+
 
 
 ### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)

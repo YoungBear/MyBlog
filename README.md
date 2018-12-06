@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[MySQL 浮点数精度](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQLFloatPrecision.md)
+
 [Linux 常用压缩解压命令](https://github.com/YoungBear/MyBlog/blob/master/md_files/linux/tar.md)
 
 [MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md)

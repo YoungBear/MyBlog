@@ -59,4 +59,16 @@ mysql> select * from people;
 
 在这里，我们将`insert`语句中的一个反斜杠`\`替换为两个反斜杠`\\`，就对其进行了转义，就会保证插入的数据字符串中保持原有的反斜杠不变。
 
+## MySQL 系列：
+
+### [1. MySQL 常用 SQL 命令（1. DDL语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DDL.md)
+
+### [2. MySQL 常用 SQL 命令（2. DML语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DML.md)
+
+### [3. MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md)
+
+### [4. MySQL 浮点数精度](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQLFloatPrecision.md)
+
+
+
 ### [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
