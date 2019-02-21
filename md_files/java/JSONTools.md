@@ -77,6 +77,8 @@ Student student1 = objectMapper.readValue(jsonString1, Student.class); // 反序
 System.out.println(student1);
 ```
 
+### [Demo 地址](https://github.com/YoungBear/JsonDemo)
+
 
 
 ## [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
