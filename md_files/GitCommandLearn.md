@@ -215,6 +215,105 @@ ssh-keygen -t rsa -C "your_email"
 cat ~/.ssh/id_rsa.pub
 ```
 
+## 8. `.gitignore` 配置
+
+git 工程下，`.gitignore` 文件表示对忽略文件进行配置，即这些文件不会进入git管理。
+
+比如，SpringBoot 工程的一个`.gitignore` 文件:
+
+```shell
+/target/
+.mvn
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+```
+
+
+
+## 9. 其他常用git命令
+
+```shell
+# 克隆代码仓库，可指定目录
+git clone <repo-url> [dir-name]
+
+# 在当前目录，初始化本地仓库，新建一个git库
+git init
+
+# 查看状态
+git status
+
+# 查看文件详细修改内容
+git diff [file-path]
+
+# 跟踪文件，存在暂存区
+git add <file-path>
+
+# 提交 commit
+# vim 编辑模式提交
+git commit
+# 直接使用命令并添加commit信息
+git commit -m "commit message"
+# 重新编辑上一次提交
+git commit --amend
+
+# 取消暂存的文件
+git reset <file-path>
+# 切换到指定提交位置，后边的所有提交的相关文件都会变成未跟踪状态
+git reset <commit-hash>
+# 切换到指定提交位置，放弃后边所有的提交
+git reset --hard <commit-hash>
+
+# 撤销文件的修改，修改的文件由暂存区变成未跟踪状态
+git checkout <file-path>
+# 切换到指定分支
+git checkout <branch-name>
+# 切换到指定提交位置，默认为无名分支
+git reset <commit-hash>
+
+# 合并指定分支的修改到当前分支
+git merge <branch-name>
+
+# 暂存为跟踪的文件到栈容器中
+git stash
+# 查看栈容器中所有的缓存
+git stash list
+# 栈容器缓存出栈
+git stash pop
+
+# 从远程库拉取代码
+git fetch [repo-name]
+# 从远程库拉取代码，并将远程库已删除的部分也在本地删除
+git fetch -p [repo-name]
+
+# 从远程拉取代码，并和本地分支合并(相当于 git fetch + git merge)
+git pull [repo-name]
+
+# 从指定分支变基到当前分支，当前分支的提交，都会在指定分支的其他提交之后，而不是按照时间先后顺序合并
+git rebase <branch-name>
+
+```
+
 
 
 # [更多文章](https://github.com/YoungBear/MyBlog/blob/master/README.md)
