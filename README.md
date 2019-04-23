@@ -143,3 +143,6 @@
 [android指定打包资源文件](https://github.com/YoungBear/MyBlog/blob/master/package_resource.md)
 
 [每天一句英语](https://github.com/YoungBear/MyBlog/blob/master/English/English.md)
+
+[Java 常用正则表达式](./md_files/java/JavaPattern.md)
+
