@@ -142,9 +142,22 @@ public class HelloController {
 
 http://localhost:8080/swagger-ui.html
 
+(默认端口为8080)
+
 如果使用 tomcat 部署启动，则文档地址为：
 
 http://localhost:9090/Demo/swagger-ui.html
+
+
+## 5. 生产环境不显示Swagger-UI
+
+在Swagger-UI的配置类`SwaggerConfiguration`中，对类添加注解：
+
+```java
+@Profile({"dev", "test"})
+```
+
+表示只在dev和test环境显示Swagger-UI，在其他环境不显示。
 
 
 
@@ -171,4 +184,3 @@ http://localhost:9090/Demo/swagger-ui.html
 ### [8. GsonUtils 工具类](./SpringBoot-8-GsonUtils.md)
 
 ### [9. 多环境支持](./SpringBoot-9-MultipyEnv.md)
-
