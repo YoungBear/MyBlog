@@ -87,3 +87,5 @@ logback.xml的例子：
 
 ### [9. 多环境支持](./SpringBoot-9-MultipyEnv.md)
 
+### [10. 集成数据库](./SpringBoot-10-Database.md)
+

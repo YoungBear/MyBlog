@@ -184,3 +184,6 @@ http://localhost:9090/Demo/swagger-ui.html
 ### [8. GsonUtils 工具类](./SpringBoot-8-GsonUtils.md)
 
 ### [9. 多环境支持](./SpringBoot-9-MultipyEnv.md)
+
+### [10. 集成数据库](./SpringBoot-10-Database.md)
+
