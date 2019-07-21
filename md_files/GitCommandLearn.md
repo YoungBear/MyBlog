@@ -312,6 +312,9 @@ git pull [repo-name]
 # 从指定分支变基到当前分支，当前分支的提交，都会在指定分支的其他提交之后，而不是按照时间先后顺序合并
 git rebase <branch-name>
 
+# 将指定的提交合并到当前分支，可以将其他的分支的某一个提交合并到当前分支
+git cherry-pick <commit-hash>
+
 ```
 
 
