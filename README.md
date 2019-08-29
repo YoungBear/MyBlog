@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[筛选法获取素数列表](./md_files/java/Math/PrimeBitSet.md)
+
 [SpringBoot 学习笔记](./md_files/SpringBoot/SpringBoot.md)
 
 [Java 常用 JSON 解析框架](./md_files/java/JSONTools.md)
