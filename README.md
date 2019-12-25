@@ -2,6 +2,8 @@
 
 ## 文章目录：
 
+[二分查找](./md_files/java/BinarySearch.md)
+
 [筛选法获取素数列表](./md_files/java/Math/PrimeBitSet.md)
 
 [SpringBoot 学习笔记](./md_files/SpringBoot/SpringBoot.md)
