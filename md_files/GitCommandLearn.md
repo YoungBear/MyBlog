@@ -71,6 +71,8 @@ git branch <br_name>
 git checkout <br_name>
 # 创建并切换到新分支
 git checkout -b <br_name>
+# 从远程分支创建一个本地同名分支并跟踪，并切换到该本地分支
+git checkout --track origin/<remote_br_name>
 
 # 关联本地分支与远程分支，这样可以直接使用 git push 和 git pull 等
 # 本地分支与远程分支关联 1. 如果不指定本地分支名，则默认为当前分支名
