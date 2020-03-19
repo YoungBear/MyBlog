@@ -21,7 +21,8 @@ git push -u origin <local_br_name>:<remote_br_name>
 git push origin <local_br_name>
 # 如果省略本地分支名，则表示删除指定的远程分支，这等同于推送一个空的本地分支到远程分支
 git push origin :<remote_br_name>
-# 等同于删除远程分支
+# 等同于删除远程分支 -d --delete
+git push origin -d <remote_br_name>
 git push origin --delete <remote_br_name>
 # 将所有本地分支都推送到远程库
 git push --all origin
@@ -29,8 +30,9 @@ git push --all origin
 git push origin --tags
 # 推送指定标签到远程库
 git push origin <tag_name>
-# 删除远程标签(与删除分支类似)
+# 删除远程标签(与删除分支类似) -d --delete
 git push origin :<tag_name>
+git push origin -d <tag_name>
 git push origin --delete <tag_name>
 ```
 
