@@ -124,7 +124,7 @@ set: 31 ms, size: 10000
 ## 分析
 
 ### `List`
-由于数据中存在重复元素，所以使用`contains()`方法，但是，`ArrayList`的`contains()`方法会调用其`indexOf()`方法，在`indexOf()`方法里边，有一个for循环，所以，`ArrayList`的`contains()`方法的时间复杂度是`O(n*n)`。
+由于数据中存在重复元素，所以使用`contains()`方法，但是，`ArrayList`的`contains()`方法会调用其`indexOf()`方法，在`indexOf()`方法里边，有一个for循环，所以，`ArrayList`的`contains()`方法的时间复杂度是`O(n)`（感谢[涛儿儿](https://me.csdn.net/weixin_45994011)的提醒）。
 
 ```
     public boolean contains(Object o) {
