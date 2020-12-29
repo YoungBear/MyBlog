@@ -321,6 +321,17 @@ git rebase <branch-name>
 # 将指定的提交合并到当前分支，可以将其他的分支的某一个提交合并到当前分支
 git cherry-pick <commit-hash>
 
+# patch相关
+# 生成最近n次commit的patch文件，如果不指定输出目录，则输出到当前目录
+git format-patch -<n> [-o <dir-patch>]
+# 应用patch文件
+git am <patch-file>
+
+# 生成当前修改的diff的patch文件
+git diff > <diff-patch-file>
+# 应用当前diff的patch文件
+git apply <diff-patch-file>
+
 ```
 
 
