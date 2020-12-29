@@ -83,6 +83,8 @@ git branch --set-upstream-to=origin/<remote_br_name> [<local_br_name>]
 git branch -u origin/<remote_br_name> [<local_br_name>]
 # 取消本地分支与远程分支的关联，如果不指定本地分支名，则默认为当前分支名
 git branch --unset-upstream [<local_br_name>]
+# 查看分支关联关系
+git branch -vv
 
 # 重命名指定分支
 git branch -m <old_br_name> <new_br_name>
