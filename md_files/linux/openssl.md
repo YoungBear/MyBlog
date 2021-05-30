@@ -7,7 +7,7 @@
 # 常用命令
 
 ```shell
-# 查看版本号
+# 查看版本号（本文档使用的openssl版本号均为1.1.1）
 openssl version
 openssl version -a
 ```
@@ -106,6 +106,64 @@ HMAC-SHA256(data.txt)= 0ab58fc5b256824cad9c3b78a95f01520c0c1575258bd75a6a7558d03
 ```
 
 
+
+## 2. enc 对称加密
+
+
+
+[openssl enc 官方文档](https://www.openssl.org/docs/man1.1.1/man1/enc.html)
+
+
+
+```shell
+# 1. 
+
+```
+
+
+
+
+
+## openssl list
+
+openssl list 命令可以查看支持的算法，特性。
+
+**命令格式：**
+
+`openssl list [options]`
+
+[openssl list 官方文档](https://www.openssl.org/docs/man1.1.1/man1/list.html)
+
+
+
+常用命令：
+
+```shell
+# 1. 查看帮助
+openssl list -help
+# 以一列的形式显示，-1必须是在第一个位置
+openssl list -1
+# 2. List of standard commands 查看所有标准命令
+openssl list -commands
+# 3. List of message digest commands 查看散列命令
+openssl list -digest-commands
+# 4. List of message digest algorithms 查看散列算法
+openssl list -digest-algorithms
+# 5. List of cipher commands 查看对称加密命令
+openssl list -cipher-commands
+# 6. List of cipher algorithms 查看对称加密算法
+openssl list -cipher-algorithms
+# 7. List of public key algorithms 查看公钥算法
+openssl list -public-key-algorithms
+# 8. List of public key methods 查看公钥方法
+openssl list -public-key-methods
+# 9. List of disabled features 查看缺失的特性
+openssl list -disabled
+# 10. List missing detailed help strings 查看缺失的帮助信息
+openssl list -missing-help
+# 11. List options for specified command 查看指定命令的选项
+openssl list -options val
+```
 
 
 
