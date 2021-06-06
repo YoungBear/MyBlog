@@ -162,5 +162,7 @@
 
 ### [3. openssl 常用命令-list](./md_files/linux/openssl/openssl_list.md)
 
+### [4. openssl 常用命令-genpkey](./md_files/linux/openssl/openssl_genpkey.md)
+
 
 
