@@ -24,7 +24,7 @@ genpkey用于生成一个私钥。
 # 1. 生成一个3072bit的RSA私钥 -----BEGIN PRIVATE KEY-----
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out rsa_private_3072.pem
 # 2. 生成一个口令保护的3072bit的RSA私钥-----BEGIN ENCRYPTED PRIVATE KEY-----
-openssl genpkey -aes256 -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out encrypted_rsa_private_3072.pem -pass pass:Hello@123
+openssl genpkey -aes256 -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out encrypted_rsa_private_3072.pem -pass pass:'Hello@123'
 # 3. 查看私钥信息
 openssl pkey -in rsa_private_3072.pem -text
 # 4. 导出公钥 -----BEGIN PUBLIC KEY-----
