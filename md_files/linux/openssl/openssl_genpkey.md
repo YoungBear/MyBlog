@@ -21,9 +21,14 @@ genpkey用于生成一个私钥。
 **常用命令：**
 
 ```shell
-# 1. 生成一个私钥
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out private-key.pem
-# 2. 
+# 1. 生成一个3072bit的RSA私钥 -----BEGIN PRIVATE KEY-----
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out rsa_private_3072.pem
+# 2. 生成一个口令保护的3072bit的RSA私钥-----BEGIN ENCRYPTED PRIVATE KEY-----
+openssl genpkey -aes256 -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out encrypted_rsa_private_3072.pem -pass pass:Hello@123
+# 3. 查看私钥信息
+openssl pkey -in rsa_private_3072.pem -text
+# 4. 导出公钥 -----BEGIN PUBLIC KEY-----
+openssl pkey -in rsa_private_3072.pem -out rsa_public_3072.pem -pubout
 
 ```
 
@@ -60,6 +65,25 @@ openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -pkeyopt rsa_keygen
 
 
 ```
+
+
+
+**eg.**
+
+```shell
+# 1. 生成一个RSA-PSS的私钥，并指定选项值
+openssl genpkey -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:3072 \
+    -pkeyopt rsa_keygen_pubexp:65537 \
+    -pkeyopt rsa_pss_keygen_md:sha256 \
+    -pkeyopt rsa_pss_keygen_mgf1_md:sha256 \
+    -pkeyopt rsa_pss_keygen_saltlen:32 \
+    -out rsa_private_3072_restricted.pem
+
+# 2. 查看
+openssl pkey -in rsa_private_3072_restricted.pem  -text
+```
+
+
 
 
 
