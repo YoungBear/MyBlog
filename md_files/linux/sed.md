@@ -16,6 +16,9 @@ sed 编辑器可以根据命令来处理数据流中的数据。这些命令要�
 ```shell
 # 1. 替换指定文件中所有的 pattern 字符串为 replacement
 sed -i 's/pattern/replacement/g' <file_name>
+# 2. 批量文件替换字符串
+## 当前目录搜索所有txt文件并替换字符串
+find . -name '*.txt' | xargs sed -i 's/pattern/replacement/g'
 ```
 
 
