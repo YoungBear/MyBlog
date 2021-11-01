@@ -3,12 +3,12 @@
 ## 1. tar 命令
 
 ```shell
-# 1. 生成 .tar 包
-tar -cvf <dest.tar> <source_file>
+# 1. 生成 .tar 包(文件保持permission，owner不变)
+tar -cpvf <dest.tar> <source_file>
 # 2. 将tar包解压,-C表示指定解压目录，默认当前目录
 tar -xvf <file.tar> [-C <dest_dir>]
 # 3. 生成 .tar.gz 包
-tar -czvf <dest.tar.gz> <source_file>
+tar -cpzvf <dest.tar.gz> <source_file>
 # 4. 将.tar.gz包解压，-C表示指定解压目录，默认当前目录
 tar -xzvf <file.tar.gz> [-C <dest_dir>]
 ```

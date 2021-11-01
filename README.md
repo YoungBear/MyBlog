@@ -12,8 +12,6 @@
 
 [MySQL 浮点数精度](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQLFloatPrecision.md)
 
-[Linux 常用压缩解压命令](https://github.com/YoungBear/MyBlog/blob/master/md_files/linux/tar.md)
-
 [MySQL 常用函数](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/MySQL-Function.md)
 
 [MySQL 常用 SQL 命令（2. DML语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DML.md)
@@ -21,8 +19,6 @@
 [MySQL 常用 SQL 命令（1. DDL语句）](https://github.com/YoungBear/MyBlog/blob/master/md_files/mysql/SQL-DDL.md)
 
 [MyBatis 中的转义符](https://github.com/YoungBear/MyBlog/blob/master/md_files/SpringBoot/MyBatisEscape.md)
-
-[Linux - grep 查找指定类型的文件](https://github.com/YoungBear/MyBlog/blob/master/md_files/linux/grep.md)
 
 [Java - List 的 contains 方法的性能](https://github.com/YoungBear/MyBlog/blob/master/md_files/java/ListContainsPerformance.md)
 
@@ -183,4 +179,12 @@
 ## nginx
 
 ### [1. nginx基础](./md_files/linux/nginx/nginx.md)
+
+
+
+## Linux常用命令
+
+### [1. grep学习笔记](./md_files/linux/grep.md)
+
+### [2. Linux 常用压缩解压命令](./md_files/linux/tar.md)
 
