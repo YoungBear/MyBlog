@@ -177,3 +177,10 @@
 ## docker 常用命令
 
 ### [1. docker 常用命令](./md_files/docker/docker.md)
+
+
+
+## nginx
+
+### [1. nginx基础](./md_files/linux/nginx/nginx.md)
+
