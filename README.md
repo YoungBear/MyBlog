@@ -188,3 +188,6 @@
 
 ### [2. Linux 常用压缩解压命令](./md_files/linux/tar.md)
 
+### [3. sed命令](./md_files/linux/sed.md)
+
+### [4. ps命令](./md_files/linux/ps.md)
