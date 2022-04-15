@@ -26,3 +26,62 @@ nginx -V
 nginx -s stop
 ```
 
+
+
+**windows下操作nginx：**
+
+```shell
+# 启动
+start nginx
+# 查看nginx的进程
+tasklist /fi "imagename eq nginx.exe"
+# 立即关闭（fast shutdown）
+nginx -s stop
+# 优雅地关闭（graceful shutdown）
+nginx -s quit
+# 重载使配置生效
+nginx -s reload
+# 重新打开日志文件（re-opening log files）
+nginx -s reopen
+```
+
+
+
+## 2. 配置 conf/nginx.conf
+
+
+
+### 2.1 修改端口
+
+```yaml
+# 修改端口为9090(省略其他配置)
+    server {
+        listen       9090;
+        server_name  localhost;
+```
+
+
+
+### 2.2 反向代理
+
+
+
+```yaml
+# 将demo的请求，转发到http://localhost:8888/SpringBootDemo    
+        location /demo {
+            proxy_pass  http://localhost:8888/SpringBootDemo;
+        }
+```
+
+如，请求http://192.168.3.141:9090/demo/employee/queryAll，实际转发请求为：http://127.0.0.1:8888/SpringBootDemo/employee/queryAll。
+
+![](../../../pngs/nginx/proxy_server_curl.png)
+
+
+
+
+
+# todo
+
+1. location 的匹配规则。
+2. proxy使用https，证书相关配置。
