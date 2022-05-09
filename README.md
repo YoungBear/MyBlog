@@ -191,3 +191,10 @@
 ### [3. sed命令](./md_files/linux/sed.md)
 
 ### [4. ps命令](./md_files/linux/ps.md)
+
+
+
+## redis
+
+[1. redis基础](./md_files/redis/redis.md)
+
