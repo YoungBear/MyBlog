@@ -238,20 +238,22 @@ public class ZonedDateTimeUtilsTest {
 
 ## 3. 常见时区
 
+详细夏令时规定可参考：http://www.timeofdate.com/
 
 
-| 时区ID字符串        | 偏移值 | 描述   |
-| ------------------- | ------ | ------ |
-| Asia/Shanghai       | +08:00 | 东八区 |
-| Europe/London       | +01:00 |        |
-| Europe/Paris        | +02:00 |        |
-| Europe/Berlin       | +02:00 |        |
-| Europe/Moscow       | +03:00 |        |
-| Asia/Seoul          | +09:00 |        |
-| Asia/Tokyo          | +09:00 |        |
-| Australia/Sydney    | +10:00 |        |
-| America/Los_Angeles | -07:00 |        |
-| America/New_York    | -04:00 |        |
+
+| 时区ID字符串        | 标准偏移值standardOffset | 是否有夏令时 | 使用夏令时的偏移值offset |
+| ------------------- | ------------------------ | ------------ | ------------------------ |
+| Asia/Shanghai       | +08:00                   | 否           | 无                       |
+| Europe/London       | +01:00                   | 是           | Z（即与UTC时间一致）     |
+| Europe/Paris        | +01:00                   | 是           | +02:00                   |
+| Europe/Berlin       | +01:00                   | 是           | +02:00                   |
+| Europe/Moscow       | +03:00                   | 否           | 无                       |
+| Asia/Seoul          | +09:00                   | 否           | 无                       |
+| Asia/Tokyo          | +09:00                   | 否           | 无                       |
+| Australia/Sydney    | +10:00                   | 是           | +11:00                   |
+| America/Los_Angeles | -08:00                   | 是           | -07:00                   |
+| America/New_York    | -05:00                   | 是           | -04:00                   |
 
 
 
@@ -260,21 +262,57 @@ public class ZonedDateTimeUtilsTest {
 ```java
 package com.ysx.utils.datetime;
 
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.zone.ZoneRules;
 import java.util.Set;
 
+/**
+ * @author youngbear
+ * @email youngbear@aliyun.com
+ * @date 2022/6/15 23:18
+ * @blog https://blog.csdn.net/next_second
+ * @github https://github.com/YoungBear
+ * @description 获取全球时区信息
+ */
 public class ZoneIdUtils {
     public static void main(String[] args) {
+        Instant instant = Instant.now();
         Set<String> zoneIds = ZoneId.getAvailableZoneIds();
         System.out.println(zoneIds.size());
-        zoneIds.stream().sorted().forEach( zoneIdString -> {
+        zoneIds.stream().sorted().forEach(zoneIdString -> {
             ZoneId zoneId = ZoneId.of(zoneIdString);
-            ZoneOffset zoneOffset = ZonedDateTime.now(zoneId).getOffset();
-            System.out.println(zoneIdString + " " + zoneOffset.toString());
+            ZoneRules rules = zoneId.getRules();
+            // 当前offset
+            ZoneOffset offset = rules.getOffset(instant);
+            // 标准offset
+            ZoneOffset standardOffset = rules.getStandardOffset(instant);
+            // 是否为夏令时
+            boolean daylightSavings = rules.isDaylightSavings(instant);
+
+            System.out.println(zoneIdString + ", offset: "
+                    + offset + ", standardOffset: " + standardOffset
+                    + ", daylightSavings: " + daylightSavings);
         });
     }
 }
+
 ```
+
+
+
+# 相关文章
+
+## [1. LocalDateTime ZonedDateTime Instant 的相互转换](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/ConvertUtils.md)
+
+## [2. 日期时间格式化与解析](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/FormatterUtils.md)
+
+## [3. 带时区时间日期 ZonedDateTime](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/ZonedDateTimeUtils.md)
+
+## [4. 夏令时](https://github.com/YoungBear/JavaUtils/blob/master/mdfiles/datetime/dst.md)
+
+
+
+# [源代码地址](https://github.com/YoungBear/JavaUtils)
 
