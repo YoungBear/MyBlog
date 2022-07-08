@@ -245,7 +245,7 @@ public class ZonedDateTimeUtilsTest {
 | 时区ID字符串        | 标准偏移值standardOffset | 是否有夏令时 | 使用夏令时的偏移值offset |
 | ------------------- | ------------------------ | ------------ | ------------------------ |
 | Asia/Shanghai       | +08:00                   | 否           | 无                       |
-| Europe/London       | +01:00                   | 是           | Z（即与UTC时间一致）     |
+| Europe/London       | +00:00                   | 是           | +01:00                   |
 | Europe/Paris        | +01:00                   | 是           | +02:00                   |
 | Europe/Berlin       | +01:00                   | 是           | +02:00                   |
 | Europe/Moscow       | +03:00                   | 否           | 无                       |
