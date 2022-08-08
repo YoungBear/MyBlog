@@ -1,23 +1,14 @@
 # SpringBoot 学习笔记6 - 返回统一的json格式
 
-
-
 ## 1. 创建返回对象泛型类
 
-统一对象类： `Result.java`
+统一对象类： `ResultVo.java`
 
 ```java
-package com.example.demo.entity.common;
+import lombok.Data;
 
-/**
- * @author youngbear
- * @email youngbear@aliyun.com
- * @date 2019-04-30 21:38
- * @blog https://blog.csdn.net/next_second
- * @github https://github.com/YoungBear
- * @description 统一返回json格式
- */
-public class Result<T> {
+@Data
+public class ResultVo<T> {
 
     /**
      * 错误码
@@ -32,36 +23,30 @@ public class Result<T> {
     /**
      * 数据
      */
-    private ResultBean<T> result;
-
-    // 省略 getter 和 setter 方法
+    private Result<T> result;
 }
+
 ```
 
-其中，`ResultBean`的定义为：
+其中，`Result`的定义为：
 
-`ResultBean.java`
+`Result.java`
 
 ```java
-package com.example.demo.entity.common;
-
+import lombok.Data;
 import java.util.List;
-
-/**
- * @author youngbear
- * @email youngbear@aliyun.com
- * @date 2019-04-30 22:51
- * @blog https://blog.csdn.net/next_second
- * @github https://github.com/YoungBear
- * @description
- */
-public class ResultBean<T> {
-
+@Data
+public class Result<T> {
+    /**
+     * 数据总数
+     */
     private Integer total;
+    /**
+     * 当前页数据
+     */
     private List<T> data;
-
-    // 省略 getter 和 setter 方法
 }
+
 ```
 
 ## 2. 创建异常类
@@ -141,7 +126,7 @@ public class DemoException extends RuntimeException {
 package com.example.demo.utils;
 
 import com.example.demo.entity.common.Result;
-import com.example.demo.entity.common.ResultBean;
+import com.example.demo.entity.common.ResultVo;
 import com.example.demo.enums.ErrorEnum;
 import com.example.demo.exception.DemoException;
 
@@ -156,7 +141,7 @@ import java.util.List;
  * @github https://github.com/YoungBear
  * @description
  */
-public class ResultUtils {
+public class ResultVoUtils {
 
     /**
      * 成功返回
@@ -165,29 +150,52 @@ public class ResultUtils {
      * @param <T>  数据类型
      * @return 统一的返回值
      */
-    public static <T> Result<T> success(T data) {
+    public static <T> ResultVo<T> success(T data) {
+        ResultVo<T> resultVo = new ResultVo<>();
+        resultVo.setCode(Result.SUCCESS_CODE);
+        resultVo.setMsg(Result.SUCCESS_MESSAGE);
         Result<T> result = new Result<>();
-        result.setCode(0);
-        result.setMsg("request successful.");
-        ResultBean<T> resultBean = new ResultBean<>();
-        resultBean.setTotal(1);
-        List<T> dataList = new ArrayList<>(1);
-        dataList.add(data);
-        resultBean.setData(dataList);
-        result.setResult(resultBean);
-        return result;
+        if (data != null) {
+            List<T> dataList = new ArrayList<>(1);
+            dataList.add(data);
+            result.setTotal(1);
+            result.setData(dataList);
+        } else {
+            result.setTotal(0);
+        }
+        resultVo.setResult(result);
+        return resultVo;
     }
 
-    public static <T> Result<T> success(List<T> dataList){
+    public static <T> ResultVo<T> success(List<T> dataList) {
+        ResultVo<T> resultVo = new ResultVo<>();
+        resultVo.setCode(Result.SUCCESS_CODE);
+        resultVo.setMsg(Result.SUCCESS_MESSAGE);
         Result<T> result = new Result<>();
-        result.setCode(0);
-        result.setMsg("request successful.");
-        ResultBean<T> resultBean = new ResultBean<>();
-        resultBean.setTotal(dataList.size());
-        resultBean.setData(dataList);
-        result.setResult(resultBean);
-        return result;
+        if (dataList != null && dataList.size() > 0) {
+            result.setTotal(dataList.size());
+            result.setData(dataList);
+        } else {
+            result.setTotal(0);
+        }
+        resultVo.setResult(result);
+        return resultVo;
     }
+
+    /**
+     * 指定total，返回数据，用于分页场景
+     *
+     * @param total    总数量
+     * @param dataList 当前数据
+     * @param <T>      泛型参数
+     * @return resultVo
+     */
+    public static <T> ResultVo<T> success(int total, List<T> dataList) {
+        ResultVo<T> resultVo = success(dataList);
+        resultVo.getResult().setTotal(total);
+        return resultVo;
+    }
+
     /**
      * 异常返回
      *
@@ -195,26 +203,28 @@ public class ResultUtils {
      * @param <T>
      * @return
      */
-    public static <T> Result<T> error(DemoException demoException) {
-        Result<T> result = new Result<>();
-        result.setCode(demoException.getErrorEnum().getErrorCode());
-        result.setMsg(demoException.getErrorEnum().getErrorMessage());
-        return result;
+    public static <T> ResultVo<T> error(DemoException demoException) {
+        ResultVo<T> resultVo = new ResultVo<>();
+        resultVo.setCode(demoException.getErrorEnum().getErrorCode());
+        resultVo.setMsg(demoException.getErrorEnum().getErrorMessage());
+        return resultVo;
     }
 
     /**
      * 异常返回
+     *
      * @param errorEnum
      * @param <T>
      * @return
      */
-    public static <T> Result<T> error(ErrorEnum errorEnum) {
-        Result<T> result = new Result<>();
-        result.setCode(errorEnum.getErrorCode());
-        result.setMsg(errorEnum.getErrorMessage());
-        return result;
+    public static <T> ResultVo<T> error(ErrorEnum errorEnum) {
+        ResultVo<T> resultVo = new ResultVo<>();
+        resultVo.setCode(errorEnum.getErrorCode());
+        resultVo.setMsg(errorEnum.getErrorMessage());
+        return resultVo;
     }
 }
+
 ```
 
 ## 4. 实践
@@ -225,10 +235,10 @@ public class ResultUtils {
 package com.example.demo.controller;
 
 import com.example.demo.entity.Book;
-import com.example.demo.entity.common.Result;
+import com.example.demo.entity.common.ResultVo;
 import com.example.demo.exception.DemoException;
 import com.example.demo.service.IBookService;
-import com.example.demo.utils.ResultUtils;
+import com.example.demo.utils.ResultVoUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -258,23 +268,23 @@ public class BookController {
 
     @RequestMapping(value = "/book-list", method = RequestMethod.POST)
     @ApiOperation("返回测试的 book 列表")
-    public Result<Book> bookList() {
+    public ResultVo<Book> bookList() {
         try {
             List<Book> books = bookService.bookList();
-            return ResultUtils.success(books);
+            return ResultVoUtils.success(books);
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
 
     }
 
     @RequestMapping(value = "one-book", method = RequestMethod.POST)
-    public Result<Book> oneBook(@RequestBody Book book) {
+    public ResultVo<Book> oneBook(@RequestBody Book book) {
         try {
             Book book1 = bookService.oneBook(book.getName(), book.getAuther(), book.getPublisher());
-            return ResultUtils.success(book1);
+            return ResultVoUtils.success(book1);
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
     }
 
@@ -387,7 +397,7 @@ public class BookServiceImpl implements IBookService {
 
 
 
-### 4.1 获取列表
+#### 1. 获取列表
 
 **请求：**
 
@@ -399,78 +409,85 @@ curl -X POST "http://localhost:8080/v1/book/book-list" -H  "accept: application/
 
 ```json
 {
-  "code": 0,
-  "msg": "request successful.",
-  "result": {
-    "total": 4,
-    "data": [
-      {
-        "name": "数学之美",
-        "publisher": "人民邮电出版社",
-        "author": "吴军"
-      },
-      {
-        "name": "重构 改善既有代码的设计",
-        "publisher": "人民邮电出版社",
-        "author": "Martin Fowler"
-      },
-      {
-        "name": "机器学习实战",
-        "publisher": "人民邮电出版社",
-        "author": "Peter Harrington"
-      },
-      {
-        "name": "Effective Java中文版",
-        "publisher": "机械工业出版社",
-        "author": "Joshua Bloch"
-      }
-    ]
-  }
+	"code": 0,
+	"msg": "request successful.",
+	"result": {
+		"total": 4,
+		"data": [{
+			"name": "数学之美",
+			"publisher": "人民邮电出版社",
+			"author": "吴军"
+		}, {
+			"name": "重构 改善既有代码的设计",
+			"publisher": "人民邮电出版社",
+			"author": "Martin Fowler"
+		}, {
+			"name": "机器学习实战",
+			"publisher": "人民邮电出版社",
+			"author": "Peter Harrington"
+		}, {
+			"name": "Effective Java中文版",
+			"publisher": "机械工业出版社",
+			"author": "Joshua Bloch"
+		}]
+	}
 }
 ```
 
-### 4.2 生成单个对象
+#### 2. 生成单个对象
 
 **请求：**
 
 ```shell
-curl -X POST "http://localhost:8080/v1/book/one-book" -H  "accept: application/json;charset=UTF-8" -H  "Content-Type: application/json" -d "{  \"author\": \"毛泽东\",  \"name\": \"毛泽东选集\",  \"publisher\": \"人民出版社\"}"
+curl --location --request POST 'http://localhost:8888/v1/book/one-book' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "机器学习实战",
+    "publisher": "人民邮电出版社",
+    "author": "Peter Harrington"
+}'
 ```
 
 **返回结果：**
 
 ```json
 {
-  "code": 0,
-  "msg": "request successful.",
-  "result": {
-    "total": 1,
-    "data": [
-      {
-        "name": "毛泽东选集",
-        "publisher": "人民出版社",
-        "author": "毛泽东"
-      }
-    ]
-  }
+    "code": 0,
+    "msg": "request successful.",
+    "result": {
+        "total": 1,
+        "data": [
+            {
+                "name": "机器学习实战",
+                "publisher": "人民邮电出版社",
+                "author": "Peter Harrington"
+            }
+        ]
+    }
 }
 ```
 
-### 4.3 返回异常信息：
+#### 3. 返回异常信息：
 
 **请求：**
 
 ```shell
-curl -X POST "http://localhost:8080/v1/book/one-book" -H  "accept: application/json;charset=UTF-8" -H  "Content-Type: application/json" -d "{  \"author\": \"毛泽东\",  \"publisher\": \"人民出版社\"}"
+curl --location --request POST 'http://localhost:8888/v1/book/one-book' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": null,
+    "publisher": "人民邮电出版社",
+    "author": "Peter Harrington"
+}'
 ```
 
 **返回结果：**
 
 ```json
 {
-  "code": 10001,
-  "msg": "book name is null.",
-  "result": null
+    "code": 10001,
+    "msg": "book name is null.",
+    "result": null
 }
 ```
 
