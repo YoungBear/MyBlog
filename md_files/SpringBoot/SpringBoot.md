@@ -24,3 +24,5 @@
 
 ### [10. 集成数据库](./SpringBoot-10-Database.md)
 
+### [11. RestTemplate工具类](./SpringBoot-11-RestTemplateUtils.md)
+
