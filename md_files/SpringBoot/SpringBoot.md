@@ -12,8 +12,6 @@
 
 ### [4. Tomcat 部署](./SpringBoot-4-Tomcat.md)
 
-### [5. Swagger-ui](./SpringBoot-5-Swagger-ui.md)
-
 ### [6. 返回统一的Json格式](./SpringBoot-6-CommonJson.md)
 
 ### [7. 处理全局异常](./SpringBoot-7-GlobalExceptionHandler.md)

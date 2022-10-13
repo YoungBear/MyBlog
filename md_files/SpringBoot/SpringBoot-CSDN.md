@@ -10,8 +10,6 @@
 
 ### [4. Tomcat 部署](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-4-Tomcat.md)
 
-### [5. Swagger-ui](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-5-Swagger-ui.md)
-
 ### [6. 返回统一的Json格式](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-6-CommonJson.md)
 
 ### [7. 处理全局异常](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-7-GlobalExceptionHandler.md)
