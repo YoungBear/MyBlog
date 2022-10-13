@@ -5,7 +5,6 @@ RestTemplateUtils工具类代码：
 ```java
 package com.example.demo.utils;
 
-import com.example.demo.entity.common.ResultVo;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,29 +15,27 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
-
 @Component
 public class RestTemplateUtils {
 
     @Resource
     private RestTemplate restTemplate;
 
-    public <T> ResultVo<T> get(String url, ObjectParameterizedTypeReference<T> responseType) {
+    public <T> T get(String url, ParameterizedTypeReference<T> responseType) {
         return http(url, HttpMethod.GET, null, responseType);
     }
 
-    public <T> ResultVo<T> post(String url, Object request, ObjectParameterizedTypeReference<T> responseType) {
+    public <T> T post(String url, Object request, ParameterizedTypeReference<T> responseType) {
         return http(url, HttpMethod.POST, request, responseType);
     }
 
-    public <T> ResultVo<T> http(String url, HttpMethod httpMethod, Object request, ObjectParameterizedTypeReference<T> responseType) {
+    public <T> T http(String url, HttpMethod httpMethod, Object request, ParameterizedTypeReference<T> responseType) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Object> requestData = new HttpEntity<>(request, httpHeaders);
         return restTemplate.exchange(url, httpMethod, requestData, responseType).getBody();
     }
 
-    public static class ObjectParameterizedTypeReference <T> extends ParameterizedTypeReference<ResultVo<T>> {}
 }
 
 ```
@@ -57,12 +54,14 @@ import com.example.demo.exception.DemoException;
 import com.example.demo.service.IHelloService;
 import com.example.demo.utils.RestTemplateUtils;
 import com.example.demo.utils.ResultVoUtils;
+import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -82,8 +81,10 @@ public class HelloController {
     public ResultVo<Void> requestGet() {
         String url = "http://localhost:8888/employee/query/2";
         ResultVo<EmployeeVo> resultVo = restTemplateUtils.get(url,
-                new RestTemplateUtils.ObjectParameterizedTypeReference<>());
+                new EmployeeVoParameterizedTypeReference());
         LOGGER.info("code: {}", resultVo.getCode());
+        EmployeeVo employeeVo = resultVo.getResult().getData().get(0);
+        LOGGER.info("employeeVo: {}", new Gson().toJson(employeeVo));
         return ResultVoUtils.success(null);
     }
 
@@ -95,11 +96,22 @@ public class HelloController {
         book.setName("数学之美");
         String url = "http://localhost:8888/v1/book/one-book";
         ResultVo<Book> resultVo = restTemplateUtils.post(url,
-                book,
-                new RestTemplateUtils.ObjectParameterizedTypeReference<>());
+                book, new BookParameterizedTypeReference());
         LOGGER.info("code: {}", resultVo.getCode());
+        Book responseBook = resultVo.getResult().getData().get(0);
+        LOGGER.info("employeeVo: {}", new Gson().toJson(responseBook));
         return ResultVoUtils.success(null);
     }
+
+    private static class EmployeeVoParameterizedTypeReference extends ParameterizedTypeReference<ResultVo<EmployeeVo>> {
+    }
+
+    ;
+
+    private static class BookParameterizedTypeReference extends ParameterizedTypeReference<ResultVo<Book>> {
+    }
+
+    ;
 }
 
 ```
