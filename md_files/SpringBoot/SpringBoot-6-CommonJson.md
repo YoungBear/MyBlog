@@ -62,17 +62,18 @@ package com.example.demo.enums;
  * @date 2019-04-30 22:35
  * @blog https://blog.csdn.net/next_second
  * @github https://github.com/YoungBear
- * @description
+ * @description 错误定义：错误码及错误信息
  */
 public enum ErrorEnum {
 
+    UNKNOWN_ERROR(-1, "unknown error."),
+    HTTP_REQUEST_ERROR(9999, "http request error"),
     BOOK_NAME_NULL_ERROR(10001, "book name is null."),
-    HELLO_NAME_NULL_ERROR(20001, "hi name is null.")
-    ;
+    HELLO_NAME_NULL_ERROR(20001, "hi name is null.");
 
 
-    Integer errorCode;
-    String errorMessage;
+    final Integer errorCode;
+    final String errorMessage;
 
     ErrorEnum(Integer errorCode, String errorMessage) {
         this.errorCode = errorCode;
@@ -87,6 +88,7 @@ public enum ErrorEnum {
         return errorMessage;
     }
 }
+
 ```
 
 异常类：`DemoException.java`
@@ -112,10 +114,16 @@ public class DemoException extends RuntimeException {
         this.errorEnum = errorEnum;
     }
 
+    public DemoException(Throwable cause, ErrorEnum errorEnum) {
+        super(cause);
+        this.errorEnum = errorEnum;
+    }
+
     public ErrorEnum getErrorEnum() {
         return errorEnum;
     }
 }
+
 ```
 
 ## 3. 创建工具类
