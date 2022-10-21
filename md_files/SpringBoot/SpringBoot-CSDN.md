@@ -14,8 +14,6 @@
 
 ### [7. 处理全局异常](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-7-GlobalExceptionHandler.md)
 
-### [8. GsonUtils 工具类](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-8-GsonUtils.md)
-
 ### [9. 多环境部署](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-9-MultipyEnv.md)
 
 ### [10. 集成数据库](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot//SpringBoot-10-Database.md)
