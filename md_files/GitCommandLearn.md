@@ -174,7 +174,7 @@ git config --system user.name "username"
 git config --system user.email "username@xx.com"
 ```
 
-对应的配置文件为**`<git_setup_dir>/etc/gitconfig`**
+对应的配置文件为 **`<git_setup_dir>/etc/gitconfig`**
 
 ### 6.2 全局级配置
 
@@ -183,7 +183,7 @@ git config --global user.name "username"
 git config --global user.email "username@xx.com"
 ```
 
-对应的配置文件为**`~/.gitconfig`**
+对应的配置文件为 **`~/.gitconfig`**
 
 ### 6.3 仓库级配置
 
@@ -192,7 +192,7 @@ git config --local user.name "username"
 git config --local user.email "username@xx.com"
 ```
 
-对应的配置文件为**`.git/config`**
+对应的配置文件为 **`.git/config`**
 
 ### 6.4 设置gui的编码
 默认情况下，使用gitk查看代码时，代码中的中文会乱码，设置gui编码为utf-8后问题解决。
@@ -202,7 +202,7 @@ git config --global gui.encoding utf-8
 ```
 ### 6.5 常用git配置
 
-```
+```shell
 [user]
         email = xxx
         name = xxx
@@ -216,7 +216,7 @@ git config --global gui.encoding utf-8
 ```
 ## 7. 生成ssh公钥文件
 
-```
+```shell
 # 生成
 ssh-keygen -t rsa -C "your_email"
 # 查看
@@ -225,9 +225,9 @@ cat ~/.ssh/id_rsa.pub
 
 ## 8. `.gitignore` 配置
 
-git 工程下，`.gitignore` 文件表示对忽略文件进行配置，即这些文件不会进入git管理。
+git 工程下， `.gitignore` 文件表示对忽略文件进行配置，即这些文件不会进入git管理。
 
-比如，SpringBoot 工程的一个`.gitignore` 文件:
+比如，SpringBoot 工程的一个 `.gitignore` 文件:
 
 ```shell
 /target/
