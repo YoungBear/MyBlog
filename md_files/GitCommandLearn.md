@@ -1,12 +1,14 @@
 # git 常用命令
 
+[TOC]
+
 **查看帮助文档：**
 
 `git xxx --help` 如 `git branch --help` 
 
 **关于远程库：**
 
-git 默认远程库名称为 `origin` ，用户也可以重命名远程库，本文默认使用 `origin` 作为远程库名称。
+git 默认远程库名称为 `origin` ，用户也可以重命名远程库，也可以添加远程库。可以使用 `git remote -v` 查看远程库信息。本文默认使用 `origin` 作为远程库名称。
 
 
 
@@ -333,6 +335,24 @@ git diff > <diff-patch-file>
 git apply <diff-patch-file>
 
 ```
+
+### 修改历史commit信息
+
+```shell
+# 修改上一次的提交
+git commit --amend
+## 更早的历史
+### 1. git rebase -i <commit-id> 进入交互式页面，commit-id为带修改的commit的前一个commit
+git rebase -i <commit-id>
+### 2. 根据提示信息，将待修改的commit的pick修改为edit
+
+### 3. 修改（可能会指定多次）
+git commit --amend
+git rebase --continue
+### 完成
+```
+
+
 
 
 
