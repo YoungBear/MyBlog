@@ -4,13 +4,18 @@
 
 ## 编辑
 
-| 快捷键     | 含义             |
-| ---------- | ---------------- |
-| Ctrl+Space | 代码提示         |
-| Alt+Insert | 生成代码         |
-| Ctrl+Alt+L | 格式化代码       |
-| Ctrl+Alt+O | 优化导入的类和包 |
-|            |                  |
+| 快捷键       | 含义             |
+| ------------ | ---------------- |
+| Ctrl+Space   | 代码提示         |
+| Alt+Insert   | 生成代码         |
+| Ctrl+/       | 注释 //          |
+| Ctrl+Shift+/ | 注释 `/*...*/`   |
+| Alt+Enter    | 导入包，自动修正 |
+| Ctrl+Alt+L   | 格式化代码       |
+| Ctrl+Alt+O   | 优化导入的类和包 |
+| Ctrl+D       | 复制行           |
+| Ctrl+Y       | 删除行           |
+| Shift+Enter  | 向下插入一行     |
 
 
 
@@ -20,11 +25,11 @@
 | ------------------- | --------------------------- |
 | Ctrl+N              | 查找类                      |
 | Ctrl+Shift+N        | 查找文件                    |
+| Ctrl+G              | 跳到指定行                  |
 | Ctrl+Alt+Left/Right | 回退/前进到上一个操作的地方 |
 | Ctrl+H              | 显示类结构图                |
 | Ctrl+Shift+H        | 方法层次结构                |
 | Ctrl+Alt+H          | 调用层次                    |
-|                     |                             |
 
 
 
@@ -47,4 +52,4 @@
 
 使用 Ctrl+Shift+A，输入相关操作，查看IDEA自带的快捷键。
 
-![](../../../pngs/java/IDEA_findActions.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/1f76c29b3fe143b6b1c4a847ee69a7b4.png#pic_center)
