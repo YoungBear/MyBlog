@@ -62,7 +62,15 @@
 
 
 
-## 8. 其他
+## 8. 工具
+
+[win10 任务栏预览设置为列表效果](./md_files/windows/Taskband.md)
+
+
+
+
+
+## 9. 其他
 
 [二分查找](./md_files/java/BinarySearch.md)
 
