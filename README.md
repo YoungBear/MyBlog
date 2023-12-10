@@ -24,7 +24,7 @@
 
 ### [5. openssl 常用命令-pkey](./md_files/linux/openssl/openssl_pkey.md)
 
-
+### [6. openssl 常用命令-pkcs12](./md_files/linux/openssl/openssl_pkcs12.md)
 
 ## 3. kubernetes
 
