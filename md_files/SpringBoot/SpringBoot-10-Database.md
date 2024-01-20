@@ -39,23 +39,25 @@ mybatis:
 首先创建数据库相关信息：
 
 ```mysql
--- create database
-CREATE DATABASE springbootdemo;
-
+DROP TABLE IF EXISTS EMPLOYEE;
 -- create table
 CREATE TABLE EMPLOYEE (
     ID INT UNSIGNED AUTO_INCREMENT,
     NAME VARCHAR(100) NOT NULL,
-    HIRE_DATE DATE,
+    HIRE_DATE BIGINT,
     SALARY DECIMAL(10,2),
     DEPT_NO INT(2),
     PRIMARY KEY (ID)
 );
-
--- insert data
-INSERT INTO EMPLOYEE (NAME, HIRE_DATE, SALARY, DEPT_NO) VALUES ('小杨', '2010-09-14', 8000.0, '06');
-INSERT INTO EMPLOYEE (NAME, HIRE_DATE, SALARY, DEPT_NO) VALUES ('小张', '2010-09-15', 9000.0, '05');
-
+-- 2010-09-14 00:00:00
+INSERT INTO EMPLOYEE (NAME, HIRE_DATE, SALARY, DEPT_NO) VALUES ('小杨', 1284393600000, 8000.0, '06');
+-- 2010-09-15 00:00:00
+INSERT INTO EMPLOYEE (NAME, HIRE_DATE, SALARY, DEPT_NO) VALUES ('小张', 1284480000000, 9000.0, '05');
+-- 2014-09-01 00:00:00
+INSERT INTO EMPLOYEE (NAME, HIRE_DATE, SALARY, DEPT_NO) VALUES ('小孙', 1409500800000, 12000.0, '05');
+-- 2014-09-02 00:00:00
+INSERT INTO EMPLOYEE (NAME, HIRE_DATE, SALARY, DEPT_NO) VALUES ('小雷', 1409587200000, 12000.0, '05');
+SELECT *,from_unixtime(HIRE_DATE/1000) as FORMATTER_DATE FROM EMPLOYEE;
 ```
 
 ### 3.1 实体类
@@ -111,7 +113,7 @@ public interface IEmployeeDao {
     <resultMap id="EmployeeResultMap" type="com.example.demo.entity.EmployeeEntity">
         <result column="ID" jdbcType="INTEGER" property="id"/>
         <result column="NAME" jdbcType="VARCHAR" property="name"/>
-        <result column="HIRE_DATE" jdbcType="DATE" property="hireDate"/>
+        <result column="HIRE_DATE" jdbcType="BIGINT" property="hireDate"/>
         <result column="SALARY" jdbcType="DECIMAL" property="salary"/>
         <result column="DEPT_NO" jdbcType="INTEGER" property="deptNo"/>
     </resultMap>
@@ -265,17 +267,18 @@ Controller:
 ```java
 package com.example.demo.controller;
 
-import com.example.demo.entity.EmployeeEntity;
-import com.example.demo.entity.common.Result;
+import com.example.demo.entity.EmployeeVo;
+import com.example.demo.entity.common.ResultVo;
 import com.example.demo.exception.DemoException;
 import com.example.demo.service.IEmployeeService;
-import com.example.demo.utils.ResultUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import com.example.demo.utils.ResultVoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author youngbear
@@ -286,76 +289,85 @@ import org.springframework.web.bind.annotation.*;
  * @description
  */
 @RestController
-@Api("Employee 接口")
-@RequestMapping(value = "employee", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "employee", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeController {
 
     @Autowired
     private IEmployeeService employeeService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @ApiOperation("根据id查询Employee")
-    public Result<Integer> add(
-            @ApiParam(name = "employeeEntity", value = "employee 信息") @RequestBody EmployeeEntity employeeEntity) {
+    public ResultVo<Integer> add(@RequestBody EmployeeVo employeeVo) {
         try {
-            return ResultUtils.success(employeeService.addEmployee(employeeEntity));
+            return ResultVoUtils.success(employeeService.addEmployee(employeeVo));
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
-    @ApiOperation("根据id删除Employee")
-    public Result<Integer> deleteById(
-            @ApiParam(name = "id", value = "employee id") @PathVariable("id") Integer id) {
+    public ResultVo<Integer> deleteById(@PathVariable("id") Integer id) {
         try {
-            return ResultUtils.success(employeeService.deleteEmployee(id));
+            return ResultVoUtils.success(employeeService.deleteEmployee(id));
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ApiOperation("更新 Employee")
-    public Result<EmployeeEntity> updateEmployee(
-            @ApiParam(name = "employeeEntity", value = "employee 信息") @RequestBody EmployeeEntity employeeEntity) {
+    public ResultVo<EmployeeVo> updateEmployee(@RequestBody EmployeeVo employeeVo) {
         try {
-            return ResultUtils.success(employeeService.updateEmployee(employeeEntity));
+            return ResultVoUtils.success(employeeService.updateEmployee(employeeVo));
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
     }
 
     @RequestMapping(value = "/query/{id}", method = RequestMethod.GET)
-    @ApiOperation("根据id查询Employee")
-    public Result<EmployeeEntity> queryById(
-            @ApiParam(name = "id", value = "employee id") @PathVariable("id") Integer id) {
+    public ResultVo<EmployeeVo> queryById(@PathVariable("id") Integer id) {
         try {
-            return ResultUtils.success(employeeService.queryEmployee(id));
+            return ResultVoUtils.success(employeeService.queryEmployee(id));
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
     }
 
     @RequestMapping(value = "/queryAll", method = RequestMethod.GET)
-    @ApiOperation("根据id查询Employee")
-    public Result<EmployeeEntity> queryAll() {
+    public ResultVo<EmployeeVo> queryAll() {
         try {
-            return ResultUtils.success(employeeService.selectAll());
+            return ResultVoUtils.success(employeeService.selectAll());
         } catch (DemoException demoException) {
-            return ResultUtils.error(demoException);
+            return ResultVoUtils.error(demoException);
         }
     }
 }
+
 ```
 
 ## 4. 运行结果
 
 get请求：`http://localhost:8888/employee/query/3`
 
-通过postman请求结果：
+返回结果：
 
-![](../../pngs/employee-query-by-id.png)
+```json
+{
+    "code": 0,
+    "msg": "request successful.",
+    "result": {
+        "total": 1,
+        "data": [
+            {
+                "id": 3,
+                "name": "小孙",
+                "hireDate": 1409500800000,
+                "salary": 12000.0,
+                "deptNo": 5,
+                "hireDateFormat": "2014-09-01"
+            }
+        ]
+    }
+}
+```
 
 
 
