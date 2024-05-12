@@ -1,4 +1,4 @@
-# Postman 禁止更新配置
+# Postman 禁止更新配置及旧版本软件
 
 postman禁止更新
 
