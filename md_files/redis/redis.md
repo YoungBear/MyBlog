@@ -53,6 +53,12 @@ taskkill -pid <进程号> -f -t
 
 
 
+### 2.2 可视化工具
+
+AnotherRedisDesktop:
+
+https://github.com/qishibo/AnotherRedisDesktopManager/releases
+
 
 
 ## 3. 集成springboot
