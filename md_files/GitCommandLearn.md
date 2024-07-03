@@ -155,6 +155,8 @@ git remote add [<remote_name>] <remote_url>
 git remote remove <remote_name>
 # 重命名远程库名称
 git remote rename <old_remote_name> <new_remote_name>
+# 重新设置远程库url
+git remote set-url <remote_name> <new_remote_url>
 ```
 
 
