@@ -72,9 +72,14 @@
 
 [OLTP 与 OLAP](./md_files/DataAnalysis/OLTP_OLAP.md)
 
+## 10. 其他
+
+[1. 第一性原理](./md_files/Others/TheFirstPrincipleThinking.md)
 
 
-## 其他
+
+
+## 历史文章
 
 [二分查找](./md_files/java/BinarySearch.md)
 
