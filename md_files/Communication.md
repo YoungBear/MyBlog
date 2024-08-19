@@ -114,3 +114,21 @@ Channel Quality Indicator
 CQI是信道质量的信息指示，代表当前信道质量的好坏，和信道的信噪比大小相对应，取值范围0～31。CQI取值为0时，信道质量最差；CQI取值为31的时候，信道质量最好。
 
 
+
+## 5G 相关
+
+### 5G
+
+5th Gneration Mobile Network 第五代移动通信系统
+
+也称NR(New Radio)
+
+### 5G 三类典型的应用场景
+
+- eMBB: 增强移动宽带 enhanced Mobile Broadband
+
+- URLLC: 超高可靠性超低时延通信 ultra-reliable low-latency communication
+
+- mMTC: 海量物联网通信 Massive Machine-Type Communications
+
+  
