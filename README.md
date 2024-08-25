@@ -54,6 +54,8 @@
 
 ### [4. ps命令](./md_files/linux/ps.md)
 
+### [5. find命令](./md_files/linux/find.md)
+
 
 
 ## 7. redis
