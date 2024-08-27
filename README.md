@@ -74,7 +74,13 @@
 
 [OLTP 与 OLAP](./md_files/DataAnalysis/OLTP_OLAP.md)
 
-## 10. 其他
+
+
+## 10. spring-boot
+
+[1. spring-boot 不打包provided的依赖](./md_files/SpringBoot/ProvidedForJar.md)
+
+## 11. 其他
 
 [1. 第一性原理](./md_files/Others/TheFirstPrincipleThinking.md)
 
