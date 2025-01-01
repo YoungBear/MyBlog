@@ -75,7 +75,7 @@ nginx -s reopen
 
 如，请求http://192.168.3.141:9090/demo/employee/queryAll，实际转发请求为：http://127.0.0.1:8888/SpringBootDemo/employee/queryAll。
 
-![](../../../pngs/nginx/proxy_server_curl.png)
+![](../../pngs/nginx/proxy_server_curl.png)
 
 
 

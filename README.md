@@ -40,7 +40,9 @@
 
 ## 5. nginx
 
-### [1. nginx基础](./md_files/linux/nginx/nginx.md)
+### [1. nginx基础](./md_files/nginx/nginx.md)
+
+### [2. windows系统安装nginx](./md_files/nginx/nginx_windows.md)
 
 
 
