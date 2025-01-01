@@ -44,6 +44,8 @@
 
 ### [2. windows系统安装nginx](./md_files/nginx/nginx_windows.md)
 
+### [3. nginx配置https服务器](./md_files/nginx/nginx_https.md)
+
 
 
 ## 6. Linux常用命令
