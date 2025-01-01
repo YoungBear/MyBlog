@@ -1,6 +1,6 @@
 # nginx 基础
 
-
+[TOC]
 
 默认情况下，Nginx被安装在目录 `usr/local/nginx/` 中。其中二进制文件的路径为`usr/local/nginx/sbin/nginx`，配置文件路径为 `usr/local/nginx/conf/nginx.conf`。
 

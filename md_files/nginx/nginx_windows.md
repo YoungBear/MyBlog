@@ -1,5 +1,7 @@
 # windows系统安装nginx
 
+[TOC]
+
 
 
 ## 1. 下载
