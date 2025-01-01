@@ -15,8 +15,16 @@ find . -iname "example*.txt"
 find . -type f -size +2M -print0 | xargs -0 ls -lh
 # 查找当前面目录下修改时间超过7天的文件并删除
 find . -type f -mtime +7 -print0 | xargs -0 rm -f
-# 查找当前目录下的java文件并统计及行数
+# 查找当前目录下的java文件并统计数量
+find . -type f -name "*.java" | wc -l
+# 查找当前目录下的java文件并按照文件统计其行数
 find . -type f -name "*.java" -print0 | xargs -0 wc -l
+# 查找当前目录下的.sh文件，并修改其权限为400(常用于安全整改)
+find . -type f -name "*.sh" -print0 | xargs -0 chmod 400
+# 按照深度为1查找当前目录下且修改时间超过7天的所有文件并删除(常用于删除过期文件)
+find . -maxdepth 1 -type f -mtime +7 -print0 | xargs -0 rm -f
+# 删除当前目录下的非.cfg文件
+find . -type f ! -name "*.cfg" -print0 | xargs -0 rm -f
 ```
 
 
