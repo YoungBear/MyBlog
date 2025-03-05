@@ -1,5 +1,13 @@
 ## 学习笔记 ##
 
+
+
+## deepseek
+
+### [1. deepseek 学习资料](./md_files/deepseek/Files.md)
+
+
+
 ## 1. Java 日期时间
 
 ### [1. LocalDateTime ZonedDateTime Instant 的相互转换](./md_files/java/datetime/ConvertUtils.md)
