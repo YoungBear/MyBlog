@@ -1,7 +1,10 @@
 # deepseek 学习资料整理
 
-## deepseek_清华大学指导手册_pdf_1-6
+
 无套路，无需关注，无需登录，无需app，直接下载：
+
+## deepseek_清华大学指导手册_pdf_1-6
+
 [下载地址](https://gitee.com/YoungBear2023/FileStorage/releases/download/deepseek_TsingHua_pdf_1_6.zip/deepseek_TsingHua_pdf_1_6.zip)
 
 
@@ -36,6 +39,19 @@
 
 ```shell
 001_浙江大学2025年DeepSeek行业应用案例集解锁智能变革密码153页.pdf
+```
+
+## deepseek 厦门大学 3本手册
+
+[下载地址](https://gitee.com/YoungBear2023/FileStorage/releases/download/v1.0.4/deepseek_XiamenUniversity_pdf_1_3.zip)
+
+
+文件列表
+
+```shell
+001_厦大团队：大模型概念、技术与应用实践（140页PPT读懂大模型）.pdf
+002_厦大团队：DeepSeek大模型赋能高校教学和科研（120页PPT，建议收藏）.pdf
+003_厦大团队：DeepSeek大模型及其企业应用实践（150页PPT，企业人员的大模型宝典）.pdf
 ```
 
 ## 参考：
