@@ -41,9 +41,9 @@
 001_浙江大学2025年DeepSeek行业应用案例集解锁智能变革密码153页.pdf
 ```
 
-## deepseek 厦门大学 3本手册
+## deepseek 厦门大学 4本手册
 
-[下载地址](https://gitee.com/YoungBear2023/FileStorage/releases/download/v1.0.4/deepseek_XiamenUniversity_pdf_1_3.zip)
+[下载地址](https://gitee.com/YoungBear2023/FileStorage/releases/download/v1.0.4/deepseek_XiamenUniversity.zip)
 
 
 文件列表
@@ -52,6 +52,7 @@
 001_厦大团队：大模型概念、技术与应用实践（140页PPT读懂大模型）.pdf
 002_厦大团队：DeepSeek大模型赋能高校教学和科研（120页PPT，建议收藏）.pdf
 003_厦大团队：DeepSeek大模型及其企业应用实践（150页PPT，企业人员的大模型宝典）.pdf
+004_厦大团队：DeepSeek大模型赋能政府数字化转型（122页PPT，面向政府部门的大模型科普报告）.pdf
 ```
 
 ## 参考：
