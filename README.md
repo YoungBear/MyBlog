@@ -56,6 +56,8 @@
 
 ### [4. nginx 配置ip黑白名单](./md_files/nginx/nginx_access_ip.md)
 
+### [5. nginx 日志格式](./md_files/nginx/nginx_logformat.md)
+
 
 
 ## 6. Linux常用命令
