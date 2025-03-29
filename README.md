@@ -60,6 +60,10 @@
 
 ### [5. nginx 日志格式](./md_files/nginx/nginx_logformat.md)
 
+### [6. nginx 设置隐藏版本号](./md_files/nginx/nginx_version.md)
+
+
+
 
 
 ## 6. Linux常用命令
