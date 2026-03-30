@@ -30,8 +30,6 @@ npm install -g @anthropic-ai/claude-code
 
 
 
-
-
 ## 3. 配置大模型
 
 **重要提示**：在配置前，请确保清除以下 Anthropic 相关的环境变量，以免影响 MiniMax API 的正常使用：
@@ -39,6 +37,20 @@ npm install -g @anthropic-ai/claude-code
 - `ANTHROPIC_AUTH_TOKEN`
 - `ANTHROPIC_BASE_URL`
 - `ANTHROPIC_API_KEY`
+
+
+
+以MiniMax为例，配置MiniMax的模型。
+
+套餐订阅参考：https://platform.minimaxi.com/subscribe/token-plan
+
+**通过我的邀请码可以打9折：**
+
+🚀 MiniMax Token Plan 惊喜上线！新增语音、音乐、视频和图片生成权益。邀请好友享双重好礼，助力开发体验！
+好友立享 9折 专属优惠 + Builder 权益，你赢返利 + 社区特权！
+👉 立即参与：https://platform.minimaxi.com/subscribe/token-plan?code=JDGQc7Yg2r&source=link
+
+
 
 
 
@@ -182,3 +194,9 @@ claude --version
 ## 参考
 
 - [MiniMax-在 AI 编程工具里使用 M2.7](https://platform.minimaxi.com/docs/token-plan/claude-code#windows)
+
+- MiniMax 套餐：**通过我的邀请码可以打9折：**
+
+  🚀 MiniMax Token Plan 惊喜上线！新增语音、音乐、视频和图片生成权益。邀请好友享双重好礼，助力开发体验！
+  好友立享 9折 专属优惠 + Builder 权益，你赢返利 + 社区特权！
+  👉 立即参与：https://platform.minimaxi.com/subscribe/token-plan?code=JDGQc7Yg2r&source=link
