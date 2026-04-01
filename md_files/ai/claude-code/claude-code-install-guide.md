@@ -119,7 +119,7 @@ ANTHROPIC_AUTH_TOKEN也可以用ANTHROPIC_API_KEY代替。
 命令行下使用ClaudeCode，需要依赖于git-bash，在安装完成 [git-bash](https://git-scm.com/) 之后，设置git-bash的环境变量，如：
 
 ```
-CLAUDE_CODE_GIT_BASH_PATH=C:\software\Git\git-bash.exe
+CLAUDE_CODE_GIT_BASH_PATH=C:\software\Git\bin\bash.exe
 ```
 
 
