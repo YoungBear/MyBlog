@@ -2,9 +2,14 @@
 
 
 
-## deepseek
+## AI
 
-### [1. deepseek 学习资料](./md_files/deepseek/Files.md)
+### [1. Claude Code 安装指南](./md_files/ai/claude-code-install-guide.md)
+
+### [2. Claude Code 插件和技能安装指南](./md_files/ai/claude-code/claude-code-skills-plugins-install-guide.md)
+
+### [3. deepseek 学习资料](./md_files/deepseek/Files.md)
+
 
 
 
@@ -91,6 +96,7 @@
 [win10 任务栏预览设置为列表效果](./md_files/windows/Taskband.md)
 
 [IDEA常用快捷键](./md_files/java/IDEA/keymap.md)
+
 
 ## 9. 数据分析
 
