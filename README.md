@@ -6,9 +6,13 @@
 
 ### [1. Claude Code 安装指南](./md_files/ai/claude-code-install-guide.md)
 
-### [2. Claude Code 插件和技能安装指南](./md_files/ai/claude-code/claude-code-skills-plugins-install-guide.md)
+### [2. Claude Code 官方插件指南](./md_files/ai/claude-code/claude-code-official-plugins.md)
 
-### [3. deepseek 学习资料](./md_files/deepseek/Files.md)
+### [3. Claude Code 官方使用指南](./md_files/ai/claude-code/claude-code-official-guide.md)
+
+### [4. Claude Code 插件和技能安装指南](./md_files/ai/claude-code/claude-code-skills-plugins-install-guide.md)
+
+### [5. deepseek 学习资料](./md_files/deepseek/Files.md)
 
 
 
