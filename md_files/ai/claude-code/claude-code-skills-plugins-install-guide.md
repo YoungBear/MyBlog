@@ -271,14 +271,13 @@ Superpowers 是一套 Claude Code 开发流程最佳实践技能集。
 
 ### skill-creator
 
-**仓库**: claude-code-extended/skill-creator
+**官方技能**: Anthropic 官方提供的技能创建工具
 
 **功能**: 创建新的 Claude Code 技能。
 
 **安装**:
 ```bash
-/plugin marketplace add claude-code-extended/skill-creator
-/plugin install skill-creator@skill-creator
+/plugin install skill-creator
 ```
 
 ### update-config
