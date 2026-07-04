@@ -124,6 +124,7 @@
 ### [1. 通信领域名词](./md_files/Communication.md)
 
 ### [2. IP 架构韧性](./md_files/communication/ip-architecture-resilience/README.md)
+  - [IP 网络常春藤韧性模型](./md_files/communication/ip-architecture-resilience/ivy-resilience-model.md)
 
 
 ## 历史文章
