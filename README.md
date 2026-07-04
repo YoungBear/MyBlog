@@ -119,6 +119,11 @@
 [1. 第一性原理](./md_files/Others/TheFirstPrincipleThinking.md)
 
 
+## 12. 通信
+
+### [1. 通信领域名词](./md_files/Communication.md)
+
+### [2. IP 架构韧性](./md_files/communication/ip-architecture-resilience/README.md)
 
 
 ## 历史文章
