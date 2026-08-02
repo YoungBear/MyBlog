@@ -14,7 +14,7 @@
 
 ### [5. deepseek 学习资料](./md_files/deepseek/Files.md)
 
-### [6. 2025 年全球大模型全景汇总](./md_files/ai/llm-landscape-2025.md)
+### [6. 2026 年全球大模型全景汇总](./md_files/ai/llm-landscape-2026.md)
 
 
 
