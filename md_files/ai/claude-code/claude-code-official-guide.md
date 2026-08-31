@@ -1,54 +1,171 @@
 # Claude Code 官方使用指南
 
-本文档总结 Anthropic 官方提供的 Claude Code 内置功能、可安装技能和插件。
+本文档总结 Anthropic 官方提供的 Claude Code 内置功能、可安装技能和插件，并整理日常使用中的常用操作。
+
+> 本文内容基于 Claude Code v2.1.x 整理，不同版本命令可能略有差异。
+
+## 目录
+
+- [一、常用操作](#一常用操作)
+- [二、内置斜杠命令](#二内置斜杠命令)
+- [三、内置工具](#三内置工具)
+- [四、MCP 服务器配置](#四mcp-服务器配置)
+- [五、官方配置选项](#五官方配置选项)
+- [六、官方可安装技能](#六官方可安装技能)
+- [七、官方可安装插件](#七官方可安装插件)
+- [八、创建自定义技能](#八创建自定义技能)
+- [九、获取帮助](#九获取帮助)
+- [十、官方资源链接](#十官方资源链接)
 
 ---
 
-## 一、内置命令
+## 一、常用操作
 
-Claude Code 内置以下命令，无需安装即可使用：
+### 1. 查看历史会话
 
-| 命令 | 功能 |
+- 会话内输入 `/resume`，打开交互式选择器，列出当前目录的历史会话；支持输入会话 ID 或关键词搜索（如 `/resume auth-refactor`），也支持粘贴 PR 链接
+- 会话记录保存在本地：`~/.claude/projects/<编码后的项目路径>/<session-id>.jsonl`（路径中的非字母数字字符会替换为 `-`）
+
+### 2. 继续上一次会话
+
+| 命令 | 说明 |
 |------|------|
-| `/review` | 审查 Pull Request |
-| `/security-review` | 安全审查，检查代码中的安全漏洞 |
-| `/init` | 初始化新的 CLAUDE.md 文件 |
-| `/test` | 为代码编写和运行测试 |
-| `/search` | 在代码库中搜索符号、文件或内容 |
-| `/grep` | 在代码库中搜索特定文本模式 |
-| `/edit` | 编辑特定文件或代码段 |
-| `/read` | 读取并分析文件内容 |
-| `/glob` | 使用 glob 模式搜索文件 |
-| `/bash` | 执行 Shell 命令 |
+| `claude -c`（`--continue`） | 继续当前目录最近一次会话 |
+| `claude -r`（`--resume`） | 打开会话选择器；`claude -r <session-id>` 恢复指定会话 |
+| `claude --from-pr <PR 号或链接>` | 恢复创建某个 PR 的会话 |
+| `claude --fork-session` | 恢复会话时创建新的会话 ID（分支恢复，原会话不变），与 `-c`/`-r` 配合使用 |
 
-### 使用示例
+### 3. 会话命名
+
+- `claude -n <名称>`：启动时给会话命名（显示在提示框、`/resume` 选择器和终端标题）
+- `/rename`：重命名当前会话
+
+### 4. 回退到检查点
+
+- `/rewind`：打开回退菜单，将对话或代码恢复到之前的检查点；输入框为空时双击 `Esc` 也可触发
+- 支持恢复 `/clear` 之前的会话内容
+
+### 5. 导出会话
+
+- `/export`：将当前会话保存为文本文件或复制到剪贴板
+- `/export <文件名>`：直接保存到指定文件（自动追加 `.txt` 后缀）
+
+### 6. 上下文管理
+
+| 命令 | 说明 |
+|------|------|
+| `/clear` | 清空当前上下文（会话记录文件仍保留） |
+| `/compact` | 压缩上下文，在上下文窗口内继续对话 |
+| `/context` | 查看上下文窗口占用情况 |
+| `Ctrl+O` | 展开/收起完整对话记录（含详细思考过程） |
+
+### 7. 会话统计
+
+| 命令 | 说明 |
+|------|------|
+| `/status` | 查看设置、版本、模型、账号信息 |
+| `/cost` | 查看当前会话的 Token 用量和费用 |
+| `/usage` | 查看套餐和速率限制使用情况 |
+
+### 8. 聊天内快捷操作
+
+| 操作 | 说明 |
+|------|------|
+| `@文件路径` | 引用文件或目录（支持 Tab 补全），如 `@src/main.py` |
+| `!命令` | 内联执行 Shell 命令；`` !`命令` `` 将命令输出注入提示词 |
+| `/memory` | 编辑 CLAUDE.md 记忆文件（旧的 `#` 快捷方式已弃用） |
+
+### 9. 键盘快捷键
+
+| 快捷键 | 说明 |
+|--------|------|
+| `Esc Esc` | 输入框有内容时清空草稿；为空时打开回退（rewind）菜单 |
+| `Shift+Tab` | 切换权限模式（default → acceptEdits → plan → 自定义），连按两次进入计划模式 |
+| `Ctrl+C` | 中断当前操作（再次按下退出） |
+| `Ctrl+D` | 退出 Claude Code |
+| `?` | 查看当前会话快捷键面板 |
+
+### 10. 无头模式（脚本/管道）
 
 ```bash
-/review
-/security-review
-/init
-/test
-/search query
-/grep pattern
-/edit file.md
-/read file.md
-/glob **/*.md
-/bash command
+# 非交互执行并退出
+claude -p "解释这个函数的作用"
+
+# 从管道读取
+cat error.log | claude -p "分析这个日志"
+
+# JSON 输出
+claude -p "列出所有 TODO" --output-format json
+```
+
+常用参数：`--output-format text|json|stream-json`、`--max-turns`、`--allowedTools`
+
+### 11. 常用 CLI 启动参数
+
+| 参数 | 说明 |
+|------|------|
+| `-c, --continue` | 继续当前目录最近一次会话 |
+| `-r, --resume [id]` | 恢复会话（打开选择器或指定会话 ID） |
+| `-n, --name <名称>` | 为会话设置显示名称 |
+| `-p, --print` | 非交互模式，输出后退出 |
+| `--model <模型>` | 指定模型（如 `sonnet`、`opus`） |
+| `--from-pr [PR]` | 恢复创建某 PR 的会话 |
+| `--fork-session` | 分支恢复会话（与 `-c`/`-r` 配合） |
+| `--permission-mode <模式>` | 权限模式（default/acceptEdits/plan/bypassPermissions） |
+| `--add-dir <目录>` | 添加工具可访问的额外目录 |
+| `--dangerously-skip-permissions` | 跳过所有权限检查（仅建议在无网络的沙箱中使用） |
+| `--mcp-config <文件>` | 从 JSON 文件加载 MCP 服务器 |
+| `--settings <文件或 JSON>` | 加载额外设置 |
+| `-w, --worktree [名称]` | 在 Git worktree 中启动会话 |
+| `-v, --version` | 查看版本 |
+
+### 12. 更新与认证
+
+```bash
+claude update       # 检查并安装新版本
+claude install      # 安装指定版本，如 claude install 2.1.140
+claude doctor       # 检查安装健康状态
+claude auth login   # 登录认证（会话内可用 /auth login）
 ```
 
 ---
 
-## 二、内置斜杠命令（Slash Commands）
+## 二、内置斜杠命令
+
+Claude Code 官方内置的常用斜杠命令（在会话中输入 `/` 可查看完整列表）：
 
 | 命令 | 功能 |
 |------|------|
-| `/help` | 获取帮助信息 |
-| `/clear` | 清除当前会话 |
+| `/help` | 获取帮助，查看所有命令 |
+| `/clear` | 清除当前会话上下文 |
 | `/compact` | 压缩当前上下文 |
 | `/config` | 配置 Claude Code 设置 |
 | `/model` | 切换模型 |
-| `/scientist` | 以科学家模式运行 |
-| `/web` | 启用网页搜索 |
+| `/resume` | 查看/恢复历史会话 |
+| `/rewind` | 回退到历史检查点 |
+| `/export` | 导出当前会话 |
+| `/rename` | 重命名当前会话 |
+| `/status` | 查看状态信息 |
+| `/cost` | 查看 Token 用量和费用 |
+| `/usage` | 查看套餐使用情况 |
+| `/context` | 查看上下文窗口占用 |
+| `/memory` | 编辑 CLAUDE.md 记忆文件 |
+| `/permissions` | 配置工具权限规则 |
+| `/add-dir` | 添加额外工作目录 |
+| `/hooks` | 配置 Hooks |
+| `/vim` | 切换 Vim 键位模式 |
+| `/theme` | 选择主题 |
+| `/agents` | 管理子代理 |
+| `/todos` | 查看任务列表 |
+| `/doctor` | 检查安装健康状态 |
+| `/mcp` | 管理 MCP 服务器 |
+| `/auth` | 管理认证（登录/登出） |
+| `/update` | 检查软件更新 |
+| `/upgrade` | 升级 Max 套餐 |
+| `/init` | 初始化 CLAUDE.md（官方内置技能） |
+| `/plugin` | 管理插件 |
+
+> 注：`/review`、`/security-review`、`/test`、`/search` 等命令来自已安装的插件或自定义技能，并非官方内置命令；不同环境的可用命令不同，可用 `/help` 查看当前环境的完整列表。
 
 ---
 
@@ -87,35 +204,45 @@ Claude Code 内置以下工具，可直接使用：
 
 ---
 
-## 四、内置 MCP 服务器
+## 四、MCP 服务器配置
 
-Claude Code 支持 MCP（Model Context Protocol）服务器扩展：
+Claude Code 通过 MCP（Model Context Protocol）扩展工具能力。官方不内置任何 MCP 服务器，需要自行连接第三方 MCP 服务器。
 
-### 内置 MCP 工具
+### 配置方式一：命令行（推荐）
 
-- `mcp__desktop-commander__run_command` - 运行命令
-- `mcp__desktop-commander__run_safely` - 安全运行命令
-- `mcp__filesystem__read_file` - 读取文件
-- `mcp__filesystem__write_file` - 写入文件
-- `mcp__filesystem__list_directory` - 列出目录
-- `mcp__search__search` - 搜索
-- `mcp__search__search_files` - 搜索文件
-- `mcp__search__read_file` - 读取文件
+```bash
+# 添加到当前项目（写入 .mcp.json）
+claude mcp add <名称> -- <命令> <参数>
 
-### 配置 MCP 服务器
+# 示例：添加 filesystem 服务器
+claude mcp add filesystem -- npx -y @modelcontextprotocol/server-filesystem ~/Documents
 
-在 `~/.claude/settings.json` 中配置：
+# 添加到用户级（所有项目可用）
+claude mcp add --scope user <名称> -- <命令> <参数>
+
+# 查看/删除
+claude mcp list
+claude mcp remove <名称>
+```
+
+会话内可用 `/mcp` 管理已连接的服务器。
+
+### 配置方式二：项目 .mcp.json
 
 ```json
 {
   "mcpServers": {
-    "server-name": {
+    "filesystem": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-server-name"]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/dir"]
     }
   }
 }
 ```
+
+### 配置方式三：settings.json（用户级）
+
+在 `~/.claude/settings.json` 中配置 `mcpServers`，格式与上述 `.mcp.json` 相同。
 
 ---
 
@@ -124,9 +251,9 @@ Claude Code 支持 MCP（Model Context Protocol）服务器扩展：
 ### 模型选择
 
 ```bash
-/model opus  # 最强模型
-/model sonnet  # 平衡模型
-/model haiku  # 快速模型
+/model opus    # 最强模型（当前为 Opus 4.7）
+/model sonnet  # 平衡模型（当前为 Sonnet 4.6）
+/model haiku   # 快速模型（当前为 Haiku 4.5）
 ```
 
 ### 设置修改
@@ -287,20 +414,21 @@ description: A clear description of what this skill does and when to use it
 ## 九、获取帮助
 
 ```bash
-# 获取帮助
+# 查看所有命令和快捷键
 /help
 
-# 查看所有命令
-/help commands
-
-# 查看所有技能
-/help skills
+# 查看当前会话快捷键面板
+?
 ```
 
 ---
 
 ## 十、官方资源链接
 
+- [Claude Code 官方文档](https://code.claude.com/docs)
+- [交互模式](https://code.claude.com/docs/en/interactive-mode)
+- [会话管理](https://code.claude.com/docs/en/sessions)
+- [CLI 参考](https://code.claude.com/docs/en/cli-reference)
 - [什么是技能？](https://support.claude.com/en/articles/12512176-what-are-skills)
 - [在 Claude 中使用技能](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
 - [创建自定义技能](https://support.claude.com/en/articles/12512198-creating-custom-skills)
