@@ -1,0 +1,15 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "build:server": "BASE='/' vitepress build docs --outDir dist/server",
+    "build:pages": "BASE='/MyBlog/' vitepress build docs --outDir dist/pages"
+  },
+  "devDependencies": {
+    "vitepress": "1.6.4"
+  }
+}

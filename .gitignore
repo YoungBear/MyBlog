@@ -1,2 +1,6 @@
 .DS_Store
 .idea
+node_modules/
+blog/dist/
+blog/docs/.vitepress/cache/
+blog/docs/.vitepress/dist/
