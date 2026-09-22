@@ -22,7 +22,7 @@
 - **Pages base** = `/MyBlog/`（仓库 YoungBear/MyBlog）；服务器 base = `/`（通过 `BASE` 环境变量双构建）
 - **一切迁移用 `git mv`** 保留历史；文件名统一短横线；根目录旧文章全部进 `legacy/` 不做主题归类；旧文章外链图床（CSDN）链接保持原样不修复
 - **部署前提**（用户需准备的 secrets，见 Task 5 清单）：`SSH_HOST`、`SSH_USER`、`SSH_PRIVATE_KEY`、`DEPLOY_PATH`
-- 仓库当前实际文章数：**140 篇**（md_files 97 + 根目录 40 + English 3），迁移后 `blog/docs/` 下 .md 总数 = 140 + 23 个分类索引 + 1 个首页 = **164**（用于验证断言）
+- 仓库当前实际文章数：**140 篇**（md_files 97 + 根目录 40 + English 3），迁移后 `blog/docs/` 下 .md 总数 = **163**（用于验证断言）——其中 `md_files/python/README.md` 迁移为 `python/index.md`，与生成的分类索引合一，故为 139 文章 + 23 索引 + 1 首页 = 163；构建产物 html 文件数 = 163 页面 + 404.html = 164
 
 ---
 
@@ -471,7 +471,7 @@ python3 blog/scripts/migrate.py
 find blog/docs -name '*.md' | wc -l
 ```
 
-预期：`164`（140 文章 + 23 分类索引 + 1 首页）。若不符，停下检查 `git status`。
+预期：`163`（139 文章 + 23 分类索引 + 1 首页；`md_files/python/README.md` 迁移为 `python/index.md` 与分类索引合一）。若不符，停下检查 `git status`。
 
 - [ ] **Step 5: 链接残留检查**
 
@@ -645,6 +645,8 @@ export default defineConfig({
   title: "YoungBear's Blog",
   description: 'YoungBear 的技术博客',
   cleanUrls: true,
+  // 保留此行：nginx 等文章中的 localhost 示例链接在构建时不应被当作死链
+  ignoreDeadLinks: 'localhostLinks',
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
