@@ -59,8 +59,15 @@ CATEGORY_NAMES = {
 }
 
 ROOT_EXCLUDE = {'CLAUDE.md', 'README.md', 'LICENSE.txt'}
+# GitHub 链接改写（两种 URL 形态）：
+#   1) (tree|blob)/master/md_files/<path>.md → 站内链接（md_files 已迁移）
+#      (tree|blob)/master/files/<path>.md    → 保持原样（files/ 仍在仓库根）
+#   2) blob/master/<RootArticle>.md          → 站内链接（根级文章已迁入 legacy/）
+#      仅当该文件名在映射中才改写（README.md 已被 ROOT_EXCLUDE 排除 → 保持原样）
 GITHUB_BLOB = re.compile(
-    r'https://github\.com/YoungBear/MyBlog/blob/master/(md_files|files)/(.+?\.md)')
+    r'https://github\.com/YoungBear/MyBlog/(?:tree|blob)/master/(md_files|files)/(.+?\.md)')
+GITHUB_ROOT_MD = re.compile(
+    r'https://github\.com/YoungBear/MyBlog/blob/master/([^/\s)]+\.md)')
 
 # 历史链接笔误修复：旧 URL 指向的路径不存在，实际文章在别处（迁移时顺带修正为有效站内链接）
 URL_ALIASES = {
@@ -145,16 +152,24 @@ def rewrite_content(text: str, old_path: Path, new_rel: str,
     img_rel = os.path.relpath(PNGS_NEW, new_dir)
     text = re.sub(r'\((?:\.\./)+pngs/', f'({img_rel}/', text)
 
-    # 2. GitHub blob 链接（md_files 前缀）→ 站点内部链接；files/ 前缀保持不动
+    # 2. GitHub blob/tree 链接 → 站点内部链接；files/ 前缀保持不动
     # 注意：正则只匹配 URL 本身（不含外层的 ](...)），故只替换 URL，保留原有链接语法
     def blob_repl(m):
         if m.group(1) == 'files':
             return m.group(0)
-        old_rel = f'md_files/{m.group(2)}'
+        # 历史笔误：md_files/SpringBoot//SpringBoot-10-Database.md 含双斜杠
+        old_rel = re.sub(r'/{2,}', '/', f'md_files/{m.group(2)}')
         old_rel = URL_ALIASES.get(old_rel, old_rel)
         target = mapping.get(old_rel)
         return f'/{target}' if target else m.group(0)
     text = GITHUB_BLOB.sub(blob_repl, text)
+
+    # 2b. GitHub blob 链接（仓库根级文章，已迁入 legacy/）→ 站点内部链接
+    # 不在映射中的名字（如 README.md）原样保留
+    def root_md_repl(m):
+        target = mapping.get(m.group(1))
+        return f'/{target}' if target else m.group(0)
+    text = GITHUB_ROOT_MD.sub(root_md_repl, text)
 
     # 3. 相对 .md 链接 → 站点内部链接（按旧路径查映射）
     def mdlink_repl(m):

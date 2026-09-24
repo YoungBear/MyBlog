@@ -8,7 +8,7 @@ tags: []
 
 本文github地址：
 
-https://github.com/YoungBear/MyBlog/blob/master/ActivityLaunchMode.md
+/legacy/activity-launch-mode
 
 说明，本文sample中使用的简写，launchMode分别为：
 

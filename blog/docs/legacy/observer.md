@@ -6,7 +6,7 @@ tags: []
 
 # 观察者模式 #
 　　本文github地址：
-　　https://github.com/YoungBear/MyBlog/blob/master/Observer.md
+　　/legacy/observer
 
 　　设计原则：为了交互对象之间的<font color=red>松耦合</font>而努力。
 

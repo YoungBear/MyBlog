@@ -8,7 +8,7 @@ tags: []
 
 　　本文github地址：
 
-　　https://github.com/YoungBear/MyBlog/blob/master/Decorator.md
+　　/legacy/decorator
 
 　　Decorator Pattern，也称为包装模式(Wrapper Pattern)。
 

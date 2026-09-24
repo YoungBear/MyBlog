@@ -8,20 +8,20 @@ tags: []
 ## [Demo 源代码 GitHub地址](https://github.com/YoungBear/SpringBootDemo)
 
 
-### [1. HelloWorld](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-1-HelloWorld.md)
+### [1. HelloWorld](/spring-boot/spring-boot-1-hello-world)
 
-### [2. logback 日志配置](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-2-logback.md)
+### [2. logback 日志配置](/spring-boot/spring-boot-2-logback)
 
-### [3. 返回 Json 串](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-3-Json.md)
+### [3. 返回 Json 串](/spring-boot/spring-boot-3-json)
 
-### [4. Tomcat 部署](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-4-Tomcat.md)
+### [4. Tomcat 部署](/spring-boot/spring-boot-4-tomcat)
 
-### [6. 返回统一的Json格式](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-6-CommonJson.md)
+### [6. 返回统一的Json格式](/spring-boot/spring-boot-6-common-json)
 
-### [7. 处理全局异常](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-7-GlobalExceptionHandler.md)
+### [7. 处理全局异常](/spring-boot/spring-boot-7-global-exception-handler)
 
-### [9. 多环境部署](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-9-MultipyEnv.md)
+### [9. 多环境部署](/spring-boot/spring-boot-9-multipy-env)
 
-### [10. 集成数据库](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot//SpringBoot-10-Database.md)
+### [10. 集成数据库](/spring-boot/spring-boot-10-database)
 
-### [11. RestTemplate工具类](https://github.com/YoungBear/MyBlog/tree/master/md_files/SpringBoot/SpringBoot-11-RestTemplateUtils.md)
+### [11. RestTemplate工具类](/spring-boot/spring-boot-11-rest-template-utils)

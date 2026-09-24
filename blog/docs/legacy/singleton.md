@@ -4,7 +4,7 @@ date: 2016-09-15
 tags: []
 ---
 
-本文github地址: https://github.com/YoungBear/MyBlog/blob/master/Singleton.md
+本文github地址: /legacy/singleton
 
 　　单例模式是一种常用的软件设计模式。在它的核心结构中只包含一个被称为单例的特殊类。通过单例模式可以保证系统中一个类只有一个实例。
 ## 1. 单例模式的用途 ##

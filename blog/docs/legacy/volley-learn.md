@@ -7,7 +7,7 @@ tags: []
 #Volley学习
 
 本文Github地址：
-https://github.com/YoungBear/MyBlog/blob/master/VolleyLearn.md
+/legacy/volley-learn
 
 [Volley](https://developer.android.com/training/volley/index.html "")是Android下个一个网络请求库，它可以让Android下的网络访问更加简单和快速。默认情况下，Volley都是异步访问网络的，所以我们不必担心异步处理问题。
 
