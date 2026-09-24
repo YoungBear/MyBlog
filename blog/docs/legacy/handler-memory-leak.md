@@ -8,7 +8,7 @@ tags: []
 
 本文GitHub地址：
 
-/legacy/handler-memory-leak
+[源码链接](https://github.com/YoungBear/MyBlog/blob/master/blog/docs/legacy/handler-memory-leak.md)
 
 *I figure life is a gift and I don't intend on wasting it.*
 

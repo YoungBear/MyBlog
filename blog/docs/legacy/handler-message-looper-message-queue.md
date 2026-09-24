@@ -8,7 +8,7 @@ tags: []
 
 本文GitHub地址：
 
-/legacy/handler-message-looper-message-queue
+[源码链接](https://github.com/YoungBear/MyBlog/blob/master/blog/docs/legacy/handler-message-looper-message-queue.md)
 
 *Everything is going on, but don't give up trying.*
 

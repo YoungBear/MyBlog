@@ -1,5 +1,5 @@
 ---
-title: "配置文件 app/config.properties"
+title: "关于Android端AK值申请及签名配置"
 date: 2017-10-28
 tags: []
 ---

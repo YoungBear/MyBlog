@@ -8,7 +8,7 @@ tags: []
 《重构 改善既有代码的设计》
 
 本文github地址： 
-/legacy/refactor
+[源码链接](https://github.com/YoungBear/MyBlog/blob/master/blog/docs/legacy/refactor.md)
 
 重构：在不改变软件可观察行为的前提下改善其内部结构。
 

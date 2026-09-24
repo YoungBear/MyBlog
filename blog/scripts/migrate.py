@@ -139,7 +139,16 @@ def extract_title(text: str, fallback: str) -> str:
     m = re.search(r'^title:\s*(.+)$', text, re.M)
     if m:
         return m.group(1).strip().strip('"\'')
-    m = re.search(r'^#\s+(.+)$', text, re.M)
+    # 标题只在正文前 15 行内查找：`^#+\s*(.+)` 若配合 re.M 扫描全文，会把正文深处
+    # 粘贴的代码/示例标题（如 `# [Demo源代码地址][6]`、`# 参考`）误当成文章标题；
+    # 只搜开头即可避免。`\s*` 同时允许 `#标题` 这类不带空格的写法。
+    body = text
+    if text.startswith('---\n'):
+        fm_end = text.find('\n---', 4)
+        if fm_end != -1:
+            body = text[fm_end + 4:]
+    head = '\n'.join(body.splitlines()[:15])
+    m = re.search(r'^#+\s*(.+)$', head, re.M)
     if m:
         return m.group(1).strip()
     return fallback

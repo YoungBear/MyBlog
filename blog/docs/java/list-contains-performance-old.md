@@ -1,5 +1,5 @@
 ---
-title: "Java - List 的 contains 方法的性能"
+title: "Java - List 的 contains 方法的性能（旧版）"
 date: 2018-08-15
 tags: []
 ---

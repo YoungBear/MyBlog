@@ -8,7 +8,7 @@ tags: []
 
 本文Github地址：
 
-/legacy/async-task
+[源码链接](https://github.com/YoungBear/MyBlog/blob/master/blog/docs/legacy/async-task.md)
 
 *Being yourself is an honor, because nobody else can be you.*
 

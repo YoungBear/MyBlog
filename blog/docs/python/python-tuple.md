@@ -1,5 +1,5 @@
 ---
-title: "Python 系列笔记"
+title: "Python 元组"
 date: 2017-11-26
 tags: []
 ---
