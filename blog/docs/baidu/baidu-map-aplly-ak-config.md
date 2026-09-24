@@ -10,7 +10,7 @@ tags: []
 
 申请ak：
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_android.png)
+![](../pngs/baidu/baidu_ak_apply_android.png)
 
 其中，百度api-key是与签名文件和包名绑定的，所以我们需要先获取**签名文件**，签名文件与SHA1值对应。我们需要输入**开发板SHA1**和**发布版SHA1**。
 
@@ -24,11 +24,11 @@ keytool -list -v -keystore <签名文件>
 
 查看debug签名文件的SHA1值：
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/get_sha1_debug.png)
+![](../pngs/baidu/get_sha1_debug.png)
 
 查看release签名文件的SHA1值：
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/get_sha1_release.png)
+![](../pngs/baidu/get_sha1_release.png)
 
 
 
@@ -39,7 +39,7 @@ keytool -list -v -keystore <签名文件>
 
 生成新的签名文件：
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/as_apply_sign_file.png)
+![](../pngs/baidu/as_apply_sign_file.png)
 
 ### 配置签名文件
 
@@ -94,7 +94,7 @@ android {
 
 可以在app目录下建立一个配置文件`config.properties`，在里边存放签名文件及密码等敏感信息。
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/config_preoperties.png)
+![](../pngs/baidu/config_preoperties.png)
 
 ```
 # 配置文件 app/config.properties

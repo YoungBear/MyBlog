@@ -12,11 +12,11 @@ tags: []
 
 Android已经没有 **Place Api v2**
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_android_1.png)
+![](../pngs/baidu/baidu_ak_apply_android_1.png)
 
 Server应用有 **Place Api v2**
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_server.png)
+![](../pngs/baidu/baidu_ak_apply_server.png)
 
 
 
@@ -54,7 +54,7 @@ http://api.map.baidu.com/place/v2/suggestion?query=天安门&region=北京&city_
 
 申请获取到的server应用的ak值及sk值：
 
-![](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_ak_apply_server_result.png)
+![](../pngs/baidu/baidu_ak_apply_server_result.png)
 
 [官方sn说明文档](http://lbsyun.baidu.com/index.php?title=lbscloud/api/appendix)
 
@@ -253,7 +253,7 @@ startActivityForResult的回调方法：
     }
 ```
 
-![地址输入提示服务demo](https://github.com/YoungBear/MyBlog/blob/master/pngs/baidu/baidu_place_sug_demo_360_640.gif)
+![地址输入提示服务demo](../pngs/baidu/baidu_place_sug_demo_360_640.gif)
 
 ## [Demo地址](https://github.com/YoungBear/BaiduDemo)
 
