@@ -4,36 +4,20 @@
 
 ## 概述
 
-这是一个个人博客/学习笔记仓库，包含各种技术主题的 Markdown 文件。仓库结构如下：
+个人博客/学习笔记仓库：文章为 Markdown，由 VitePress 构建为静态站点，push 到 master 后 GitHub Actions 自动部署到自有 Linux 服务器（主）与 GitHub Pages（备）。
 
-- **根目录**：存放历史文章（早期 .md 文件），新内容不再添加到此层
-- **`md_files/`**：按类别组织的结构化笔记（ai/、java/、android/、linux/、docker/、kubernetes/、nginx/、redis/、spring-boot/、deepseek/ 等）
-- **`pngs/`**：博客文章中使用的图片
-- **`files/`**：支持文件，包括配置示例和 Eclipse 设置
-- **`.claude/`**：Claude Code 配置文件
+## 仓库结构
 
-## 内容结构
+- **`blog/`**：站点项目根（package.json、new-post.sh、scripts/、deploy/）
+- **`blog/docs/`**：全部文章，按分类目录组织（ai/、java/、android/、linux/、docker/、kubernetes/、nginx/、redis/、spring-boot/ 等）；`legacy/` 为历史文章归档（不再新增）；`pngs/` 存图片（文中用相对路径引用）；`public/` 存可下载静态文件
+- **`blog/docs/.vitepress/`**：站点配置（config.mts 导航、sidebar.ts 自动侧边栏）
+- **`files/`**：支持文件（Eclipse 设置、proguard 规则等），保持原位勿移动（文章中的 GitHub blob 链接指向此处）
+- **`.github/workflows/deploy.yml`**：双部署工作流
 
-`README.md` 是所有主题的索引。关键主题领域包括：
+## 写作与提交
 
-- **Java**：日期时间、线程（AsyncTask、Handler、ThreadPool）、JVM、设计模式（单例、装饰器、观察者）
-- **Android**：Activity 生命周期、运行时权限、MVP、FileProvider、RecyclerView、LeakCanary、StrictMode
-- **Linux**：grep、tar、sed、ps、find、openssl 命令
-- **基础设施**：Docker、Kubernetes、nginx、redis
-- **数据库**：MySQL、MyBatis
-- **AI**：Claude Code 安装/使用/插件指南、deepseek 学习资料
-- **工具**：IntelliJ IDEA 快捷键、Eclipse 设置、adb 命令、windows 配置
-
-## 在此仓库中工作
-
-这是一个文档仓库——没有构建命令、测试或编译步骤。
-
-添加新内容时：
-- 使用清晰、有描述性的标题创建 Markdown 文件
-- 新内容放在 `md_files/` 相应子目录中（不要在根目录添加新 .md 文件）
-- 按照现有模式在 `README.md` 索引中添加条目
-- 图片放在 `pngs/` 目录中，使用有意义的名称
-
-提交风格遵循格式：`[update|add|fix] <简短描述>`
-
-`.gitignore` 忽略 `.DS_Store` 和 `.idea` 文件。
+- 新文章：`cd blog && ./new-post.sh <分类目录名> <文章标题>`，生成带 frontmatter（title/date/tags）的模板并自动登记到分类索引
+- 新图片：放入 `blog/docs/pngs/<分类>/`，文中用相对路径引用
+- 本地预览：`cd blog && npm run docs:dev`
+- 提交风格：`[add|update|fix] <简短描述>`，每个 commit 末尾加 `Co-Authored-By: MiniMax-M2.7-highspeed <noreply@anthropic.com>`
+- 发布：push 到 master 即自动部署；不要在 `legacy/` 下新增文章
