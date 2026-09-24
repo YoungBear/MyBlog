@@ -32,7 +32,7 @@ interface Item { text: string; link?: string; items?: Item[]; collapsed?: boolea
 function readMeta(file: string): { title: string; date: string } {
   let text = ''
   try { text = fs.readFileSync(file, 'utf-8') } catch { return { title: '', date: '' } }
-  const title = text.match(/^title:\s*(.+)$/m)?.[1]?.trim() ?? ''
+  const title = text.match(/^title:\s*(.+)$/m)?.[1]?.trim().replace(/^["']|["']$/g, '') ?? ''
   const date = text.match(/^date:\s*(\S+)/m)?.[1] ?? ''
   return { title, date }
 }
