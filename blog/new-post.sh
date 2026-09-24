@@ -10,7 +10,8 @@ SLUG="${3:-}"
 DATE=$(date +%F)
 
 if [ -z "$SLUG" ]; then
-  if [[ "$TITLE" =~ ^[A-Za-z0-9\ _-]+$ ]]; then
+  SLUG_RE='^[A-Za-z0-9 _-]+$'
+  if [[ "$TITLE" =~ $SLUG_RE ]]; then
     SLUG=$(echo "$TITLE" | tr 'A-Z ' 'a-z-' | tr -s '-')
   else
     SLUG="$DATE"
@@ -20,9 +21,14 @@ fi
 FILE="docs/$CAT/$SLUG.md"
 mkdir -p "docs/$CAT"
 
+ESC_TITLE="${TITLE//\\/\\\\}"
+ESC_TITLE="${ESC_TITLE//\"/\\\"}"
+
+[ -e "$FILE" ] && { echo "文件已存在: $FILE" >&2; exit 1; }
+
 cat > "$FILE" <<EOF
 ---
-title: $TITLE
+title: "$ESC_TITLE"
 date: $DATE
 tags: []
 ---
@@ -33,7 +39,7 @@ EOF
 
 if [ -f "docs/$CAT/index.md" ]; then
   LINK="- [$TITLE](/$CAT/$SLUG) — $DATE"
-  sed -i "/<!-- POSTS -->/a\\
+  grep -qF "](/$CAT/$SLUG)" "docs/$CAT/index.md" || sed -i "/<!-- POSTS -->/a\\
 $LINK" "docs/$CAT/index.md"
 fi
 
