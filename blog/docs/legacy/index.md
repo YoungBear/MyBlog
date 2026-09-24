@@ -1,6 +1,6 @@
 ---
 title: "历史文章"
-date: 2026-09-22
+date: 2026-09-24
 tags: []
 ---
 
@@ -16,9 +16,9 @@ tags: []
 - [架构漫谈](/legacy/architecture) — 2017-05-26
 - [Interview Learn](/legacy/interview-learn) — 2017-04-13
 - [Alpha Color](/legacy/alpha-color) — 2017-03-09
-- [\\sdk\\tools\\proguard\\proguard-android.txt](/legacy/app-develop-note) — 2017-03-09
+- [App研发录 读书笔记](/legacy/app-develop-note) — 2017-03-09
 - [Pattern](/legacy/pattern) — 2017-02-23
-- [Hello](/legacy/leak-canary-learn) — 2017-01-25
+- [使用LeakCanary源代码检测内存泄漏](/legacy/leak-canary-learn) — 2017-01-25
 - [Trump](/legacy/trump) — 2017-01-21
 - [Britain New Year Speech 2017](/legacy/britain-new-year-speech-2017) — 2017-01-16
 - [Strict Mode](/legacy/strict-mode) — 2017-01-10

@@ -1,6 +1,6 @@
 ---
 title: "Java"
-date: 2026-09-22
+date: 2026-09-24
 tags: []
 ---
 
@@ -21,6 +21,6 @@ tags: []
 - [Java UUID 正则表达式](/java/java-pattern-readme/uuid) — 2019-04-23
 - [Java 常用正则表达式](/java/java-pattern) — 2019-04-23
 - [Java 常用 Json 解析框架](/java/json-tools) — 2019-02-21
-- [Java - List 的 contains 方法的性能](/java/list-contains-performance-old) — 2018-08-15
+- [Java - List 的 contains 方法的性能（旧版）](/java/list-contains-performance-old) — 2018-08-15
 - [Java - List 的 contains 方法的性能](/java/list-contains-performance) — 2018-08-15
 - [Java 线程池(ThreadPoolExecutor)原理分析与使用](/java/thread-pool-executor) — 2018-01-22
